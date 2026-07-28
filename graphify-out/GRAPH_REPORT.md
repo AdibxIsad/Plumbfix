@@ -1,11 +1,11 @@
 # Graph Report - plumbfix  (2026-07-28)
 
 ## Corpus Check
-- 202 files · ~864,916 words
+- 124 files · ~732,215 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 705 nodes · 746 edges · 179 communities (175 shown, 4 thin omitted)
+- 627 nodes · 746 edges · 101 communities (97 shown, 4 thin omitted)
 - Extraction: 96% EXTRACTED · 4% INFERRED · 0% AMBIGUOUS · INFERRED: 32 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
@@ -71,7 +71,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (179 total, 4 thin omitted)
+## Communities (101 total, 4 thin omitted)
 
 ### Community 0 - "Feature & Unit Tests"
 Cohesion: 0.22
@@ -198,11 +198,11 @@ Nodes (15): 👤 Author, 👤 Customer Portal, 🚀 Getting Started, Installatio
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `PaymentReceipt` connect `Plumber Controller Group` to `Invoice Controller Group`, `Booking Model Group`?**
-  _High betweenness centrality (0.059) - this node is a cross-community bridge._
+  _High betweenness centrality (0.074) - this node is a cross-community bridge._
 - **Why does `Controller` connect `Invoice Controller Group` to `Community 160`, `Staff Controller Group`, `Community 166`, `Plumber Controller Group`, `Community 138`?**
-  _High betweenness centrality (0.048) - this node is a cross-community bridge._
+  _High betweenness centrality (0.061) - this node is a cross-community bridge._
 - **Why does `BookingDepositTest` connect `Plumber Controller Group` to `Database Migrations`?**
-  _High betweenness centrality (0.026) - this node is a cross-community bridge._
+  _High betweenness centrality (0.033) - this node is a cross-community bridge._
 - **What connects `Request`, `$schema`, `name` to the rest of the system?**
   _188 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Invoice Controller Group` be split into smaller, more focused modules?**

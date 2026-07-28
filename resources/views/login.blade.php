@@ -2,7 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="light">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Login — Plumbfix</title>
     <meta name="description" content="Log in to your Plumbfix account to manage bookings, track your plumber, and access your dashboard.">
 
@@ -41,10 +41,14 @@
 
     <style>
         * { box-sizing: border-box; }
+        html, body {
+            height: 100%;
+        }
         body {
             background-color: #fafbfe;
             color: #1e293b;
             font-family: 'Outfit', sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
         /* Custom scrollbar styling for the form side if scrollable */
         .custom-scrollbar::-webkit-scrollbar {
@@ -62,7 +66,7 @@
         }
     </style>
 </head>
-<body class="antialiased min-h-screen overflow-hidden flex flex-col lg:flex-row bg-[#fafbfe]">
+<body class="antialiased min-h-screen lg:h-screen overflow-y-auto lg:overflow-hidden flex flex-col lg:flex-row bg-[#fafbfe]">
 
     <!-- Top Slim Loading Progress Bar -->
     <div id="top-loading-bar-container" class="fixed top-0 left-0 w-full h-1 z-[9999] pointer-events-none opacity-0 transition-opacity duration-300">
@@ -70,27 +74,27 @@
     </div>
 
     <!-- Fullscreen Login Progress Loading Overlay (White Theme) -->
-    <div id="login-loading-overlay" class="fixed inset-0 z-[9998] bg-slate-900/30 backdrop-blur-md flex items-center justify-center opacity-0 pointer-events-none transition-all duration-400">
-        <div class="max-w-md w-full mx-4 p-8 bg-white/95 border border-slate-200/90 rounded-3xl shadow-2xl text-center relative overflow-hidden group">
+    <div id="login-loading-overlay" class="fixed inset-0 z-[9998] bg-slate-900/30 backdrop-blur-md flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-400">
+        <div class="w-full max-w-sm sm:max-w-md p-6 sm:p-8 bg-white/95 border border-slate-200/90 rounded-2xl sm:rounded-3xl shadow-2xl text-center relative overflow-hidden group">
             <!-- Background Soft Orbs -->
             <div class="absolute -top-24 -left-24 w-48 h-48 bg-brand-cyan/10 rounded-full blur-3xl pointer-events-none animate-pulse"></div>
             <div class="absolute -bottom-24 -right-24 w-48 h-48 bg-brand-blue/10 rounded-full blur-3xl pointer-events-none animate-pulse"></div>
 
             <!-- Icon & Logo Header -->
-            <div class="relative mb-6 inline-block">
-                <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-brand-blue via-brand-cyan to-indigo-600 p-0.5 shadow-xl shadow-blue-500/20 mx-auto flex items-center justify-center">
+            <div class="relative mb-5 sm:mb-6 inline-block">
+                <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-brand-blue via-brand-cyan to-indigo-600 p-0.5 shadow-xl shadow-blue-500/20 mx-auto flex items-center justify-center">
                     <div class="w-full h-full bg-white rounded-[14px] flex items-center justify-center">
-                        <i class="fa-solid fa-wrench text-brand-blue text-3xl animate-bounce" style="animation-duration: 2s;"></i>
+                        <i class="fa-solid fa-wrench text-brand-blue text-2xl sm:text-3xl animate-bounce" style="animation-duration: 2s;"></i>
                     </div>
                 </div>
-                <div class="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-brand-blue border-2 border-white flex items-center justify-center shadow">
-                    <i class="fa-solid fa-bolt text-white text-[10px]"></i>
+                <div class="absolute -bottom-1 -right-1 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-brand-blue border-2 border-white flex items-center justify-center shadow">
+                    <i class="fa-solid fa-bolt text-white text-[9px] sm:text-[10px]"></i>
                 </div>
             </div>
 
             <!-- Title & Status -->
-            <h3 class="text-xl font-extrabold text-slate-900 tracking-tight mb-1">Authenticating Session</h3>
-            <p id="loading-status-text" class="text-xs text-slate-500 font-medium mb-6 transition-all duration-300">
+            <h3 class="text-lg sm:text-xl font-extrabold text-slate-900 tracking-tight mb-1">Authenticating Session</h3>
+            <p id="loading-status-text" class="text-xs text-slate-500 font-medium mb-5 sm:mb-6 transition-all duration-300 min-h-[32px] flex items-center justify-center">
                 Verifying user credentials with core matrix...
             </p>
 
@@ -106,17 +110,17 @@
         </div>
     </div>
 
-    <!-- Left Panel: 3D Galaxy Canvas (45%) -->
-    <div class="hidden lg:flex lg:w-[45%] h-screen relative bg-slate-950 overflow-hidden flex-col justify-between p-12 select-none border-r border-slate-900">
+    <!-- Left Panel: 3D Galaxy Canvas (Visible on LG screens 1024px+) -->
+    <div class="hidden lg:flex lg:w-[45%] xl:w-[42%] 2xl:w-[40%] h-screen relative bg-slate-950 overflow-hidden flex-col justify-between p-8 xl:p-12 select-none border-r border-slate-900 shrink-0">
         <!-- Canvas -->
         <canvas id="galaxyCanvas" class="absolute inset-0 w-full h-full object-cover"></canvas>
         <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/10 to-slate-950/30 pointer-events-none"></div>
 
         <!-- Left Header (Branding) -->
         <div class="relative z-10">
-            <a href="{{ url('/') }}" class="inline-flex items-center gap-3 text-3xl font-extrabold tracking-tight group">
-                <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-blue to-brand-cyan flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                    <i class="fa-solid fa-wrench text-white text-lg"></i>
+            <a href="{{ url('/') }}" class="inline-flex items-center gap-3 text-2xl xl:text-3xl font-extrabold tracking-tight group">
+                <div class="w-10 h-10 xl:w-11 xl:h-11 rounded-xl bg-gradient-to-br from-brand-blue to-brand-cyan flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-wrench text-white text-base xl:text-lg"></i>
                 </div>
                 <span class="text-white">Plumb<span class="text-brand-cyan">fix</span></span>
             </a>
@@ -127,34 +131,34 @@
             <span class="px-3 py-1 text-xs font-bold tracking-wider text-brand-cyan uppercase bg-brand-cyan/10 border border-brand-cyan/20 rounded-full">
                 Next-Gen Service Portal
             </span>
-            <h2 class="mt-6 text-4xl font-extrabold text-white leading-tight">
+            <h2 class="mt-5 xl:mt-6 text-3xl xl:text-4xl font-extrabold text-white leading-tight">
                 Effortless repairs. <br/>
                 <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-indigo-400 animate-pulse" style="animation-duration: 4s;">
                     Powered by intelligence.
                 </span>
             </h2>
-            <p class="mt-4 text-slate-400 leading-relaxed text-sm">
+            <p class="mt-3 xl:mt-4 text-slate-400 leading-relaxed text-xs xl:text-sm">
                 Access Bangi's first futuristic plumbing ecosystem. Book, track, and manage verified experts on our smart service matrix.
             </p>
 
-            <div class="mt-8 space-y-4">
+            <div class="mt-6 xl:mt-8 space-y-3 xl:space-y-4">
                 <div class="flex items-center gap-3 text-slate-300">
-                    <div class="w-8 h-8 rounded-lg bg-slate-900/80 border border-slate-800 flex items-center justify-center text-brand-cyan text-sm">
+                    <div class="w-8 h-8 rounded-lg bg-slate-900/80 border border-slate-800 flex items-center justify-center text-brand-cyan text-sm shrink-0">
                         <i class="fa-solid fa-bolt"></i>
                     </div>
-                    <span class="text-sm font-medium">Lightning Fast Dispatch & Real-time ETA</span>
+                    <span class="text-xs xl:text-sm font-medium">Lightning Fast Dispatch & Real-time ETA</span>
                 </div>
                 <div class="flex items-center gap-3 text-slate-300">
-                    <div class="w-8 h-8 rounded-lg bg-slate-900/80 border border-slate-800 flex items-center justify-center text-brand-cyan text-sm">
+                    <div class="w-8 h-8 rounded-lg bg-slate-900/80 border border-slate-800 flex items-center justify-center text-brand-cyan text-sm shrink-0">
                         <i class="fa-solid fa-bell"></i>
                     </div>
-                    <span class="text-sm font-medium">Instant Dispatch & Status Alerts</span>
+                    <span class="text-xs xl:text-sm font-medium">Instant Dispatch & Status Alerts</span>
                 </div>
                 <div class="flex items-center gap-3 text-slate-300">
-                    <div class="w-8 h-8 rounded-lg bg-slate-900/80 border border-slate-800 flex items-center justify-center text-brand-cyan text-sm">
+                    <div class="w-8 h-8 rounded-lg bg-slate-900/80 border border-slate-800 flex items-center justify-center text-brand-cyan text-sm shrink-0">
                         <i class="fa-solid fa-shield-halved"></i>
                     </div>
-                    <span class="text-sm font-medium">Fully Insured & Verified Professionals</span>
+                    <span class="text-xs xl:text-sm font-medium">Fully Insured & Verified Professionals</span>
                 </div>
             </div>
         </div>
@@ -169,52 +173,52 @@
         </div>
     </div>
 
-    <!-- Right Panel: Login Credentials (55%) -->
-    <div class="w-full lg:w-[55%] h-screen bg-[#fafbfe] flex flex-col justify-between overflow-y-auto px-6 py-12 md:p-16 lg:p-24 relative custom-scrollbar">
+    <!-- Right Panel: Login Credentials -->
+    <div class="w-full lg:w-[55%] xl:w-[58%] 2xl:w-[60%] min-h-screen lg:h-screen bg-[#fafbfe] flex flex-col justify-between overflow-y-auto px-4 sm:px-8 md:px-12 lg:px-16 xl:px-24 py-6 sm:py-10 lg:py-12 relative custom-scrollbar">
         
-        <!-- Logo (Visible on mobile only) -->
-        <div class="flex justify-between items-center mb-8 lg:hidden">
-            <a href="{{ url('/') }}" class="inline-flex items-center gap-2.5 text-2xl font-extrabold tracking-tight">
-                <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-brand-blue to-brand-cyan flex items-center justify-center shadow-md">
-                    <i class="fa-solid fa-wrench text-white text-sm"></i>
+        <!-- Logo Header (Visible on mobile & tablet < 1024px) -->
+        <div class="flex justify-between items-center mb-6 sm:mb-8 lg:hidden shrink-0">
+            <a href="{{ url('/') }}" class="inline-flex items-center gap-2.5 text-xl sm:text-2xl font-extrabold tracking-tight">
+                <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-gradient-to-br from-brand-blue to-brand-cyan flex items-center justify-center shadow-md">
+                    <i class="fa-solid fa-wrench text-white text-xs sm:text-sm"></i>
                 </div>
                 <span class="text-slate-900">Plumb<span class="text-brand-blue">fix</span></span>
             </a>
-            <a href="{{ url('/') }}" class="text-xs text-slate-500 hover:text-slate-800 transition-colors font-medium">
-                Back to Home
+            <a href="{{ url('/') }}" class="text-xs text-slate-500 hover:text-slate-800 transition-colors font-medium flex items-center gap-1 px-2.5 py-1.5 rounded-lg hover:bg-slate-100">
+                <i class="fa-solid fa-house text-[10px]"></i> Home
             </a>
         </div>
 
-        <div class="my-auto max-w-md w-full mx-auto" id="form-container">
+        <div class="my-auto max-w-sm sm:max-w-md w-full mx-auto py-2 sm:py-4" id="form-container">
             <!-- Header -->
-            <div class="mb-8" id="login-header-group">
-                <h1 class="text-3xl font-extrabold text-slate-900 tracking-tight mb-2">Welcome back</h1>
-                <p class="text-slate-500 text-sm">Sign in to manage bookings, track plumbers, and access your dashboard.</p>
+            <div class="mb-6 sm:mb-8" id="login-header-group">
+                <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-1.5 sm:mb-2">Welcome back</h1>
+                <p class="text-slate-500 text-xs sm:text-sm leading-relaxed">Sign in to manage bookings, track plumbers, and access your dashboard.</p>
             </div>
 
             <!-- Session Status -->
             @if (session('status'))
-                <div class="mb-5 p-4 bg-blue-50 border border-blue-200 rounded-xl text-brand-blue text-sm flex items-center gap-3">
-                    <i class="fa-solid fa-circle-check shrink-0"></i>
+                <div class="mb-5 p-3.5 sm:p-4 bg-blue-50 border border-blue-200 rounded-xl text-brand-blue text-xs sm:text-sm flex items-center gap-3">
+                    <i class="fa-solid fa-circle-check shrink-0 text-base"></i>
                     <span>{{ session('status') }}</span>
                 </div>
             @endif
 
             <!-- Validation Errors -->
             @if ($errors->any())
-                <div class="mb-5 p-4 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm flex items-center gap-3">
-                    <i class="fa-solid fa-triangle-exclamation shrink-0"></i>
+                <div class="mb-5 p-3.5 sm:p-4 bg-red-50 border border-red-200 rounded-xl text-red-600 text-xs sm:text-sm flex items-center gap-3">
+                    <i class="fa-solid fa-triangle-exclamation shrink-0 text-base"></i>
                     <span>{{ $errors->first() }}</span>
                 </div>
             @endif
 
             <!-- Login Form -->
-            <form method="POST" action="{{ route('login.post') }}" id="loginForm" novalidate class="space-y-5">
+            <form method="POST" action="{{ route('login.post') }}" id="loginForm" novalidate class="space-y-4 sm:space-y-5">
                 @csrf
 
                 <!-- Email Field -->
                 <div class="form-field">
-                    <label for="email" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                    <label for="email" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5 sm:mb-2">
                         Email Address
                     </label>
                     <div class="relative">
@@ -230,7 +234,7 @@
                             autofocus
                             required
                             placeholder="you@example.com"
-                            class="block w-full pl-11 pr-4 py-3.5 bg-white border {{ $errors->has('email') ? 'border-red-400 ring-2 ring-red-500/10' : 'border-slate-200' }} rounded-xl text-slate-900 placeholder-slate-400 focus:outline-none focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/10 transition-all text-[15px]"
+                            class="block w-full pl-11 pr-4 py-3 sm:py-3.5 bg-white border {{ $errors->has('email') ? 'border-red-400 ring-2 ring-red-500/10' : 'border-slate-200' }} rounded-xl text-slate-900 placeholder-slate-400 focus:outline-none focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/10 transition-all text-base sm:text-[15px] min-h-[48px]"
                         >
                     </div>
                     @error('email')
@@ -242,15 +246,10 @@
 
                 <!-- Password Field -->
                 <div class="form-field">
-                    <div class="flex justify-between items-center mb-2">
+                    <div class="flex justify-between items-center mb-1.5 sm:mb-2 gap-2">
                         <label for="password" class="block text-xs font-bold text-slate-700 uppercase tracking-wider">
                             Password
                         </label>
-                        @if (Route::has('password.request'))
-                            <a href="{{ route('password.request') }}" class="text-xs text-brand-blue hover:text-blue-700 font-bold transition-colors">
-                                Forgot password?
-                            </a>
-                        @endif
                     </div>
                     <div class="relative">
                         <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
@@ -263,10 +262,10 @@
                             autocomplete="current-password"
                             required
                             placeholder="••••••••"
-                            class="block w-full pl-11 pr-12 py-3.5 bg-white border {{ $errors->has('password') ? 'border-red-400 ring-2 ring-red-500/10' : 'border-slate-200' }} rounded-xl text-slate-900 placeholder-slate-400 focus:outline-none focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/10 transition-all text-[15px]"
+                            class="block w-full pl-11 pr-12 py-3 sm:py-3.5 bg-white border {{ $errors->has('password') ? 'border-red-400 ring-2 ring-red-500/10' : 'border-slate-200' }} rounded-xl text-slate-900 placeholder-slate-400 focus:outline-none focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/10 transition-all text-base sm:text-[15px] min-h-[48px]"
                         >
-                        <button type="button" class="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 hover:text-brand-blue transition-colors" id="togglePassword" aria-label="Toggle password visibility">
-                            <i class="fa-regular fa-eye" id="toggleIcon"></i>
+                        <button type="button" class="absolute inset-y-0 right-0 px-4 flex items-center justify-center text-slate-400 hover:text-brand-blue transition-colors focus:outline-none min-w-[44px]" id="togglePassword" aria-label="Toggle password visibility">
+                            <i class="fa-regular fa-eye text-base" id="toggleIcon"></i>
                         </button>
                     </div>
                     @error('password')
@@ -276,16 +275,22 @@
                     @enderror
                 </div>
 
-                <!-- Remember Me -->
-                <div class="flex items-center form-field">
-                    <input type="checkbox" name="remember" id="remember" class="w-4 h-4 rounded border-slate-300 text-brand-blue focus:ring-brand-blue cursor-pointer" {{ old('remember') ? 'checked' : '' }}>
-                    <label for="remember" class="ml-2 text-sm text-slate-600 cursor-pointer select-none">
-                        Keep me signed in
+                <!-- Remember Me & Forgot Password Row -->
+                <div class="flex items-center justify-between gap-2 form-field pt-0.5">
+                    <label for="remember" class="inline-flex items-center gap-2 text-xs sm:text-sm text-slate-600 cursor-pointer select-none py-1">
+                        <input type="checkbox" name="remember" id="remember" class="w-4 h-4 rounded border-slate-300 text-brand-blue focus:ring-brand-blue cursor-pointer shrink-0" {{ old('remember') ? 'checked' : '' }}>
+                        <span>Keep me signed in</span>
                     </label>
+
+                    @if (Route::has('password.request'))
+                        <a href="{{ route('password.request') }}" class="text-xs text-brand-blue hover:text-blue-700 font-bold transition-colors shrink-0">
+                            Forgot password?
+                        </a>
+                    @endif
                 </div>
 
                 <!-- Submit Button -->
-                <button type="submit" id="loginBtn" class="form-field w-full py-3.5 px-4 bg-brand-blue hover:bg-blue-700 text-white font-bold rounded-xl shadow-lg shadow-blue-600/10 hover:shadow-blue-600/25 transition-all hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-brand-blue/20">
+                <button type="submit" id="loginBtn" class="form-field w-full min-h-[48px] py-3.5 px-4 bg-brand-blue hover:bg-blue-700 text-white font-bold rounded-xl shadow-lg shadow-blue-600/10 hover:shadow-blue-600/25 transition-all hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-brand-blue/20 flex items-center justify-center text-sm sm:text-base">
                     <span id="btnText" class="flex items-center justify-center gap-2">
                         Sign In <i class="fa-solid fa-arrow-right text-xs"></i>
                     </span>
@@ -300,9 +305,9 @@
             </form>
 
             <!-- Divider -->
-            <div class="relative my-7 form-field" id="divider-group">
+            <div class="relative my-6 sm:my-7 form-field" id="divider-group">
                 <div class="absolute inset-0 flex items-center">
-                    <div class="w-full border-t border-slate-100"></div>
+                    <div class="w-full border-t border-slate-200/80"></div>
                 </div>
                 <div class="relative flex justify-center text-xs uppercase">
                     <span class="bg-[#fafbfe] px-3 text-slate-400 font-bold tracking-wider">or continue with</span>
@@ -310,7 +315,7 @@
             </div>
 
             <!-- Google Sign-In Button -->
-            <a href="{{ route('auth.google') }}" id="googleBtn" class="form-field flex items-center justify-center gap-3 w-full py-3.5 px-4 rounded-xl border border-slate-200 bg-white text-slate-700 hover:border-brand-blue hover:bg-slate-50 hover:text-brand-blue font-semibold transition-all shadow-sm">
+            <a href="{{ route('auth.google') }}" id="googleBtn" class="form-field flex items-center justify-center gap-3 w-full min-h-[48px] py-3.5 px-4 rounded-xl border border-slate-200 bg-white text-slate-700 hover:border-brand-blue hover:bg-slate-50 hover:text-brand-blue font-semibold transition-all shadow-sm text-sm sm:text-base">
                 <svg width="18" height="18" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" class="shrink-0">
                     <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
                     <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
@@ -322,9 +327,9 @@
 
             <!-- Register Link -->
             @if (Route::has('register'))
-            <p class="text-center text-sm text-slate-500 mt-8 form-field" id="register-redirect">
+            <p class="text-center text-xs sm:text-sm text-slate-500 mt-6 sm:mt-8 form-field" id="register-redirect">
                 Don't have an account?
-                <a href="{{ route('register') }}" class="text-brand-blue hover:text-blue-700 font-bold transition-colors ml-1">
+                <a href="{{ route('register') }}" class="text-brand-blue hover:text-blue-700 font-bold transition-colors ml-1 inline-block py-1">
                     Create one free
                 </a>
             </p>
@@ -332,8 +337,8 @@
         </div>
 
         <!-- Back Link -->
-        <div class="mt-8 text-center text-xs text-slate-400 relative z-10" id="back-home-footer">
-            <a href="{{ url('/') }}" class="inline-flex items-center gap-1.5 hover:text-slate-600 transition-colors font-medium">
+        <div class="mt-6 sm:mt-8 text-center text-xs text-slate-400 relative z-10 shrink-0 py-2" id="back-home-footer">
+            <a href="{{ url('/') }}" class="inline-flex items-center gap-1.5 hover:text-slate-600 transition-colors font-medium py-1 px-2.5 rounded-lg hover:bg-slate-100">
                 <i class="fa-solid fa-arrow-left text-[10px]"></i> Back to Plumbfix Home
             </a>
         </div>
@@ -472,15 +477,18 @@
             if (!canvas) return;
             const ctx = canvas.getContext('2d');
             
-            let width = canvas.width = canvas.offsetWidth;
-            let height = canvas.height = canvas.offsetHeight;
-
-            window.addEventListener('resize', () => {
-                if (!canvas) return;
+            function updateCanvasSize() {
+                if (!canvas || !canvas.offsetWidth || !canvas.offsetHeight) return;
                 width = canvas.width = canvas.offsetWidth;
                 height = canvas.height = canvas.offsetHeight;
+                maxRadius = Math.min(width, height) * 0.72;
                 initStarfield();
-            });
+            }
+
+            let width = canvas.offsetWidth || 500;
+            let height = canvas.offsetHeight || 500;
+
+            window.addEventListener('resize', updateCanvasSize);
 
             // 1. TWINKLING BACKGROUND STARS
             let backgroundStars = [];
@@ -498,7 +506,7 @@
                     });
                 }
             }
-            initStarfield();
+            updateCanvasSize();
 
             // 2. DYNAMIC SHOOTING STARS
             class ShootingStar {
@@ -558,10 +566,6 @@
             const numParticles = 1350;
             const spiralArms = 3;
             let maxRadius = Math.min(width, height) * 0.72; // Make it a big galaxy!
-
-            window.addEventListener('resize', () => {
-                maxRadius = Math.min(width, height) * 0.72;
-            });
 
             const colorTemplates = [
                 'rgba(6, 182, 212, opacity)',   // Cyan
