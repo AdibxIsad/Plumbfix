@@ -2,24 +2,52 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Customer;
+use App\Models\Staff;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
-    use WithoutModelEvents;
-
     /**
-     * Seed the application's database.
+     * Seed the application's database with initial accounts.
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // Create Admin Staff account
+        Staff::updateOrCreate(
+            ['staffEmail' => 'admin@gmail.com'],
+            [
+                'staffName' => 'System Admin',
+                'staffPhoneNo' => '0123456789',
+                'staffPassword' => Hash::make('admin123'),
+                'adminID' => null,
+                'status' => 'Active',
+            ]
+        );
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        // Create Regular Staff / Plumber account
+        Staff::updateOrCreate(
+            ['staffEmail' => 'staff@gmail.com'],
+            [
+                'staffName' => 'John Plumber',
+                'staffPhoneNo' => '0198765432',
+                'staffPassword' => Hash::make('staff123'),
+                'adminID' => 1,
+                'specialization' => 'Pipe Repair & Fitting',
+                'status' => 'Active',
+            ]
+        );
+
+        // Create Demo Customer account
+        Customer::updateOrCreate(
+            ['customerEmail' => 'customer@gmail.com'],
+            [
+                'customerName' => 'Demo Customer',
+                'customerPhoneNo' => '0112345678',
+                'customerAddress' => '123 Jalan Ampang, Kuala Lumpur',
+                'customerPassword' => Hash::make('customer123'),
+            ]
+        );
     }
 }
