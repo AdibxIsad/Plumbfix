@@ -50,4 +50,4 @@ RUN mkdir -p /var/www/html/public/uploads/receipts \
 EXPOSE 80
 
 # Startup command: run migrations and start Apache server
-CMD php artisan migrate:fresh --force --seed && apache2-foreground
+CMD php artisan migrate --force && apache2-foreground
