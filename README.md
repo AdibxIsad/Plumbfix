@@ -14,6 +14,14 @@
 
 ---
 
+## 🌐 Live System Demo
+
+Experience the live application online:
+
+👉 **[Launch Plumbfix Live Demo](https://github.com/AdibxIsad/plumbfix)**  
+
+---
+
 ## 📌 Overview
 
 **Plumbfix** is a comprehensive, full-stack Web Application designed to streamline plumbing service bookings, technician dispatching, payment verification, and real-time customer-staff communication. Built with **Laravel 12**, **Tailwind CSS**, and modern web architectures, Plumbfix bridges the gap between plumbing service providers and customers with an intuitive, multi-portal system.
