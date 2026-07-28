@@ -26,8 +26,10 @@ class ChatController extends Controller
         if ($guard === 'customer' && $booking->customerID !== $user->customerID) {
             abort(403, 'Unauthorized action.');
         }
-        if ($guard === 'staff' && !$user->isAdmin() && $booking->staffID !== $user->staffID) {
-            abort(403, 'Unauthorized action.');
+        if ($guard === 'staff') {
+            if (!$user->isAdmin() && $booking->staffID !== null && $booking->staffID !== $user->staffID) {
+                abort(403, 'Unauthorized action.');
+            }
         }
 
         return [$booking, $user];

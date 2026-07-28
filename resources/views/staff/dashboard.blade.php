@@ -2156,67 +2156,55 @@
                 $userForNotifications = auth('customer')->user() ?? auth('staff')->user();
                 $unreadCount = $userForNotifications ? $userForNotifications->unreadNotifications->count() : 0;
                 $userEmail = $userForNotifications->staffEmail ?? $userForNotifications->customerEmail ?? 'staff@plumbfix.com';
-
-                $hasChatMessages = false;
-                if (auth('staff')->check()) {
-                    $stfUser = auth('staff')->user();
-                    if ($stfUser->isAdmin()) {
-                        $hasChatMessages = \App\Models\ChatMessage::where('sender_type', 'customer')->exists();
-                    } else {
-                        $hasChatMessages = \App\Models\ChatMessage::whereHas('booking', function($q) use ($stfUser) {
-                            $q->where('staffID', $stfUser->staffID);
-                        })->where('sender_type', 'customer')->exists();
-                    }
-                }
-
-                $gmailUrl = "https://mail.google.com/mail/u/0/#search/Plumbfix";
             @endphp
             <div class="header-actions">
-                <!-- Email Notifications Dropdown -->
-                <div class="email-dropdown-trigger" id="emailTriggerBtn" style="position:relative;">
-                    <a href="javascript:void(0)" class="action-btn" aria-label="Mail" style="position: relative;">
+                <!-- Live Customer Chat Center Dropdown -->
+                <div class="notification-dropdown-trigger" id="emailTriggerBtn" style="position:relative;">
+                    <a href="javascript:void(0)" class="action-btn" aria-label="Messages" title="Customer Chat Center">
                         <i class="fa-regular fa-envelope"></i>
+                        @php
+                            $stfUser = auth('staff')->user();
+                            $hasChatMessages = \App\Models\ChatMessage::where('sender_type', 'customer')->where('is_read', false)->exists();
+                        @endphp
                         @if($hasChatMessages)
                         <span class="chat-dot"></span>
                         @endif
                     </a>
-
-                    <div class="notification-dropdown-menu" id="emailDropdownMenu" style="width: 320px;">
+                    
+                    <div class="notification-dropdown-menu" id="emailDropdownMenu" style="width: 330px;">
                         <div class="dropdown-header" style="display:flex; justify-content:space-between; align-items:center;">
                             <div class="dropdown-header-name" style="display:flex; align-items:center; gap:6px;">
-                                <i class="fa-solid fa-envelope" style="color:var(--brand-color);"></i>
-                                Plumbfix Staff Email Inbox
+                                <i class="fa-solid fa-comments" style="color:var(--brand-color);"></i>
+                                Customer Messages
                             </div>
-                            <span style="font-size: 10px; font-weight:700; color:var(--text-muted); background:var(--hover-color); padding:2px 8px; border-radius:10px;">Gmail</span>
+                            <span style="font-size: 10px; font-weight:700; color:var(--brand-color); background:var(--brand-light); padding:2px 8px; border-radius:10px;">Live Chat</span>
                         </div>
-                        <div class="notification-list">
-                            <a href="{{ $gmailUrl }}" target="_blank" class="notification-item" style="display:block; text-decoration:none;">
-                                <div class="notification-message" style="font-weight:700; color:var(--text-dark);">
-                                    📋 New Service Order Request
-                                </div>
-                                <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">
-                                    Customer booking notification & dispatch details sent to <strong>{{ $userEmail }}</strong>
-                                </div>
-                                <div class="notification-time">Today · Click to open in Gmail ↗</div>
-                            </a>
-                            <a href="{{ $gmailUrl }}" target="_blank" class="notification-item" style="display:block; text-decoration:none;">
-                                <div class="notification-message" style="font-weight:700; color:var(--text-dark);">
-                                    💳 Payment Verification Alert
-                                </div>
-                                <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">
-                                    Receipt document uploaded for review at <strong>{{ $userEmail }}</strong>
-                                </div>
-                                <div class="notification-time">1 day ago · Click to open in Gmail ↗</div>
-                            </a>
+                        <div class="notification-list" id="headerChatList">
+                            @php
+                                $recentChats = \App\Models\ChatMessage::with(['booking.customer'])
+                                    ->where('sender_type', 'customer')
+                                    ->orderBy('created_at', 'desc')
+                                    ->get()
+                                    ->unique('bookingID')
+                                    ->take(6);
+                            @endphp
+                            @forelse($recentChats as $chatMsg)
+                                <a href="javascript:void(0)" onclick="openChatDrawer({{ $chatMsg->bookingID }}, '{{ addslashes($chatMsg->booking->customer->customerName ?? 'Customer') }}')" class="notification-item" style="display:block; text-decoration:none;">
+                                    <div class="notification-message" style="font-weight:700; color:var(--text-dark); display:flex; justify-content:space-between; align-items:center;">
+                                        <span>💬 {{ $chatMsg->booking->customer->customerName ?? 'Customer' }}</span>
+                                        <span style="font-size:10px; color:var(--brand-color); font-weight:800;">#BKG-{{ $chatMsg->bookingID }}</span>
+                                    </div>
+                                    <div style="font-size:12px; color:var(--text-main); margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+                                        {{ $chatMsg->message }}
+                                    </div>
+                                    <div class="notification-time">{{ $chatMsg->created_at->diffForHumans() }} · Click to open chat ↗</div>
+                                </a>
+                            @empty
+                                <div class="notification-item text-muted" style="border:none; padding:16px; text-align:center; font-size:13px;">No customer messages yet.</div>
+                            @endforelse
                         </div>
-                        <a href="{{ $gmailUrl }}" target="_blank" class="dropdown-item" style="color: var(--brand-color); justify-content: center; font-weight: 700; border-top: 1px solid var(--border-color); border-radius: 0 0 12px 12px; margin-top: 4px; gap: 8px; text-decoration: none;">
-                            <svg width="14" height="14" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                                <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
-                                <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
-                                <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
-                                <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
-                            </svg>
-                            Open Gmail Inbox ↗
+                        <a href="{{ route('staff.bookings') }}" class="dropdown-item" style="color: var(--brand-color); justify-content: center; font-weight: 700; border-top: 1px solid var(--border-color); border-radius: 0 0 12px 12px; margin-top: 4px; gap: 8px; text-decoration: none;">
+                            View All Bookings & Chats 💬
                         </a>
                     </div>
                 </div>
@@ -2525,11 +2513,11 @@
                                     $statusLabel = 'Refund ' . ucfirst($rStatus);
                                 }
                             }
-                            // 2. Check Payment Verification status
-                            elseif ($hasReceipt || in_array($pStatus, ['Pending', 'Awaiting Verification', 'Submitted', 'Under Review', 'Paid', 'Rejected'])) {
+                            // 2. Check Payment Verification status (ONLY if deposit receipt has been submitted or payment is explicitly awaiting verification / paid / rejected)
+                            elseif ($hasReceipt || in_array($pStatus, ['Awaiting Verification', 'Submitted', 'Under Review', 'Paid', 'Rejected'])) {
                                 $itemStatus = 'payment';
                                 $targetRoute = route('staff.payments.index');
-                                if (in_array($pStatus, ['Pending', 'Awaiting Verification', 'Submitted', 'Under Review']) || ($hasReceipt && $pStatus !== 'Paid')) {
+                                if (in_array($pStatus, ['Awaiting Verification', 'Submitted', 'Under Review']) || ($hasReceipt && $pStatus !== 'Paid' && $pStatus !== 'Rejected')) {
                                     $statusClass = 'payment';
                                     $statusLabel = 'Verify Payment';
                                 } elseif ($pStatus === 'Paid') {
@@ -2543,12 +2531,17 @@
                                     $statusLabel = 'Verify Payment';
                                 }
                             }
-                            // 3. Regular Booking status
+                            // 3. Regular Booking status (Initial booking creation, pending approval, confirmed, in progress, completed, cancelled)
                             else {
+                                $targetRoute = route('staff.bookings');
                                 if (!$booking->staffID || $booking->bookingStatus == 'pending') {
                                     $itemStatus = 'pending';
                                     $statusClass = 'pending';
                                     $statusLabel = 'Pending Booking';
+                                } elseif ($booking->bookingStatus == 'confirmed') {
+                                    $itemStatus = 'in_progress';
+                                    $statusClass = 'in_progress';
+                                    $statusLabel = 'Confirmed';
                                 } elseif ($booking->bookingStatus == 'in_progress') {
                                     $itemStatus = 'in_progress';
                                     $statusClass = 'in_progress';
@@ -3419,6 +3412,122 @@
             // Start loop
             tick();
         });
+    </script>
+
+    <!-- Chat Drawer HTML -->
+    <div id="chatDrawer" class="chat-drawer">
+        <div class="chat-drawer-header">
+            <div class="chat-drawer-title-group">
+                <div class="chat-drawer-title" id="chatDrawerTitle">Booking Chat</div>
+                <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;" id="chatDrawerSubtitle">Booking #</div>
+            </div>
+            <button onclick="closeChatDrawer()" class="chat-drawer-close">&times;</button>
+        </div>
+        <div class="chat-messages-container" id="chatMessagesContainer">
+            <!-- Messages populated dynamically -->
+        </div>
+        <div class="chat-drawer-footer">
+            <input type="text" id="chatInput" class="chat-input" placeholder="Type a message..." onkeydown="if(event.key === 'Enter') sendChatMessage()">
+            <button onclick="sendChatMessage()" class="chat-send-btn">Send</button>
+        </div>
+    </div>
+
+    <script>
+        let currentChatBookingId = null;
+        let chatPollInterval = null;
+        const currentUserId = @json(auth('staff')->id());
+        const currentUserType = 'staff';
+
+        window.openChatDrawer = function(bookingId, name, btnEl) {
+            currentChatBookingId = bookingId;
+            if (btnEl) {
+                const dot = btnEl.querySelector('.booking-chat-dot');
+                if (dot) dot.style.display = 'none';
+            }
+            document.getElementById('chatDrawerSubtitle').textContent = `Booking #BKG-${bookingId}`;
+            document.getElementById('chatDrawerTitle').textContent = `Chat with ${name}`;
+            document.getElementById('chatDrawer').classList.add('open');
+            
+            fetchChatMessages();
+            
+            if (chatPollInterval) clearInterval(chatPollInterval);
+            chatPollInterval = setInterval(fetchChatMessages, 3000);
+        }
+
+        window.closeChatDrawer = function() {
+            currentChatBookingId = null;
+            document.getElementById('chatDrawer').classList.remove('open');
+            if (chatPollInterval) {
+                clearInterval(chatPollInterval);
+                chatPollInterval = null;
+            }
+        }
+
+        window.fetchChatMessages = function() {
+            if (!currentChatBookingId) return;
+            
+            fetch(`/staff/bookings/${currentChatBookingId}/chat/messages`)
+                .then(res => res.json())
+                .then(data => {
+                    const container = document.getElementById('chatMessagesContainer');
+                    const scrollAtBottom = container.scrollHeight - container.clientHeight <= container.scrollTop + 50;
+                    
+                    let html = '';
+                    if (data.messages && data.messages.length > 0) {
+                        data.messages.forEach(msg => {
+                            const isOutgoing = msg.sender_type === currentUserType && msg.sender_id === currentUserId;
+                            const bubbleClass = isOutgoing ? 'outgoing' : 'incoming';
+                            
+                            html += `
+                                <div class="chat-message-bubble ${bubbleClass}">
+                                    <div class="chat-message-sender" style="font-size: 10px; font-weight: bold; margin-bottom: 3px; ${isOutgoing ? 'color: rgba(255, 255, 255, 0.85)' : 'color: var(--text-muted)'}">${msg.sender_name}</div>
+                                    <div>${msg.message}</div>
+                                    <div class="chat-message-meta">${msg.time_formatted}</div>
+                                </div>
+                            `;
+                        });
+                    } else {
+                        html = '<div style="text-align: center; color: var(--text-muted); padding: 40px 0; font-size: 13px;">No messages yet. Send a message to start the conversation.</div>';
+                    }
+                    
+                    container.innerHTML = html;
+                    
+                    if (scrollAtBottom || container.getAttribute('data-loaded') !== 'true') {
+                        container.scrollTop = container.scrollHeight;
+                        container.setAttribute('data-loaded', 'true');
+                    }
+                })
+                .catch(err => console.error("Error fetching chat messages", err));
+        }
+
+        window.sendChatMessage = function() {
+            const input = document.getElementById('chatInput');
+            const msg = input.value.trim();
+            if (!msg || !currentChatBookingId) return;
+            
+            input.value = '';
+            
+            fetch(`/staff/bookings/${currentChatBookingId}/chat/messages`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({ message: msg })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    fetchChatMessages();
+                } else {
+                    alert("Error sending message");
+                }
+            })
+            .catch(err => {
+                console.error("Error sending chat message", err);
+                alert("Failed to send message");
+            });
+        }
     </script>
 </body>
 </html>

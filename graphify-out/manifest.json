@@ -20,8 +20,8 @@
     "semantic_hash": "99c664a91ccadc708280ebb521a849db"
   },
   "app/Http/Controllers/Chat/ChatController.php": {
-    "mtime": 1783236126.5310137,
-    "ast_hash": "ddb59862b33338d4f9944a648e78465e",
+    "mtime": 1785248389.7591069,
+    "ast_hash": "a15cb4386c3713f58d3a7781dff5638a",
     "semantic_hash": ""
   },
   "app/Http/Controllers/Controller.php": {
@@ -310,8 +310,8 @@
     "semantic_hash": ""
   },
   "resources/views/customer/bookings.blade.php": {
-    "mtime": 1784446493.1985874,
-    "ast_hash": "0765fdf3608f3371b032632cbcc712b7",
+    "mtime": 1785248380.6377,
+    "ast_hash": "430d7ac3c8831ed0052818f110d051a7",
     "semantic_hash": ""
   },
   "resources/views/customer/dashboard.blade.php": {
@@ -355,13 +355,13 @@
     "semantic_hash": ""
   },
   "resources/views/staff/bookings.blade.php": {
-    "mtime": 1785243728.9020195,
-    "ast_hash": "387eb1df318603d7bb869b91a7af2fc4",
+    "mtime": 1785248451.0351145,
+    "ast_hash": "c8948ad365fda0a8aab362e008fcfbc3",
     "semantic_hash": ""
   },
   "resources/views/staff/dashboard.blade.php": {
-    "mtime": 1785244746.857852,
-    "ast_hash": "6881dd26c7c3997c745959f9819df8a4",
+    "mtime": 1785248623.1898928,
+    "ast_hash": "c3171ff72bf8980831bc899c8df00a1c",
     "semantic_hash": ""
   },
   "resources/views/staff/feedback.blade.php": {
@@ -690,8 +690,8 @@
     "semantic_hash": ""
   },
   "resources/views/staff/payment-verification.blade.php": {
-    "mtime": 1785243742.5284276,
-    "ast_hash": "a2fc5d09e4ec9cffb7b4ce3afba5870d",
+    "mtime": 1785248477.967586,
+    "ast_hash": "b2956c93f3da740d394899872f22f010",
     "semantic_hash": ""
   },
   "public/images/company_qr_temp.jpg": {

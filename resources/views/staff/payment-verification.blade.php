@@ -1328,6 +1328,80 @@
         body.collapsed-sidebar-active .nav-dropdown-menu {
             padding-left: 0;
         }
+
+        @media (max-width: 1200px) {
+            .sidebar {
+                transform: translateX(calc(-100% - 40px));
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                bottom: 20px;
+            }
+            .main-wrapper {
+                margin-left: 20px;
+                padding-right: 20px;
+            }
+            .mobile-hamburger {
+                display: flex;
+            }
+            body.mobile-sidebar-active .sidebar {
+                transform: translateX(0);
+            }
+            body.mobile-sidebar-active .sidebar-overlay {
+                display: block;
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-wrapper {
+                margin-left: 10px !important;
+                padding-right: 10px !important;
+                width: calc(100% - 20px) !important;
+                max-width: 100% !important;
+                overflow-x: hidden;
+            }
+            .content, .content-container {
+                padding: 16px 10px !important;
+                width: 100% !important;
+            }
+            .main-header {
+                padding: 10px 14px !important;
+                margin-top: 10px !important;
+                height: auto !important;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            .welcome-text h1 {
+                font-size: 18px !important;
+            }
+            .welcome-text p {
+                font-size: 11.5px !important;
+            }
+            .search-container, .table-wrap, .search-card, .filter-card {
+                padding: 14px 10px !important;
+                width: 100% !important;
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+            }
+            .filter-bar {
+                flex-wrap: nowrap !important;
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch;
+                gap: 6px !important;
+            }
+            .search-form {
+                flex-direction: column !important;
+                gap: 8px !important;
+            }
+            .filter-select, .search-input {
+                width: 100% !important;
+                flex: 1 1 100% !important;
+            }
+            table {
+                min-width: 650px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -2222,6 +2296,130 @@
         }
         if (closeLightboxBtn) {
             closeLightboxBtn.addEventListener('click', closeLightbox);
+        }
+    </script>
+
+    <!-- Chat Drawer HTML -->
+    <div id="chatDrawer" class="chat-drawer" style="position: fixed; top: 16px; right: -420px; bottom: 16px; width: 400px; background: var(--surface-color); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: var(--shadow-lg); z-index: 10000; transition: right 0.3s ease; display: flex; flex-direction: column; border: 1px solid rgba(255,255,255,0.6); border-radius: 24px; overflow: hidden;">
+        <div class="chat-drawer-header" style="padding: 20px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; background-color: var(--surface-color-solid);">
+            <div class="chat-drawer-title-group">
+                <div class="chat-drawer-title" id="chatDrawerTitle" style="font-weight: 800; color: var(--text-dark); font-size: 16px;">Booking Chat</div>
+                <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;" id="chatDrawerSubtitle">Booking #</div>
+            </div>
+            <button onclick="closeChatDrawer()" class="chat-drawer-close" style="border: none; background: none; font-size: 24px; color: var(--text-muted); cursor: pointer;">&times;</button>
+        </div>
+        <div class="chat-messages-container" id="chatMessagesContainer" style="flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 12px; background-color: rgba(248, 250, 252, 0.5);">
+            <!-- Messages populated dynamically -->
+        </div>
+        <div class="chat-drawer-footer" style="padding: 16px; border-top: 1px solid var(--border-color); display: flex; gap: 10px; background-color: var(--surface-color-solid);">
+            <input type="text" id="chatInput" class="chat-input" placeholder="Type a message..." style="flex: 1; padding: 10px 14px; border: 1px solid var(--border-color); border-radius: 10px; outline: none; background-color: var(--hover-color); color: var(--text-dark);" onkeydown="if(event.key === 'Enter') sendChatMessage()">
+            <button onclick="sendChatMessage()" class="chat-send-btn" style="padding: 10px 16px; background: var(--brand-gradient); color: white; border: none; border-radius: 10px; font-weight: 700; cursor: pointer;">Send</button>
+        </div>
+    </div>
+
+    <style>
+        .chat-drawer.open { right: 16px !important; }
+        .chat-message-bubble { max-width: 80%; padding: 12px 16px; border-radius: 16px; font-size: 13.5px; line-height: 1.4; word-break: break-word; }
+        .chat-message-bubble.incoming { background-color: var(--surface-color-solid); color: var(--text-dark); align-self: flex-start; border: 1px solid var(--border-color); border-top-left-radius: 4px; }
+        .chat-message-bubble.outgoing { background: var(--brand-gradient); color: white; align-self: flex-end; border-top-right-radius: 4px; }
+        .chat-message-meta { font-size: 10px; color: var(--text-muted); margin-top: 4px; text-align: right; }
+    </style>
+
+    <script>
+        let currentChatBookingId = null;
+        let chatPollInterval = null;
+        const currentUserId = @json(auth('staff')->id());
+        const currentUserType = 'staff';
+
+        window.openChatDrawer = function(bookingId, name, btnEl) {
+            currentChatBookingId = bookingId;
+            if (btnEl) {
+                const dot = btnEl.querySelector('.booking-chat-dot');
+                if (dot) dot.style.display = 'none';
+            }
+            document.getElementById('chatDrawerSubtitle').textContent = `Booking #BKG-${bookingId}`;
+            document.getElementById('chatDrawerTitle').textContent = `Chat with ${name}`;
+            document.getElementById('chatDrawer').classList.add('open');
+            
+            fetchChatMessages();
+            
+            if (chatPollInterval) clearInterval(chatPollInterval);
+            chatPollInterval = setInterval(fetchChatMessages, 3000);
+        }
+
+        window.closeChatDrawer = function() {
+            currentChatBookingId = null;
+            document.getElementById('chatDrawer').classList.remove('open');
+            if (chatPollInterval) {
+                clearInterval(chatPollInterval);
+                chatPollInterval = null;
+            }
+        }
+
+        window.fetchChatMessages = function() {
+            if (!currentChatBookingId) return;
+            
+            fetch(`/staff/bookings/${currentChatBookingId}/chat/messages`)
+                .then(res => res.json())
+                .then(data => {
+                    const container = document.getElementById('chatMessagesContainer');
+                    const scrollAtBottom = container.scrollHeight - container.clientHeight <= container.scrollTop + 50;
+                    
+                    let html = '';
+                    if (data.messages && data.messages.length > 0) {
+                        data.messages.forEach(msg => {
+                            const isOutgoing = msg.sender_type === currentUserType && msg.sender_id === currentUserId;
+                            const bubbleClass = isOutgoing ? 'outgoing' : 'incoming';
+                            
+                            html += `
+                                <div class="chat-message-bubble ${bubbleClass}">
+                                    <div class="chat-message-sender" style="font-size: 10px; font-weight: bold; margin-bottom: 3px; ${isOutgoing ? 'color: rgba(255, 255, 255, 0.85)' : 'color: var(--text-muted)'}">${msg.sender_name}</div>
+                                    <div>${msg.message}</div>
+                                    <div class="chat-message-meta">${msg.time_formatted}</div>
+                                </div>
+                            `;
+                        });
+                    } else {
+                        html = '<div style="text-align: center; color: var(--text-muted); padding: 40px 0; font-size: 13px;">No messages yet. Send a message to start the conversation.</div>';
+                    }
+                    
+                    container.innerHTML = html;
+                    
+                    if (scrollAtBottom || container.getAttribute('data-loaded') !== 'true') {
+                        container.scrollTop = container.scrollHeight;
+                        container.setAttribute('data-loaded', 'true');
+                    }
+                })
+                .catch(err => console.error("Error fetching chat messages", err));
+        }
+
+        window.sendChatMessage = function() {
+            const input = document.getElementById('chatInput');
+            const msg = input.value.trim();
+            if (!msg || !currentChatBookingId) return;
+            
+            input.value = '';
+            
+            fetch(`/staff/bookings/${currentChatBookingId}/chat/messages`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({ message: msg })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    fetchChatMessages();
+                } else {
+                    alert("Error sending message");
+                }
+            })
+            .catch(err => {
+                console.error("Error sending chat message", err);
+                alert("Failed to send message");
+            });
         }
     </script>
 </body>
