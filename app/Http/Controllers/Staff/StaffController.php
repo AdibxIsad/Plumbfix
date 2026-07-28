@@ -75,8 +75,14 @@ class StaffController extends Controller
             $salesGrowth = $salesThisMonth > 0 ? 100.0 : 0.0;
         }
 
+        $yearExpr = match (\Illuminate\Support\Facades\DB::getDriverName()) {
+            'pgsql' => 'EXTRACT(YEAR FROM "jobRecordCompletionDate")::integer as year',
+            'sqlite' => 'cast(strftime("%Y", "jobRecordCompletionDate") as integer) as year',
+            default => 'YEAR(jobRecordCompletionDate) as year',
+        };
+
         // Get available years for dropdown filter
-        $years = \App\Models\JobRecord::selectRaw('YEAR(jobRecordCompletionDate) as year')
+        $years = \App\Models\JobRecord::selectRaw($yearExpr)
             ->whereNotNull('jobRecordCompletionDate')
             ->distinct()
             ->orderBy('year', 'desc')
@@ -508,7 +514,13 @@ class StaffController extends Controller
             }
 
             // Get available years for report
-            $reportYears = JobRecord::selectRaw('YEAR(jobRecordCompletionDate) as year')
+            $yearsReportExpr = match (\Illuminate\Support\Facades\DB::getDriverName()) {
+                'pgsql' => 'EXTRACT(YEAR FROM "jobRecordCompletionDate")::integer as year',
+                'sqlite' => 'cast(strftime("%Y", "jobRecordCompletionDate") as integer) as year',
+                default => 'YEAR(jobRecordCompletionDate) as year',
+            };
+
+            $reportYears = JobRecord::selectRaw($yearsReportExpr)
                 ->whereNotNull('jobRecordCompletionDate')
                 ->distinct()
                 ->orderBy('year', 'desc')

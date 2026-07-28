@@ -19,8 +19,14 @@ class AnalyticsController extends Controller
     {
         $staff = $this->staff();
 
+        $yearExpr = match (\Illuminate\Support\Facades\DB::getDriverName()) {
+            'pgsql' => 'EXTRACT(YEAR FROM "bookingDate")::integer as year',
+            'sqlite' => 'cast(strftime("%Y", "bookingDate") as integer) as year',
+            default => 'YEAR(bookingDate) as year',
+        };
+
         // 1. Get available years in the database for filtering
-        $years = Booking::selectRaw('YEAR(bookingDate) as year')
+        $years = Booking::selectRaw($yearExpr)
             ->distinct()
             ->orderBy('year', 'desc')
             ->pluck('year')
