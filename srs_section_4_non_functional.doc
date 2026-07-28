@@ -1,0 +1,88 @@
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+<meta charset="utf-8">
+<title>Section 4.0 Non-Functional Requirements - Plumbfix System</title>
+<style>
+@page {
+    size: A4;
+    margin: 1in;
+}
+body {
+    font-family: 'Calibri', 'Arial', sans-serif;
+    font-size: 11pt;
+    line-height: 1.5;
+    color: #000;
+}
+h1 {
+    font-family: 'Calibri', sans-serif;
+    font-size: 16pt;
+    color: #1f4e78;
+    margin-top: 18pt;
+    margin-bottom: 8pt;
+    font-weight: bold;
+    border-bottom: 2px solid #1f4e78;
+    padding-bottom: 4px;
+}
+h2 {
+    font-family: 'Calibri', sans-serif;
+    font-size: 13pt;
+    color: #1f4e78;
+    margin-top: 14pt;
+    margin-bottom: 6pt;
+    font-weight: bold;
+}
+p {
+    margin-top: 0;
+    margin-bottom: 10pt;
+    text-align: justify;
+}
+ul {
+    margin-top: 0;
+    margin-bottom: 10pt;
+    padding-left: 20pt;
+}
+li {
+    margin-bottom: 4pt;
+    text-align: justify;
+}
+</style>
+</head>
+<body>
+
+<h1>4.0 Performance Requirements</h1>
+<p>The Plumbfix Plumbing Management System must deliver smooth, responsive, and reliable performance to ensure an optimal user experience for customers booking plumbing services, plumbers updating job records on-site, and administrators managing operations. The system's performance requirements are specified below:</p>
+<ul>
+    <li>All web pages, booking calendars, and service dashboards must load within 2 to 3 seconds under normal internet connection conditions.</li>
+    <li>The system should support at least 50 to 100 concurrent users (e.g., customers submitting bookings, plumbers filing job completion reports, and admins verifying payments) without noticeable performance degradation or latency spikes.</li>
+    <li>Data retrieval operations—such as fetching available booking time slots, displaying payment receipts, retrieving job history records, and generating analytics reports—must execute within 2 seconds on average.</li>
+    <li>The underlying Laravel MVC architecture and database index structure must allow for seamless future maintenance and expansions (such as adding new service packages, integrating automated payment gateways, or adding multi-branch support) without requiring major architectural re-engineering.</li>
+    <li>The system must perform consistently across all major supported modern web browsers (e.g., Google Chrome, Mozilla Firefox, Apple Safari, Microsoft Edge) and across various hardware devices including desktops, laptops, tablets, and smartphones.</li>
+</ul>
+
+<h1>4.1 Safety and Security Requirements</h1>
+<ul>
+    <li>Only registered and authenticated users (Customers, Staff/Plumbers, and Administrators) may access system modules through secure login credentials or authorized Google OAuth authentication.</li>
+    <li>Customer personal details (names, phone numbers, addresses), booking records, and financial transaction data (bank account numbers for refunds) must be stored securely within the MySQL database and protected from unauthorized external or internal access.</li>
+    <li>Sensitive credentials, particularly user passwords, must be securely hashed prior to database storage using bcrypt encryption to prevent data breaches and unauthorized credential leaks.</li>
+    <li>Strict Role-Based Access Control (RBAC) must be enforced. Customers can only view and manage their own profile, bookings, payments, and chat sessions; Plumbers can only view assigned tasks and submit job records; only Admins possess elevated privileges to verify payments, manage staff accounts, process refunds, and view overall analytics.</li>
+    <li>Real-time communication channels (Pusher/WebSockets for live chat and push notifications) must be secured to prevent channel eavesdropping or unauthorized message injection between users.</li>
+    <li>The system database and uploaded file assets (payment receipt slips, problem photos, and job completion documentation) must be backed up automatically at least once per week to ensure data integrity and facilitate rapid recovery in the event of system failure.</li>
+    <li>The system will strictly collect only essential information required for plumbing service fulfillment and will comply with relevant data privacy standards regarding customer data protection.</li>
+</ul>
+
+<h1>4.2 Software Quality Attributes</h1>
+
+<p><strong>Usability:</strong> The system must offer an intuitive, clean, and responsive user interface tailored to its diverse user base of customers, plumbers, and system administrators. For customers, the booking workflow is designed to be seamless, guiding them through selecting a plumbing service, picking an available appointment time slot, and uploading deposit payment receipts without confusion. For plumbers working on job sites, mobile-optimized forms with clear input fields ensure fast job record creation and status updates. Clear status badges (such as Pending, Confirmed, In Progress, Completed, and Cancelled), descriptive icons, consistent navigation headers, and real-time validation feedback messages are incorporated across all system modules to minimize user errors and promote interface familiarity.</p>
+
+<p><strong>Reliability:</strong> The system must operate consistently and accurately under all normal usage conditions, ensuring users can schedule appointments, submit payment receipts, track job progress, and view invoices without encountering frequent errors or system crashes. High reliability ensures that critical plumbing requests and financial transaction tracking are never interrupted. The system incorporates automatic input validation, Laravel database transaction rollbacks, and automated exception logging so that any execution failure can be isolated and resolved swiftly. Regular database backups and automated server health monitoring are also implemented to guarantee long-term data safety and operational stability.</p>
+
+<p><strong>Maintainability:</strong> This attribute is essential for facilitating future enhancements, pricing updates, and system modifications without requiring complete application redevelopment. The Plumbfix platform is constructed using a modular Laravel MVC architecture, where key modules—such as User Management, Service Bookings, Payment Verification, Refund Management, Job Records, Live Chat, and Analytics—are decoupled and encapsulated independently. This modular design allows developers and administrators to update service rules, fix bugs, or introduce new plumbing categories easily without disrupting other components of the platform. Clean, well-documented code adhering to standard PSR coding conventions is maintained to assist future developers in understanding system logic and reducing maintenance effort.</p>
+
+<p><strong>Portability:</strong> The system is designed to run smoothly across a wide range of operating systems and devices, including Windows, macOS, Linux, iOS, and Android. As a web-based application built with responsive Blade templates and modern CSS frameworks, users can access the platform via any standard web browser such as Google Chrome, Mozilla Firefox, Apple Safari, or Microsoft Edge without requiring local software installations or native app downloads. This high portability ensures that customers can schedule bookings from their smartphones while on the move, plumbers can log completion records on tablets at service sites, and managers can supervise operations on desktop computers.</p>
+
+<p><strong>Scalability:</strong> The system architecture is built to support business growth and handle increasing operational demands, including a growing customer base, expanding plumber staff counts, higher concurrent booking submissions, and accumulating historical job records. Database indexing on key fields such as user ID, booking ID, status, and creation timestamps, combined with background queue drivers for sending emails and push notifications, ensures that system performance remains uncompromised as transaction volume scales over time. Continuous server resource monitoring ensures that server infrastructure can be expanded gracefully as business capacity expands.</p>
+
+<p><strong>Availability:</strong> The system must maintain high availability, operating 24 hours a day, 7 days a week, except during scheduled off-peak maintenance windows. Because customers may face urgent plumbing emergencies at any time of the day or night, ensuring continuous system access is vital for customer satisfaction and service responsiveness. The hosting server infrastructure is configured with high-uptime standards and redundant data storage to handle simultaneous user requests efficiently without service downtime.</p>
+
+</body>
+</html>

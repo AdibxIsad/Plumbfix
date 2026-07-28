@@ -1,0 +1,518 @@
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+<meta charset="utf-8">
+<title>Class Attributes & Methods - Plumbfix</title>
+<style>
+@page {
+    size: A4;
+    margin: 1in;
+}
+body {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 12pt;
+    line-height: 1.4;
+    color: #000000;
+}
+h1 {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16pt;
+    color: #000000;
+    margin-top: 0;
+    margin-bottom: 12pt;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+}
+h2 {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 13pt;
+    color: #000000;
+    margin-top: 18pt;
+    margin-bottom: 8pt;
+    font-weight: bold;
+}
+h3 {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 12pt;
+    color: #000000;
+    margin-top: 14pt;
+    margin-bottom: 6pt;
+    font-weight: bold;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 16pt;
+}
+th {
+    background-color: #F2F2F2;
+    color: #000000;
+    font-weight: bold;
+    font-size: 12pt;
+    padding: 6px 8px;
+    border: 1px solid #000000;
+    text-align: left;
+}
+td {
+    padding: 6px 8px;
+    border: 1px solid #000000;
+    font-size: 12pt;
+    vertical-align: top;
+}
+</style>
+</head>
+<body>
+
+<h1>Plumbfix: Plumbing Management System</h1>
+<h2>5.1.1 Class Attributes & Methods</h2>
+
+<h3>Table Name: staff</h3>
+<table>
+    <thead>
+        <tr>
+            <th style="width: 35%;">Attributes</th>
+            <th style="width: 65%;">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>staffID</td>
+            <td>Primary key for staff member or plumber</td>
+        </tr>
+        <tr>
+            <td>adminID</td>
+            <td>Foreign key referencing managing admin staff ID</td>
+        </tr>
+        <tr>
+            <td>staffName</td>
+            <td>Staff member’s full name</td>
+        </tr>
+        <tr>
+            <td>staffEmail</td>
+            <td>Staff member’s email address</td>
+        </tr>
+        <tr>
+            <td>staffPhoneNo</td>
+            <td>Staff member’s contact phone number</td>
+        </tr>
+        <tr>
+            <td>staffPassword</td>
+            <td>Hashed password for staff account</td>
+        </tr>
+        <tr>
+            <td>staffStatus</td>
+            <td>Current account status of staff member (e.g. active, inactive)</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>Table Name: customer</h3>
+<table>
+    <thead>
+        <tr>
+            <th style="width: 35%;">Attributes</th>
+            <th style="width: 65%;">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>customerID</td>
+            <td>Primary key for customer</td>
+        </tr>
+        <tr>
+            <td>customerName</td>
+            <td>Customer’s full name</td>
+        </tr>
+        <tr>
+            <td>customerEmail</td>
+            <td>Customer’s email address</td>
+        </tr>
+        <tr>
+            <td>customerPhoneNo</td>
+            <td>Customer’s contact phone number</td>
+        </tr>
+        <tr>
+            <td>customerAddress</td>
+            <td>Customer’s residential or service address</td>
+        </tr>
+        <tr>
+            <td>customerPassword</td>
+            <td>Hashed password for customer account</td>
+        </tr>
+        <tr>
+            <td>customerBankName</td>
+            <td>Customer’s bank name for refund processing</td>
+        </tr>
+        <tr>
+            <td>customerBankAccountNo</td>
+            <td>Customer’s bank account number for refund processing</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>Table Name: notification</h3>
+<table>
+    <thead>
+        <tr>
+            <th style="width: 35%;">Attributes</th>
+            <th style="width: 65%;">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>id</td>
+            <td>Primary key for notification</td>
+        </tr>
+        <tr>
+            <td>notifiableID</td>
+            <td>ID of recipient entity (Customer or Staff)</td>
+        </tr>
+        <tr>
+            <td>notifiableType</td>
+            <td>Model class type of recipient entity</td>
+        </tr>
+        <tr>
+            <td>data</td>
+            <td>JSON payload containing notification content</td>
+        </tr>
+        <tr>
+            <td>readAt</td>
+            <td>Timestamp when notification was read</td>
+        </tr>
+        <tr>
+            <td>createdAt</td>
+            <td>Timestamp when notification was created</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>Table Name: booking</h3>
+<table>
+    <thead>
+        <tr>
+            <th style="width: 35%;">Attributes</th>
+            <th style="width: 65%;">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>bookingID</td>
+            <td>Primary key for booking</td>
+        </tr>
+        <tr>
+            <td>customerID</td>
+            <td>Foreign key referencing booking customer</td>
+        </tr>
+        <tr>
+            <td>staffID</td>
+            <td>Foreign key referencing assigned plumber/staff member</td>
+        </tr>
+        <tr>
+            <td>bookingType</td>
+            <td>Category of plumbing service requested</td>
+        </tr>
+        <tr>
+            <td>bookingProblem</td>
+            <td>Short summary title of plumbing issue</td>
+        </tr>
+        <tr>
+            <td>bookingIssueDescription</td>
+            <td>Detailed description of plumbing issue</td>
+        </tr>
+        <tr>
+            <td>bookingDate</td>
+            <td>Scheduled date of appointment</td>
+        </tr>
+        <tr>
+            <td>bookingTime</td>
+            <td>Scheduled time slot of appointment</td>
+        </tr>
+        <tr>
+            <td>bookingStatus</td>
+            <td>Status of booking (e.g. pending, in_progress, completed, cancelled)</td>
+        </tr>
+        <tr>
+            <td>bookingAttachment</td>
+            <td>File storage path of uploaded issue photo attachment</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>Table Name: payment</h3>
+<table>
+    <thead>
+        <tr>
+            <th style="width: 35%;">Attributes</th>
+            <th style="width: 65%;">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>paymentID</td>
+            <td>Primary key for payment</td>
+        </tr>
+        <tr>
+            <td>cancellationID</td>
+            <td>Foreign key referencing associated cancellation</td>
+        </tr>
+        <tr>
+            <td>depositAmount</td>
+            <td>Amount of deposit paid by customer</td>
+        </tr>
+        <tr>
+            <td>depositStatus</td>
+            <td>Status of deposit payment (e.g. unpaid, paid)</td>
+        </tr>
+        <tr>
+            <td>verificationStatus</td>
+            <td>Staff verification status (e.g. pending, approved, rejected)</td>
+        </tr>
+        <tr>
+            <td>submittedAt</td>
+            <td>Timestamp when payment proof was submitted</td>
+        </tr>
+        <tr>
+            <td>verifiedAt</td>
+            <td>Timestamp when payment was verified by staff</td>
+        </tr>
+        <tr>
+            <td>verifiedBy</td>
+            <td>Foreign key referencing staff member who verified payment</td>
+        </tr>
+        <tr>
+            <td>rejectionReason</td>
+            <td>Reason for payment rejection if applicable</td>
+        </tr>
+        <tr>
+            <td>paymentMethod</td>
+            <td>Payment method used (e.g. Online Transfer)</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>Table Name: payment_receipt</h3>
+<table>
+    <thead>
+        <tr>
+            <th style="width: 35%;">Attributes</th>
+            <th style="width: 65%;">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>receiptID</td>
+            <td>Primary key for payment receipt</td>
+        </tr>
+        <tr>
+            <td>paymentID</td>
+            <td>Foreign key referencing associated payment record</td>
+        </tr>
+        <tr>
+            <td>receiptPath</td>
+            <td>Storage file path of uploaded receipt image</td>
+        </tr>
+        <tr>
+            <td>uploadedAt</td>
+            <td>Timestamp when receipt image was uploaded</td>
+        </tr>
+        <tr>
+            <td>receiptStatus</td>
+            <td>Status of receipt verification</td>
+        </tr>
+        <tr>
+            <td>receiptRemarks</td>
+            <td>Staff remarks regarding receipt verification</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>Table Name: cancellation</h3>
+<table>
+    <thead>
+        <tr>
+            <th style="width: 35%;">Attributes</th>
+            <th style="width: 65%;">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>cancellationID</td>
+            <td>Primary key for cancellation</td>
+        </tr>
+        <tr>
+            <td>bookingID</td>
+            <td>Foreign key referencing cancelled booking</td>
+        </tr>
+        <tr>
+            <td>cancelledAt</td>
+            <td>Timestamp when booking was cancelled</td>
+        </tr>
+        <tr>
+            <td>reason</td>
+            <td>Category reason for cancellation</td>
+        </tr>
+        <tr>
+            <td>description</td>
+            <td>Detailed explanation for cancellation</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>Table Name: refund</h3>
+<table>
+    <thead>
+        <tr>
+            <th style="width: 35%;">Attributes</th>
+            <th style="width: 65%;">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>refundID</td>
+            <td>Primary key for refund</td>
+        </tr>
+        <tr>
+            <td>cancellationID</td>
+            <td>Foreign key referencing associated cancellation</td>
+        </tr>
+        <tr>
+            <td>refundAmount</td>
+            <td>Amount to be refunded to customer</td>
+        </tr>
+        <tr>
+            <td>refundStatus</td>
+            <td>Status of refund processing (e.g. pending, refunded)</td>
+        </tr>
+        <tr>
+            <td>completedAt</td>
+            <td>Timestamp when refund transfer was completed</td>
+        </tr>
+        <tr>
+            <td>receiptPath</td>
+            <td>File path of refund proof transfer slip</td>
+        </tr>
+        <tr>
+            <td>remarks</td>
+            <td>Staff notes or remarks on refund transaction</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>Table Name: job_record</h3>
+<table>
+    <thead>
+        <tr>
+            <th style="width: 35%;">Attributes</th>
+            <th style="width: 65%;">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>jobRecordID</td>
+            <td>Primary key for job record</td>
+        </tr>
+        <tr>
+            <td>bookingID</td>
+            <td>Foreign key referencing associated booking</td>
+        </tr>
+        <tr>
+            <td>staffID</td>
+            <td>Foreign key referencing staff/plumber who completed job</td>
+        </tr>
+        <tr>
+            <td>jobRecordCompletionDate</td>
+            <td>Date and time when job was completed</td>
+        </tr>
+        <tr>
+            <td>jobRecordTotalCost</td>
+            <td>Total billing cost of completed plumbing job</td>
+        </tr>
+        <tr>
+            <td>jobRecordNotes</td>
+            <td>Detailed work notes, replaced parts, and service summary</td>
+        </tr>
+        <tr>
+            <td>jobRecordAttachments</td>
+            <td>File path of job completion photos</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>Table Name: feedback</h3>
+<table>
+    <thead>
+        <tr>
+            <th style="width: 35%;">Attributes</th>
+            <th style="width: 65%;">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>feedbackID</td>
+            <td>Primary key for feedback</td>
+        </tr>
+        <tr>
+            <td>customerID</td>
+            <td>Foreign key referencing customer submitting feedback</td>
+        </tr>
+        <tr>
+            <td>bookingID</td>
+            <td>Foreign key referencing associated booking</td>
+        </tr>
+        <tr>
+            <td>feedbackComments</td>
+            <td>Customer review comments</td>
+        </tr>
+        <tr>
+            <td>staffResponse</td>
+            <td>Official response comment posted by staff/admin</td>
+        </tr>
+        <tr>
+            <td>feedbackRating</td>
+            <td>Rating score awarded by customer (1 to 5 stars)</td>
+        </tr>
+        <tr>
+            <td>feedbackAttachments</td>
+            <td>File path of customer attached review photos</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>Table Name: chat_message</h3>
+<table>
+    <thead>
+        <tr>
+            <th style="width: 35%;">Attributes</th>
+            <th style="width: 65%;">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>chatMessageID</td>
+            <td>Primary key for chat message</td>
+        </tr>
+        <tr>
+            <td>bookingID</td>
+            <td>Foreign key referencing associated booking chat session</td>
+        </tr>
+        <tr>
+            <td>senderID</td>
+            <td>ID of message sender (Customer or Staff)</td>
+        </tr>
+        <tr>
+            <td>senderType</td>
+            <td>Sender entity type ('Customer' or 'Staff')</td>
+        </tr>
+        <tr>
+            <td>message</td>
+            <td>Text content of chat message</td>
+        </tr>
+        <tr>
+            <td>isRead</td>
+            <td>Status flag indicating if message was read (0=Unread, 1=Read)</td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

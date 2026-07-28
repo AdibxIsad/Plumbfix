@@ -1,0 +1,2171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plumbfix Interactive Storyboard & Wireframes</title>
+    <style>
+        /* CSS resets & theme tokens */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        :root {
+            --bg-color: #f8fafc;
+            --surface-color: #ffffff;
+            --border-color: #e2e8f0;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            --accent-color: #0f172a; /* Slate navy */
+            --accent-light: #f1f5f9;
+            --success-color: #10b981;
+            --danger-color: #ef4444;
+            --warning-color: #f59e0b;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Top navigation header */
+        header {
+            background-color: var(--surface-color);
+            border-bottom: 1px solid var(--border-color);
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            z-index: 10;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background-color: var(--accent-color);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .logo-title {
+            font-weight: 700;
+            font-size: 20px;
+            color: var(--text-primary);
+            letter-spacing: -0.5px;
+        }
+
+        .logo-subtitle {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-left: 8px;
+            padding: 2px 6px;
+            background-color: var(--accent-light);
+            border-radius: 4px;
+        }
+
+        .role-switch-container {
+            display: flex;
+            background-color: var(--accent-light);
+            padding: 4px;
+            border-radius: 8px;
+            gap: 4px;
+            border: 1px solid var(--border-color);
+        }
+
+        .role-btn {
+            padding: 6px 14px;
+            border: none;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: transparent;
+            color: var(--text-secondary);
+        }
+
+        .role-btn.active {
+            background-color: var(--surface-color);
+            color: var(--accent-color);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        /* Workspace Layout */
+        .workspace {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 320px;
+            background-color: var(--surface-color);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .sidebar-search {
+            padding: 16px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 13px;
+            outline: none;
+            background-color: var(--bg-color);
+        }
+
+        .search-input:focus {
+            border-color: var(--accent-color);
+        }
+
+        .sidebar-menu {
+            padding: 12px;
+        }
+
+        .category-group {
+            margin-bottom: 16px;
+        }
+
+        .category-title {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            padding-left: 8px;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            border-radius: 6px;
+            color: var(--text-secondary);
+            font-size: 13px;
+            text-decoration: none;
+            cursor: pointer;
+            margin-bottom: 2px;
+            transition: all 0.15s ease;
+            font-weight: 500;
+        }
+
+        .menu-item:hover {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+        }
+
+        .menu-item.active {
+            background-color: var(--accent-light);
+            color: var(--accent-color);
+            font-weight: 600;
+            border-left: 3px solid var(--accent-color);
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+        .menu-item .uc-badge {
+            font-size: 10px;
+            font-weight: 700;
+            background-color: var(--border-color);
+            color: var(--text-secondary);
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-right: 8px;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        .menu-item.active .uc-badge {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        /* Main Preview Container */
+        .preview-area {
+            flex: 1;
+            padding: 24px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        /* View Info card */
+        .info-card {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+        }
+
+        .info-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .info-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .info-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .actor-tag {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .actor-customer {
+            background-color: #eff6ff;
+            color: #1d4ed8;
+            border-color: #bfdbfe;
+        }
+
+        .actor-staff {
+            background-color: #fdf2f8;
+            color: #be185d;
+            border-color: #fbcfe8;
+        }
+
+        .actor-both {
+            background-color: #f0fdf4;
+            color: #15803d;
+            border-color: #bbf7d0;
+        }
+
+        /* Simulated Web Browser Frame */
+        .browser-frame {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+            flex: 1;
+            min-height: 550px;
+        }
+
+        .browser-header {
+            background-color: var(--accent-light);
+            border-bottom: 1px solid var(--border-color);
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        .browser-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .browser-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .dot-red { background-color: #ff5f56; }
+        .dot-yellow { background-color: #ffbd2e; }
+        .dot-green { background-color: #27c93f; }
+
+        .browser-address {
+            flex: 1;
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 4px 12px;
+            font-size: 12px;
+            color: var(--text-secondary);
+            font-family: monospace;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .browser-viewport {
+            padding: 24px;
+            background-color: #ffffff;
+            flex: 1;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        /* Mockup Grid / Forms UI Components (Website Style Wireframe) */
+        .mock-container {
+            display: none;
+        }
+
+        .mock-container.active {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        /* Simulated Web Components */
+        .mock-navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+            margin-bottom: 16px;
+        }
+
+        .mock-logo {
+            font-weight: bold;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .mock-logo::before {
+            content: '';
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            background: var(--accent-color);
+            border-radius: 4px;
+        }
+
+        .mock-nav-links {
+            display: flex;
+            gap: 16px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .mock-layout {
+            display: flex;
+            gap: 20px;
+            flex: 1;
+        }
+
+        .mock-sidebar {
+            width: 180px;
+            border-right: 1px solid var(--border-color);
+            padding-right: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .mock-sidebar-link {
+            font-size: 13px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 6px 10px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .mock-sidebar-link.active {
+            background-color: var(--accent-light);
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .mock-sidebar-link:hover {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+        }
+
+        .mock-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        /* UI Forms & Cards */
+        .mock-card {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            background-color: var(--surface-color);
+        }
+
+        .mock-card-header {
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 16px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .mock-form-group {
+            margin-bottom: 12px;
+        }
+
+        .mock-label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+
+        .mock-input, .mock-select, .mock-textarea {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 13px;
+            outline: none;
+            background-color: #fafafa;
+        }
+
+        .mock-input:focus, .mock-select:focus, .mock-textarea:focus {
+            border-color: var(--accent-color);
+            background-color: #ffffff;
+        }
+
+        .mock-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.15s ease;
+        }
+
+        .mock-btn-primary {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .mock-btn-primary:hover {
+            opacity: 0.9;
+        }
+
+        .mock-btn-secondary {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        .mock-btn-secondary:hover {
+            background-color: var(--accent-light);
+        }
+
+        .mock-btn-danger {
+            background-color: var(--danger-color);
+            color: white;
+        }
+
+        .mock-btn-danger:hover {
+            opacity: 0.9;
+        }
+
+        /* UI Table */
+        .mock-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        .mock-table th, .mock-table td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .mock-table th {
+            background-color: var(--accent-light);
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .mock-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .status-pending { background-color: #fef3c7; color: #d97706; }
+        .status-approved { background-color: #d1fae5; color: #059669; }
+        .status-completed { background-color: #e0f2fe; color: #0284c7; }
+        .status-cancelled { background-color: #fee2e2; color: #dc2626; }
+
+        /* Stepper/Timeline */
+        .mock-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 10px;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 12px;
+        }
+
+        .timeline-bullet {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-color);
+            background-color: #fff;
+            margin-top: 2px;
+            position: relative;
+        }
+
+        .timeline-bullet.active {
+            background-color: var(--accent-color);
+        }
+
+        .timeline-content {
+            font-size: 13px;
+        }
+
+        .timeline-time {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        /* Chat Messenger UI */
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            height: 350px;
+        }
+
+        .chat-header {
+            padding: 10px 16px;
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--accent-light);
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background-color: #fafafa;
+        }
+
+        .chat-bubble {
+            max-width: 70%;
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        .bubble-sent {
+            background-color: var(--accent-color);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 2px;
+        }
+
+        .bubble-received {
+            background-color: white;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            align-self: flex-start;
+            border-bottom-left-radius: 2px;
+        }
+
+        .chat-input-area {
+            display: flex;
+            padding: 12px;
+            border-top: 1px solid var(--border-color);
+            gap: 10px;
+            background-color: white;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+
+        /* Notifications Bell Dropdown */
+        .notif-dropdown {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            width: 320px;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .notif-item {
+            padding: 12px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 13px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .notif-item:hover {
+            background-color: var(--bg-color);
+        }
+
+        .notif-title {
+            font-weight: 600;
+        }
+
+        .notif-time {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        /* Modal Dialog Simulation overlay */
+        .modal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+        }
+
+        .modal-card {
+            background-color: white;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            width: 400px;
+            padding: 20px;
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+        }
+
+        /* Toast Popup Alerts */
+        .toast-container {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 9999;
+        }
+
+        .toast {
+            background-color: #1e293b;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            animation: slideIn 0.2s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Star Rating design */
+        .star-rating {
+            display: flex;
+            gap: 6px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #d1d5db;
+        }
+
+        .star-rating span:hover, .star-rating span.active {
+            color: #f59e0b;
+        }
+
+        /* Grid dashboard metrics widgets */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+        }
+
+        .metric-widget {
+            border: 1px solid var(--border-color);
+            background: white;
+            padding: 16px;
+            border-radius: 8px;
+        }
+
+        .metric-val {
+            font-size: 24px;
+            font-weight: 700;
+            margin-top: 4px;
+        }
+
+        /* Chart mock shapes */
+        .chart-mock {
+            height: 120px;
+            border: 1px dashed var(--border-color);
+            background: var(--bg-color);
+            border-radius: 6px;
+            display: flex;
+            align-items: flex-end;
+            padding: 10px;
+            gap: 8px;
+        }
+
+        .chart-bar {
+            flex: 1;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header bar -->
+    <header>
+        <div class="logo-section">
+            <div class="logo-icon">P</div>
+            <div class="logo-title">Plumbfix</div>
+            <div class="logo-subtitle">Interactive Wireframe Storyboards</div>
+        </div>
+
+        <div class="role-switch-container">
+            <button class="role-btn active" id="role-all" onclick="setRole('all')">All Usecases</button>
+            <button class="role-btn" id="role-customer" onclick="setRole('customer')">Customer Portal</button>
+            <button class="role-btn" id="role-staff" onclick="setRole('staff')">Staff & Admin Portal</button>
+        </div>
+    </header>
+
+    <!-- Sidebar and viewport layout -->
+    <div class="workspace">
+        <!-- Use Case Sidebar Menu -->
+        <div class="sidebar">
+            <div class="sidebar-search">
+                <input type="text" class="search-input" id="search-bar" placeholder="Search Use Case (e.g. UC-01)..." onkeyup="filterUseCases()">
+            </div>
+            <div class="sidebar-menu" id="menu-container">
+                <!-- Javascript will load the side items dynamically based on selection -->
+            </div>
+        </div>
+
+        <!-- Simulated web browser mockup preview panel -->
+        <div class="preview-area">
+            <!-- Active view details -->
+            <div class="info-card">
+                <div class="info-header">
+                    <div class="info-title" id="info-title">UC-01: Login</div>
+                    <div class="actor-tag actor-both" id="info-actor">Actor: Customer, Admin/Staff</div>
+                </div>
+                <div class="info-desc" id="info-desc">Provides authorization for registered users. Handles redirection based on user credentials guard logic.</div>
+            </div>
+
+            <!-- Simulated web browser card -->
+            <div class="browser-frame">
+                <div class="browser-header">
+                    <div class="browser-dots">
+                        <div class="browser-dot dot-red"></div>
+                        <div class="browser-dot dot-yellow"></div>
+                        <div class="browser-dot dot-green"></div>
+                    </div>
+                    <div class="browser-address">
+                        <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16"><path d="M11.5 8a.5.5 0 0 1-.5-.5V2.707L8.354 5.354a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L12.5 2.707V7.5a.5.5 0 0 1-.5.5zM4 8a.5.5 0 0 0 .5.5v4.793l2.646-2.647a.5.5 0 0 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L4.5 13.293V8.5A.5.5 0 0 0 4 8z"/></svg>
+                        <span id="browser-url-text">http://localhost/login</span>
+                    </div>
+                </div>
+
+                <div class="browser-viewport" id="browser-viewport-content">
+                    <!-- 24 Mock Content panels will go here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Container for dynamic notification toasts -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <script>
+        // Use Case Data Store matching Use Case Diagram precisely
+        const useCases = [
+            {
+                id: "UC-00",
+                title: "Welcome Page",
+                actor: "Visitor / Customer",
+                actorType: "customer",
+                url: "http://localhost/",
+                desc: "The public homepage of the Plumbfix application. Provides navigation links, brand values, service overviews, and entry points for user authentication.",
+                html: `
+                    <div class="mock-navbar">
+                        <div class="mock-logo">Plumbfix</div>
+                        <div class="mock-nav-links">
+                            <span class="active">Home</span>
+                            <span onclick="showToast('Scrolling to services...')">Services</span>
+                            <span onclick="showToast('Scrolling to plumbers...')">Plumbers</span>
+                            <span onclick="showToast('Scrolling to reviews...')">Reviews</span>
+                            <button class="mock-btn mock-btn-secondary" style="padding: 4px 8px; font-size: 11px;" onclick="navigateTo('UC-01')">Login</button>
+                            <button class="mock-btn mock-btn-primary" style="padding: 4px 8px; font-size: 11px;" onclick="navigateTo('UC-02')">Sign Up</button>
+                        </div>
+                    </div>
+                    <div style="padding: 30px; text-align: center; background-color: var(--accent-light); border-radius: 8px; margin-bottom: 20px;">
+                        <h2 style="font-size: 24px; font-weight: 800; color: var(--text-primary); margin-bottom: 10px;">Expert Plumbing in Bangi, Selangor</h2>
+                        <p style="font-size: 14px; color: var(--text-secondary); max-width: 500px; margin: 0 auto 20px auto; line-height: 1.6;">
+                            Connect with certified master plumbers in under 60 seconds. Book instantly, track live, and pay transparently.
+                        </p>
+                        <div style="display: flex; justify-content: center; gap: 12px;">
+                            <button class="mock-btn mock-btn-primary" onclick="navigateTo('UC-06')">Book Plumber Now</button>
+                            <button class="mock-btn mock-btn-secondary" onclick="showToast('Scrolling to services...')">Explore Services</button>
+                        </div>
+                    </div>
+                    <div class="metrics-grid">
+                        <div class="metric-widget" style="text-align: center;">
+                            <div style="font-size: 24px; margin-bottom: 8px;">🔧</div>
+                            <div style="font-weight: 700; font-size: 13px; color: var(--text-primary);">Leak Repairs</div>
+                            <p style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;">Fast diagnosis and fixing of active pipe leakages.</p>
+                        </div>
+                        <div class="metric-widget" style="text-align: center;">
+                            <div style="font-size: 24px; margin-bottom: 8px;">🚿</div>
+                            <div style="font-weight: 700; font-size: 13px; color: var(--text-primary);">Installations</div>
+                            <p style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;">Professional fixture and water heater setups.</p>
+                        </div>
+                        <div class="metric-widget" style="text-align: center;">
+                            <div style="font-size: 24px; margin-bottom: 8px;">🌀</div>
+                            <div style="font-weight: 700; font-size: 13px; color: var(--text-primary);">Clog Clearing</div>
+                            <p style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;">Clearing toilet and sink drainage blocks.</p>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: "UC-01",
+                title: "Login",
+                actor: "Customer, Admin/Staff",
+                actorType: "both",
+                url: "http://localhost/login",
+                desc: "Secure login flow using credentials or third-party Socialite login (Google OAuth integration). Redirection guards users based on their respective roles.",
+                html: `
+                    <div class="mock-navbar">
+                        <div class="mock-logo">Plumbfix</div>
+                        <div class="mock-nav-links">
+                            <span>Welcome</span>
+                        </div>
+                    </div>
+                    <div style="max-width: 380px; margin: 40px auto;" class="mock-card">
+                        <div class="mock-card-header">
+                            <span>User Login</span>
+                        </div>
+                        <div class="mock-form-group">
+                            <label class="mock-label">Email Address</label>
+                            <input type="text" class="mock-input" placeholder="e.g. john@example.com" value="customer@gmail.com">
+                        </div>
+                        <div class="mock-form-group">
+                            <label class="mock-label">Password</label>
+                            <input type="password" class="mock-input" placeholder="••••••••" value="password123">
+                        </div>
+                        <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 10px;">
+                            <button class="mock-btn mock-btn-primary" style="justify-content: center;" onclick="showToast('Session authenticated. Redirecting...')">Login</button>
+                            <button class="mock-btn mock-btn-secondary" style="justify-content: center;" onclick="showToast('Redirecting to Google Auth Service...')">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12.24 10.285V14.4h6.887c-.648 2.41-2.519 4.114-5.136 4.114-3.466 0-6.277-2.85-6.277-6.36 0-3.51 2.811-6.358 6.277-6.358 1.466 0 2.808.514 3.864 1.371l3.051-3.051C18.994 2.143 15.823 1 12.24 1 6.033 1 1 6.033 1 12.24s5.033 11.24 11.24 11.24c5.786 0 10.743-4.14 10.743-11.24 0-.743-.086-1.314-.229-1.954H12.24z"/></svg>
+                                Login with Google
+                            </button>
+                        </div>
+                        <div style="margin-top: 16px; text-align: center; font-size: 12px; color: var(--text-secondary);">
+                            Don't have an account? <span style="text-decoration: underline; cursor: pointer; color: var(--accent-primary);" onclick="navigateTo('UC-02')">Register</span>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: "UC-02",
+                title: "Create Account",
+                actor: "Customer / Admin",
+                actorType: "both",
+                url: "http://localhost/register",
+                desc: "Enables customers to register personal files in the system database. Also maps to registration interface utilized by Admins to record new staff/plumber user roles.",
+                html: `
+                    <div class="mock-navbar">
+                        <div class="mock-logo">Plumbfix</div>
+                        <div class="mock-nav-links">
+                            <span>Register</span>
+                        </div>
+                    </div>
+                    <div style="max-width: 440px; margin: 20px auto;" class="mock-card">
+                        <div class="mock-card-header">
+                            <span>Create Plumbfix Account</span>
+                        </div>
+                        <div class="mock-form-group">
+                            <label class="mock-label">Full Name</label>
+                            <input type="text" class="mock-input" placeholder="e.g. John Doe">
+                        </div>
+                        <div class="mock-form-group">
+                            <label class="mock-label">Email Address</label>
+                            <input type="email" class="mock-input" placeholder="e.g. name@domain.com">
+                        </div>
+                        <div class="mock-form-group">
+                            <label class="mock-label">Phone Number</label>
+                            <input type="text" class="mock-input" placeholder="e.g. +60123456789">
+                        </div>
+                        <div class="mock-form-group">
+                            <label class="mock-label">Delivery Address</label>
+                            <input type="text" class="mock-input" placeholder="House/Building address">
+                        </div>
+                        <div class="mock-form-group">
+                            <label class="mock-label">Account Role Selector</label>
+                            <select class="mock-select">
+                                <option>Customer</option>
+                                <option>Staff / Plumber (Admin Registration Only)</option>
+                            </select>
+                        </div>
+                        <div class="mock-form-group">
+                            <label class="mock-label">Password</label>
+                            <input type="password" class="mock-input" placeholder="Minimum 8 characters">
+                        </div>
+                        <div style="margin-top: 20px;">
+                            <button class="mock-btn mock-btn-primary" style="width: 100%; justify-content: center;" onclick="showToast('Account successfully created! Please login.')">Register Account</button>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: "UC-03",
+                title: "View Account",
+                actor: "Customer, Admin/Staff",
+                actorType: "both",
+                url: "http://localhost/profile",
+                desc: "Displays personal information stored in user profiles, including contact numbers, bank details, and address configurations.",
+                html: `
+                    <div class="mock-navbar">
+                        <div class="mock-logo">Plumbfix</div>
+                        <div class="mock-nav-links">
+                            <span onclick="navigateTo('UC-07')" style="cursor:pointer">Dashboard</span>
+                            <span class="active">Profile Settings</span>
+                        </div>
+                    </div>
+                    <div class="mock-layout">
+                        <div class="mock-sidebar">
+                            <span class="mock-sidebar-link active">Personal Details</span>
+                            <span class="mock-sidebar-link" onclick="navigateTo('UC-07')">My Bookings</span>
+                        </div>
+                        <div class="mock-content">
+                            <div class="mock-card">
+                                <div class="mock-card-header">
+                                    <span>Account Profile Details</span>
+                                    <button class="mock-btn mock-btn-secondary" onclick="navigateTo('UC-04')">Edit Profile</button>
+                                </div>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; font-size: 13px;">
+                                    <div>
+                                        <div style="color: var(--text-muted); font-size:11px; font-weight:700;">FULL NAME</div>
+                                        <div style="font-weight: 500; margin-top:4px;">John Doe</div>
+                                    </div>
+                                    <div>
+                                        <div style="color: var(--text-muted); font-size:11px; font-weight:700;">EMAIL ADDRESS</div>
+                                        <div style="font-weight: 500; margin-top:4px;">johndoe@gmail.com</div>
+                                    </div>
+                                    <div>
+                                        <div style="color: var(--text-muted); font-size:11px; font-weight:700;">PHONE NUMBER</div>
+                                        <div style="font-weight: 500; margin-top:4px;">+6012-3456789</div>
+                                    </div>
+                                    <div>
+                                        <div style="color: var(--text-muted); font-size:11px; font-weight:700;">BANK ACCOUNT</div>
+                                        <div style="font-weight: 500; margin-top:4px;">Maybank - 164012345678</div>
+                                    </div>
+                                    <div style="grid-column: span 2">
+                                        <div style="color: var(--text-muted); font-size:11px; font-weight:700;">ADDRESS</div>
+                                        <div style="font-weight: 500; margin-top:4px;">Lot 123, Jalan Bukit Bintang, Kuala Lumpur</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: "UC-04",
+                title: "Update Account",
+                actor: "Customer, Admin/Staff",
+                actorType: "both",
+                url: "http://localhost/profile/edit",
+                desc: "Permits updates to telephone contacts, service locations, password security credentials, and bank routing numbers.",
+                html: `
+                    <div class="mock-navbar">
+                        <div class="mock-logo">Plumbfix</div>
+                        <div class="mock-nav-links">
+                            <span onclick="navigateTo('UC-07')" style="cursor:pointer">Dashboard</span>
+                            <span class="active">Profile Settings</span>
+                        </div>
+                    </div>
+                    <div class="mock-layout">
+                        <div class="mock-sidebar">
+                            <span class="mock-sidebar-link active">Personal Details</span>
+                        </div>
+                        <div class="mock-content">
+                            <div class="mock-card">
+                                <div class="mock-card-header">
+                                    <span>Edit Profile Information</span>
+                                </div>
+                                <div class="mock-form-group">
+                                    <label class="mock-label">Contact Phone No</label>
+                                    <input type="text" class="mock-input" value="+6012-3456789">
+                                </div>
+                                <div class="mock-form-group">
+                                    <label class="mock-label">Address</label>
+                                    <input type="text" class="mock-input" value="Lot 123, Jalan Bukit Bintang, Kuala Lumpur">
+                                </div>
+                                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
+                                    <div class="mock-form-group">
+                                        <label class="mock-label">Bank Name</label>
+                                        <input type="text" class="mock-input" value="Maybank">
+                                    </div>
+                                    <div class="mock-form-group">
+                                        <label class="mock-label">Bank Account Number</label>
+                                        <input type="text" class="mock-input" value="164012345678">
+                                    </div>
+                                </div>
+                                <div class="mock-form-group">
+                                    <label class="mock-label">Change Password (Leave blank to keep current)</label>
+                                    <input type="password" class="mock-input" placeholder="New Password">
+                                </div>
+                                <div style="margin-top: 16px; display:flex; gap:10px;">
+                                    <button class="mock-btn mock-btn-primary" onclick="showToast('Profile settings updated successfully!')">Save Profile</button>
+                                    <button class="mock-btn mock-btn-secondary" onclick="navigateTo('UC-03')">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: "UC-05",
+                title: "Delete Account",
+                actor: "Admin / Staff",
+                actorType: "staff",
+                url: "http://localhost/staff/plumbers",
+                desc: "Enables structural admins to de-allocate plumber or technician user profiles from the central active registry.",
+                html: `
+                    <div class="mock-navbar">
+                        <div class="mock-logo">Plumbfix Staff</div>
+                        <div class="mock-nav-links">
+                            <span>Dashboard</span>
+                            <span class="active">Manage Plumbers</span>
+                        </div>
+                    </div>
+                    <div class="mock-layout">
+                        <div class="mock-sidebar">
+                            <span class="mock-sidebar-link" onclick="navigateTo('UC-12')">Bookings Queue</span>
+                            <span class="mock-sidebar-link active">Plumbers Staff</span>
+                            <span class="mock-sidebar-link" onclick="navigateTo('UC-19')">Reports</span>
+                        </div>
+                        <div class="mock-content">
+                            <div class="mock-card">
+                                <div class="mock-card-header">
+                                    <span>Active Plumbers Registry</span>
+                                    <button class="mock-btn mock-btn-primary" onclick="showToast('Opening New Plumber form...')">+ Add Plumber</button>
+                                </div>
+                                <table class="mock-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Staff ID</th>
+                                            <th>Name</th>
+                                            <th>Specialty</th>
+                                            <th>Active Jobs</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>#P-01</td>
+                                            <td>Albert Lim</td>
+                                            <td>Drainage Leaks</td>
+                                            <td>2 Jobs</td>
+                                            <td>
+                                                <button class="mock-btn mock-btn-danger" style="padding: 4px 8px; font-size:11px;" onclick="showToast('Albert Lim account has been deallocated from system')">Delete Account</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>#P-02</td>
+                                            <td>Siti Halimah</td>
+                                            <td>Pipe Installations</td>
+                                            <td>0 Jobs</td>
+                                            <td>
+                                                <button class="mock-btn mock-btn-danger" style="padding: 4px 8px; font-size:11px;" onclick="showToast('Siti Halimah account has been deallocated from system')">Delete Account</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: "UC-06",
+                title: "Create Booking",
+                actor: "Customer",
+                actorType: "customer",
+                url: "http://localhost/bookings/create",
+                desc: "Allows customers to request an appointment by selecting options, describing faults, picking scheduling times, and attaching descriptive files.",
+                html: `
+                    <div class="mock-navbar">
+                        <div class="mock-logo">Plumbfix</div>
+                        <div class="mock-nav-links">
+                            <span onclick="navigateTo('UC-07')" style="cursor:pointer">My Bookings</span>
+                            <span class="active">New Booking</span>
+                        </div>
+                    </div>
+                    <div style="max-width: 600px; margin: 0 auto;" class="mock-card">
+                        <div class="mock-card-header">
+                            <span>Request Plumbing Appointment</span>
+                        </div>
+                        <div class="mock-form-group">
+                            <label class="mock-label">Plumbing Issue Type</label>
+                            <select class="mock-select">
+                                <option>Pipe Burst / Active Leakage</option>
+                                <option>Clogged Drainage / Toilet</option>
+                                <option>Water Heater Malfunction</option>
+                                <option>Fixture Installation</option>
+                            </select>
+                        </div>
+                        <div class="mock-form-group">
+                            <label class="mock-label">Describe your problem</label>
+                            <textarea class="mock-textarea" rows="3" placeholder="Provide extra details (e.g. toilet bowl flooding)"></textarea>
+                        </div>
+                        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
+                            <div class="mock-form-group">
+                                <label class="mock-label">Booking Date</label>
+                                <input type="date" class="mock-input">
+                            </div>
+                            <div class="mock-form-group">
+                                <label class="mock-label">Time Slot</label>
+                                <select class="mock-select">
+                                    <option>09:00 AM - 12:00 PM</option>
+                                    <option>12:00 PM - 03:00 PM</option>
+                                    <option>03:00 PM - 06:00 PM</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mock-form-group">
+                            <label class="mock-label">Attach Reference Picture (Optional)</label>
+                            <input type="file" class="mock-input">
+                        </div>
+                        <div style="margin-top: 16px; display:flex; gap:10px;">
+                            <button class="mock-btn mock-btn-primary" onclick="showToast('Booking submitted as PENDING. Notification sent to staff.')">Submit Booking</button>
+                            <button class="mock-btn mock-btn-secondary" onclick="navigateTo('UC-07')">Cancel</button>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: "UC-07",
+                title: "View Booking",
+                actor: "Customer, Admin/Staff",
+                actorType: "both",
+                url: "http://localhost/dashboard",
+                desc: "Loads the timeline tracking statuses, assigned plumbers, scheduling windows, and deposit verifications for a booking.",
+                html: `
+                    <div class="mock-navbar">
+                        <div class="mock-logo">Plumbfix Dashboard</div>
+                        <div class="mock-nav-links">
+                            <span class="active">My Bookings</span>
+                            <span onclick="navigateTo('UC-06')" style="cursor:pointer">New Booking</span>
+                            <span onclick="navigateTo('UC-03')" style="cursor:pointer">Profile</span>
+                        </div>
+                    </div>
+                    <div class="mock-layout">
+                        <div class="mock-sidebar">
+                            <span class="mock-sidebar-link active">Active Jobs</span>
+                            <span class="mock-sidebar-link" onclick="navigateTo('UC-20')">Submit Feedback</span>
+                        </div>
+                        <div class="mock-content">
+                            <div class="mock-card">
+                                <div class="mock-card-header">
+                                    <span>Booking Details: Job #BF-9021</span>
+                                    <span class="mock-status status-approved">Approved</span>
+                                </div>
+                                <div style="display:flex; justify-content:space-between; margin-bottom: 20px;">
+                                    <div>
+                                        <p style="font-size:12px; color:var(--text-muted)">SERVICE TYPE</p>
+                                        <p style="font-weight:600">Clogged Drain Fix</p>
+                                    </div>
+                                    <div>
+                                        <p style="font-size:12px; color:var(--text-muted)">SCHEDULED DATE</p>
+                                        <p style="font-weight:600">2026-07-20 (09:00 AM)</p>
+                                    </div>
+                                    <div>
+                                        <p style="font-size:12px; color:var(--text-muted)">ASSIGNED PLUMBER</p>
+                                        <p style="font-weight:600">Albert Lim</p>
+                                    </div>
+                                </div>
+                                <div class="mock-timeline">
+                                    <div class="timeline-item">
+                                        <div class="timeline-bullet active"></div>
+                                        <div class="timeline-content">
+                                            <p style="font-weight:600">Deposit Verified</p>
+                                            <p class="timeline-time">Receipt verified by Admin Siti</p>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-bullet"></div>
+                                        <div class="timeline-content">
+                                            <p style="font-weight:600">Plumber Dispatch Pending</p>
+                                            <p class="timeline-time">Estimated arrival: 09:15 AM</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="margin-top:20px; display:flex; gap:10px;">
+                                    <button class="mock-btn mock-btn-secondary" onclick="navigateTo('UC-08')">Update Status</button>
+                                    <button class="mock-btn mock-btn-primary" onclick="navigateTo('UC-23')">Chat with Plumber</button>
+                                    <button class="mock-btn mock-btn-danger" style="margin-left:auto" onclick="navigateTo('UC-09')">Cancel Booking</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: "UC-08",
+                title: "Update Booking",
+                actor: "Admin / Staff",
+                actorType: "staff",
+                url: "http://localhost/staff/bookings/1/status",
+                desc: "Allows staff members to update booking statuses (e.g., Pending, Confirmed, Dispatched, Completed, Cancelled) and assign plumber technicians.",
+                html: `
+                    <div class="mock-navbar">
+                        <div class="mock-logo">Plumbfix Staff</div>
+                        <div class="mock-nav-links">
+                            <span onclick="navigateTo('UC-07')" style="cursor:pointer">Dashboard</span>
+                        </div>
+                    </div>
+                    <div style="max-width: 500px; margin: 20px auto;" class="mock-card">
+                        <div class="mock-card-header">
+                            <span>Update Booking Status & Assignment</span>
+                        </div>
+                        <div style="background-color: var(--accent-light); padding:12px; border-radius:6px; margin-bottom:16px; font-size:12px;">
+                            <strong>Booking Reference:</strong> #BF-9021<br>
+                            <strong>Customer Name:</strong> John Doe<br>
+                            <strong>Service:</strong> Clogged Drain Fix
+                        </div>
+                        <div class="mock-form-group">
+                            <label class="mock-label">Change Booking Status</label>
+                            <select class="mock-select">
+                                <option value="pending">Pending Deposit Verification</option>
+                                <option value="confirmed" selected>Confirmed / Approved</option>
+                                <option value="dispatched">Plumber Dispatched</option>
+                                <option value="completed">Completed</option>
+                                <option value="cancelled">Cancelled</option>
+                            </select>
+                        </div>
+                        <div class="mock-form-group">
+                            <label class="mock-label">Assign Plumber</label>
+                            <select class="mock-select">
+                                <option value="">Select Plumber Staff...</option>
+                                <option value="P-01" selected>Albert Lim (Drainage Leaks)</option>
+                                <option value="P-02">Siti Halimah (Pipe Installations)</option>
+                            </select>
+                        </div>
+                        <div style="margin-top: 20px; display:flex; gap:10px;">
+                            <button class="mock-btn mock-btn-primary" style="width: 100%; justify-content: center;" onclick="showToast('Booking status updated & plumber assigned!'); navigateTo('UC-07')">Update Booking Status</button>
+                            <button class="mock-btn mock-btn-secondary" style="width: 100%; justify-content: center;" onclick="navigateTo('UC-07')">Cancel</button>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: "UC-09",
+                title: "Delete Booking",
+                actor: "Customer, Admin/Staff",
+                actorType: "both",
+                url: "http://localhost/bookings/1/cancel",
+                desc: "Allows customers or staff to delete booking records. Triggers automated refund generation routines if booking deposits are verified.",
+                html: `
+                    <div class="mock-navbar">
+                        <div class="mock-logo">Plumbfix</div>
+                    </div>
+                    <div class="modal-overlay" style="position:relative; height: 350px;">
+                        <div class="modal-card">
+                            <h3 style="font-size:16px; font-weight:700; margin-bottom:12px; color:var(--danger-color)">Cancel Booking Reservation?</h3>
+                            <p style="font-size:13px; color:var(--text-secondary); line-height:1.4; margin-bottom:16px;">
+                                You are about to cancel booking appointment #BF-9021. Since your 50% deposit has already been processed, a Refund Ticket will be automatically generated.
+                            </p>
+                            <div style="display:flex; justify-content:flex-end; gap:10px;">
+                                <button class="mock-btn mock-btn-secondary" onclick="navigateTo('UC-07')">Keep Booking</button>
+                                <button class="mock-btn mock-btn-danger" onclick="showToast('Booking cancelled. UC-13 Refund created.'); navigateTo('UC-14')">Yes, Cancel Booking</button>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: "UC-10",
+                title: "Create Payment",
+                actor: "Customer",
+                actorType: "customer",
+                url: "http://localhost/payment/9021",
+                desc: "Allows customers to record transactions by filling out forms and uploading bank payment slips or receipt files.",
+                html: `
+                    <div class="mock-navbar">
+                        <div class="mock-logo">Plumbfix Checkout</div>
+                    </div>
+                    <div style="max-width: 500px; margin: 10px auto;" class="mock-card">
+                        <div class="mock-card-header">
+                            <span>Process Booking Deposit</span>
+                        </div>
+                        <div style="background-color: var(--accent-light); padding:12px; border-radius:6px; margin-bottom:16px; font-size:12px;">
+                            <strong>Bank Transfer Instructions:</strong><br>
+                            Maybank Account: <strong>5140-1234-5678</strong> (Plumbfix Enterprise)<br>
+                            Reference Required Amount: <strong>RM 50.00</strong>
+                        </div>
+                        <div class="mock-form-group">
+                            <label class="mock-label">Paying Bank Name</label>
+                            <input type="text" class="mock-input" placeholder="e.g. CIMB Bank">
+                        </div>
+                        <div class="mock-form-group">
+                            <label class="mock-label">Transaction Reference ID</label>
+                            <input type="text" class="mock-input" placeholder="e.g. TXN987654321">
+                        </div>
+                        <div class="mock-form-group">
+                            <label class="mock-label">Upload Transfer Receipt Image / PDF</label>
+                            <div style="border: 2px dashed var(--border-color); border-radius:6px; padding:20px; text-align:center; cursor:pointer;" onclick="showToast('Simulating receipt upload...')">
+                                <span style="font-size:12px; color:var(--text-secondary)">Drag and drop files here, or click to upload</span>
+                            </div>
+                        </div>
+                        <div style="margin-top: 16px; display:flex; gap:10px;">
+                            <button class="mock-btn mock-btn-primary" onclick="showToast('Receipt submitted. Awaiting Admin Approval.'); navigateTo('UC-11')">Upload Receipt</button>
+                            <button class="mock-btn mock-btn-secondary" onclick="navigateTo('UC-07')">Back</button>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: "UC-11",
+                title: "View Payment",
+                actor: "Customer, Admin/Staff",
+                actorType: "both",
+                url: "http://localhost/bookings/9021/receipt",
+                desc: "Renders details of a payment receipt, including booking references, bank sources, amounts paid, and status.",
+                html: `
+                    <div class="mock-navbar">
+                        <div class="mock-logo">Plumbfix</div>
+                        <div class="mock-nav-links">
+                            <span onclick="navigateTo('UC-07')" style="cursor:pointer">Back to Dashboard</span>
+                        </div>
+                    </div>
+                    <div style="max-width: 500px; margin: 10px auto;" class="mock-card">
+                        <div class="mock-card-header">
+                            <span>Payment Receipt Details</span>
+                            <span class="mock-status status-pending">Awaiting Verification</span>
+                        </div>
+                        <div style="display:flex; flex-direction:column; gap:12px; font-size:13px; line-height:1.5;">
+                            <div>
+                                <span style="color:var(--text-muted)">BOOKING ID:</span> #BF-9021
+                            </div>
+                            <div>
+                                <span style="color:var(--text-muted)">PAYMENT AMOUNT:</span> RM 50.00 (Deposit)
+                            </div>
+                            <div>
+                                <span style="color:var(--text-muted)">SENDER BANK:</span> CIMB Bank
+                            </div>
+                            <div>
+                                <span style="color:var(--text-muted)">REFERENCE ID:</span> TXN987654321
+                            </div>
+                            <div>
+                                <span style="color:var(--text-muted)">RECEIPT DOCUMENT:</span> <span style="color:var(--accent-color); text-decoration:underline; cursor:pointer;" onclick="showToast('Downloading receipt file...')">receipt_9021.pdf</span>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: "UC-12",
+                title: "Update Payment",
+                actor: "Admin / Staff",
+                actorType: "staff",
+                url: "http://localhost/staff/payment-verification",
+                desc: "Used by admins to verify uploaded receipts against bank statements, approving or rejecting payments.",
+                html: `
+                    <div class="mock-navbar">
+                        <div class="mock-logo">Plumbfix Staff</div>
+                        <div class="mock-nav-links">
+                            <span class="active">Payment Verification</span>
+                        </div>
+                    </div>
+                    <div class="mock-layout">
+                        <div class="mock-sidebar">
+                            <span class="mock-sidebar-link active">Payments</span>
+                            <span class="mock-sidebar-link" onclick="navigateTo('UC-15')">Refunds Queue</span>
+                        </div>
+                        <div class="mock-content">
+                            <div class="mock-card">
+                                <div class="mock-card-header">
+                                    <span>Pending Payments Verification Queue</span>
+                                </div>
+                                <table class="mock-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Booking</th>
+                                            <th>Amount</th>
+                                            <th>Sender Bank</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>#BF-9021 <br><span style="font-size:10px; color:var(--text-muted)">John Doe</span></td>
+                                            <td>RM 50.00</td>
+                                            <td>CIMB Bank</td>
+                                            <td>
+                                                <button class="mock-btn mock-btn-primary" style="padding: 4px 8px; font-size:11px;" onclick="showToast('Payment #9021 Approved. Status set to Confirmed.')">Approve</button>
+                                                <button class="mock-btn mock-btn-danger" style="padding: 4px 8px; font-size:11px;" onclick="showToast('Payment #9021 Rejected. Customer notified.')">Reject</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: "UC-13",
+                title: "Create Refund",
+                actor: "Customer / Staff",
+                actorType: "both",
+                url: "http://localhost/staff/refunds/create",
+                desc: "Triggers a request to return booking payments. Linked automatically when bookings with processed deposits are cancelled.",
+                html: `
+                    <div class="mock-navbar">
+                        <div class="mock-logo">Plumbfix System</div>
+                    </div>
+                    <div style="max-width: 500px; margin: 20px auto;" class="mock-card">
+                        <div class="mock-card-header">
+                            <span>Initiate Service Refund Ticket</span>
+                        </div>
+                        <div class="mock-form-group">
+                            <label class="mock-label">Associated Booking ID</label>
+                            <input type="text" class="mock-input" value="#BF-9021" readonly>
+                        </div>
+                        <div class="mock-form-group">
+                            <label class="mock-label">Refundable Amount</label>
+                            <input type="text" class="mock-input" value="RM 50.00" readonly>
+                        </div>
+                        <div class="mock-form-group">
+                            <label class="mock-label">Reason for Refund</label>
+                            <textarea class="mock-textarea" rows="3">Booking cancelled by customer due to scheduling conflict.</textarea>
+                        </div>
+                        <div style="margin-top: 16px; display:flex; gap:10px;">
+                            <button class="mock-btn mock-btn-primary" onclick="showToast('Refund Request Created. Queue updated.'); navigateTo('UC-15')">Create Refund Request</button>
+                            <button class="mock-btn mock-btn-secondary" onclick="navigateTo('UC-07')">Cancel</button>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: "UC-14",
+                title: "View Refund",
+                actor: "Customer, Admin/Staff",
+                actorType: "both",
+                url: "http://localhost/refunds/9021",
+                desc: "Shows status indicators, processing dates, ledger balances, and payment destinations for refunds.",
+                html: `
+                    <div class="mock-navbar">
+                        <div class="mock-logo">Plumbfix</div>
+                        <div class="mock-nav-links">
+                            <span onclick="navigateTo('UC-07')" style="cursor:pointer">Dashboard</span>
+                        </div>
+                    </div>
+                    <div style="max-width: 500px; margin: 10px auto;" class="mock-card">
+                        <div class="mock-card-header">
+                            <span>Refund Details Ticket #REF-8802</span>
+                            <span class="mock-status status-pending">Processing</span>
+                        </div>
+                        <div style="display:flex; flex-direction:column; gap:12px; font-size:13px;">
+                            <div>
+                                <span style="color:var(--text-muted)">BOOKING REF:</span> #BF-9021
+                            </div>
+                            <div>
+                                <span style="color:var(--text-muted)">REFUND AMOUNT:</span> RM 50.00
+                            </div>
+                            <div>
+                                <span style="color:var(--text-muted)">TRANSFER ACCOUNT:</span> Maybank - 164012345678 (John Doe)
+                            </div>
+                            <div>
+                                <span style="color:var(--text-muted)">REFUND LEDGER STATUS:</span> Pending validation of source funds
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: "UC-15",
+                title: "Update Refund",
+                actor: "Admin / Staff",
+                actorType: "staff",
+                url: "http://localhost/staff/refunds",
+                desc: "Used by administrators to complete refunds and balance accounting ledgers after bank transfers.",
+                html: `
+                    <div class="mock-navbar">
+                        <div class="mock-logo">Plumbfix Admin</div>
+                        <div class="mock-nav-links">
+                            <span>Dashboard</span>
+                            <span class="active">Refunds Panel</span>
+                        </div>
+                    </div>
+                    <div class="mock-layout">
+                        <div class="mock-sidebar">
+                            <span class="mock-sidebar-link" onclick="navigateTo('UC-12')">Payments Queue</span>
+                            <span class="mock-sidebar-link active">Refund Queue</span>
+                        </div>
+                        <div class="mock-content">
+                            <div class="mock-card">
+                                <div class="mock-card-header">
+                                    <span>Active Refund Claims</span>
+                                </div>
+                                <table class="mock-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Refund ID</th>
+                                            <th>Booking ID</th>
+                                            <th>Amount</th>
+                                            <th>Bank Details</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>#REF-8802</td>
+                                            <td>#BF-9021</td>
+                                            <td>RM 50.00</td>
+                                            <td>Maybank (John Doe)</td>
+                                            <td>
+                                                <button class="mock-btn mock-btn-primary" style="padding: 4px 8px; font-size:11px;" onclick="showToast('Refund processed successfully. Ledger updated.'); navigateTo('UC-14')">Complete Refund</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: "UC-16",
+                title: "Create Job Record",
+                actor: "Admin / Staff",
+                actorType: "staff",
+                url: "http://localhost/staff/job-records/create/9021",
+                desc: "Allows plumbers to document repairs, list equipment and inventory items used, and enter diagnostic logs.",
+                html: `
+                    <div class="mock-navbar">
+                        <div class="mock-logo">Plumbfix Plumber</div>
+                        <div class="mock-nav-links">
+                            <span>Bookings</span>
+                            <span class="active">Log Work</span>
+                        </div>
+                    </div>
+                    <div style="max-width: 600px; margin: 0 auto;" class="mock-card">
+                        <div class="mock-card-header">
+                            <span>Create Work Job Record</span>
+                        </div>
+                        <div class="mock-form-group">
+                            <label class="mock-label">Selected Booking ID</label>
+                            <input type="text" class="mock-input" value="#BF-9021" readonly>
+                        </div>
+                        <div class="mock-form-group">
+                            <label class="mock-label">Diagnostic Findings & Resolution Details</label>
+                            <textarea class="mock-textarea" rows="3" placeholder="Describe issue resolved (e.g. replaced pipe seal)"></textarea>
+                        </div>
+                        <div class="mock-form-group">
+                            <label class="mock-label">Inventory Materials Utilized</label>
+                            <select class="mock-select" multiple style="height: 60px;">
+                                <option>Copper Pipe Coupling (3/4 inch)</option>
+                                <option>Silicone Sealing Tape</option>
+                                <option>PVC Elbow fitting (1 inch)</option>
+                            </select>
+                            <span style="font-size:11px; color:var(--text-muted)">Hold Ctrl to select multiple items. Automatically updates warehouse quantities.</span>
+                        </div>
+                        <div style="margin-top: 16px; display:flex; gap:10px;">
+                            <button class="mock-btn mock-btn-primary" onclick="showToast('Job record saved to database. Inventory adjusted.'); navigateTo('UC-17')">Save Job Record</button>
+                            <button class="mock-btn mock-btn-secondary" onclick="navigateTo('UC-07')">Cancel</button>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: "UC-17",
+                title: "View Job Record",
+                actor: "Customer, Admin/Staff",
+                actorType: "both",
+                url: "http://localhost/staff/job-records/1",
+                desc: "Allows customers or staff to review job logs, materials used, diagnostic notes, and print physical documents.",
+                html: `
+                    <div class="mock-navbar">
+                        <div class="mock-logo">Plumbfix</div>
+                        <div class="mock-nav-links">
+                            <span onclick="navigateTo('UC-07')" style="cursor:pointer">Back</span>
+                        </div>
+                    </div>
+                    <div style="max-width: 550px; margin: 10px auto;" class="mock-card">
+                        <div class="mock-card-header">
+                            <span>Job Service Record #JR-3392</span>
+                            <button class="mock-btn mock-btn-secondary" style="padding:4px 8px;" onclick="showToast('Printing job voucher using DomPDF invoice engine...')">Print Voucher</button>
+                        </div>
+                        <div style="display:flex; flex-direction:column; gap:12px; font-size:13px; line-height:1.5;">
+                            <div>
+                                <span style="color:var(--text-muted)">BOOKING ID:</span> #BF-9021
+                            </div>
+                            <div>
+                                <span style="color:var(--text-muted)">COMPLETED DATE:</span> 2026-07-14
+                            </div>
+                            <div>
+                                <span style="color:var(--text-muted)">DIAGNOSIS & REPAIR DETAIL:</span> Resolved drain block in kitchen sink by clearing grease traps and resealing PVC pipe joints.
+                            </div>
+                            <div>
+                                <span style="color:var(--text-muted)">MATERIALS USED:</span> Silicone Sealing Tape (1 Roll), PVC Elbow (1 Unit)
+                            </div>
+                            <div>
+                                <span style="color:var(--text-muted)">SERVICE WORKER:</span> Plumber Albert Lim
+                            </div>
+                        </div>
+                        <div style="margin-top:20px; display:flex; gap:10px;">
+                            <button class="mock-btn mock-btn-primary" onclick="navigateTo('UC-18')">Modify Record</button>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: "UC-18",
+                title: "Update Job Record",
+                actor: "Admin / Staff",
+                actorType: "staff",
+                url: "http://localhost/staff/job-records/1/edit",
+                desc: "Allows plumbers or admins to edit service logs, adjust material allocations, and correct diagnostic entries.",
+                html: `
+                    <div class="mock-navbar">
+                        <div class="mock-logo">Plumbfix</div>
+                    </div>
+                    <div style="max-width: 600px; margin: 0 auto;" class="mock-card">
+                        <div class="mock-card-header">
+                            <span>Update Job Record details</span>
+                        </div>
+                        <div class="mock-form-group">
+                            <label class="mock-label">Adjust Diagnostic Description</label>
+                            <textarea class="mock-textarea" rows="3">Resolved drain block in kitchen sink by clearing grease traps and resealing PVC pipe joints. Extra blockage detected in adjacent drainage duct.</textarea>
+                        </div>
+                        <div class="mock-form-group">
+                            <label class="mock-label">Adjust Materials Used</label>
+                            <select class="mock-select" multiple style="height: 60px;">
+                                <option selected>Copper Pipe Coupling (3/4 inch)</option>
+                                <option selected>Silicone Sealing Tape</option>
+                                <option>PVC Elbow fitting (1 inch)</option>
+                            </select>
+                        </div>
+                        <div style="margin-top: 16px; display:flex; gap:10px;">
+                            <button class="mock-btn mock-btn-primary" onclick="showToast('Job Record changes saved to database.'); navigateTo('UC-17')">Save Changes</button>
+                            <button class="mock-btn mock-btn-secondary" onclick="navigateTo('UC-17')">Cancel</button>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: "UC-19",
+                title: "Generate Report",
+                actor: "Admin / Staff",
+                actorType: "staff",
+                url: "http://localhost/staff/analytics",
+                desc: "Aggregates revenue, booking counts, plumber allocations, and feedback metrics into downloadble reports.",
+                html: `
+                    <div class="mock-navbar">
+                        <div class="mock-logo">Plumbfix Admin</div>
+                        <div class="mock-nav-links">
+                            <span class="active">Reports</span>
+                        </div>
+                    </div>
+                    <div class="mock-layout">
+                        <div class="mock-sidebar">
+                            <span class="mock-sidebar-link" onclick="navigateTo('UC-12')">Payments</span>
+                            <span class="mock-sidebar-link active">Reports</span>
+                        </div>
+                        <div class="mock-content">
+                            <div class="metrics-grid">
+                                <div class="metric-widget">
+                                    <div style="font-size:11px; color:var(--text-secondary)">TOTAL REVENUE (MONTH)</div>
+                                    <div class="metric-val">RM 4,250.00</div>
+                                </div>
+                                <div class="metric-widget">
+                                    <div style="font-size:11px; color:var(--text-secondary)">COMPLETED BOOKINGS</div>
+                                    <div class="metric-val">84 Jobs</div>
+                                </div>
+                                <div class="metric-widget">
+                                    <div style="font-size:11px; color:var(--text-secondary)">CUSTOMER SATISFACTION</div>
+                                    <div class="metric-val">4.8 / 5</div>
+                                </div>
+                            </div>
+                            <div class="mock-card">
+                                <div class="mock-card-header">
+                                    <span>Weekly Bookings Flow</span>
+                                    <button class="mock-btn mock-btn-secondary" style="padding:4px 8px;" onclick="showToast('PDF summary sent to email via Brevo Mailer API')">Export PDF</button>
+                                </div>
+                                <div class="chart-mock">
+                                    <div class="chart-bar" style="height: 30%"></div>
+                                    <div class="chart-bar" style="height: 55%"></div>
+                                    <div class="chart-bar" style="height: 40%"></div>
+                                    <div class="chart-bar" style="height: 85%"></div>
+                                    <div class="chart-bar" style="height: 60%"></div>
+                                    <div class="chart-bar" style="height: 90%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: "UC-20",
+                title: "Create Feedback",
+                actor: "Customer",
+                actorType: "customer",
+                url: "http://localhost/feedback",
+                desc: "Allows customers to submit service reviews, assign ratings, and leave written reviews.",
+                html: `
+                    <div class="mock-navbar">
+                        <div class="mock-logo">Plumbfix</div>
+                        <div class="mock-nav-links">
+                            <span onclick="navigateTo('UC-07')" style="cursor:pointer">Dashboard</span>
+                            <span class="active">Feedback</span>
+                        </div>
+                    </div>
+                    <div style="max-width: 500px; margin: 20px auto;" class="mock-card">
+                        <div class="mock-card-header">
+                            <span>Submit Service Feedback</span>
+                        </div>
+                        <div class="mock-form-group">
+                            <label class="mock-label">Rate our Plumber Service</label>
+                            <div class="star-rating" id="feedback-stars">
+                                <span class="active" onclick="toggleStars(1)">★</span>
+                                <span class="active" onclick="toggleStars(2)">★</span>
+                                <span class="active" onclick="toggleStars(3)">★</span>
+                                <span class="active" onclick="toggleStars(4)">★</span>
+                                <span onclick="toggleStars(5)">★</span>
+                            </div>
+                        </div>
+                        <div class="mock-form-group">
+                            <label class="mock-label">Comments / Reviews</label>
+                            <textarea class="mock-textarea" rows="3" placeholder="Tell us about the plumber's punctuality and work quality..."></textarea>
+                        </div>
+                        <div style="margin-top: 16px; display:flex; gap:10px;">
+                            <button class="mock-btn mock-btn-primary" onclick="showToast('Feedback submitted. Thank you!'); navigateTo('UC-21')">Submit Feedback</button>
+                            <button class="mock-btn mock-btn-secondary" onclick="navigateTo('UC-07')">Back</button>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: "UC-21",
+                title: "View Feedback",
+                actor: "Customer, Admin/Staff",
+                actorType: "both",
+                url: "http://localhost/staff/feedback",
+                desc: "Displays lists of customer feedback logs, with options for staff to write response letters.",
+                html: `
+                    <div class="mock-navbar">
+                        <div class="mock-logo">Plumbfix</div>
+                        <div class="mock-nav-links">
+                            <span onclick="navigateTo('UC-07')" style="cursor:pointer">Dashboard</span>
+                        </div>
+                    </div>
+                    <div class="mock-layout">
+                        <div class="mock-sidebar">
+                            <span class="mock-sidebar-link active">Feedbacks</span>
+                        </div>
+                        <div class="mock-content">
+                            <div class="mock-card">
+                                <div class="mock-card-header">
+                                    <span>Customer Feedbacks Logs</span>
+                                </div>
+                                <div style="display:flex; flex-direction:column; gap:16px;">
+                                    <div style="border-bottom:1px solid var(--border-color); padding-bottom:12px;">
+                                        <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                                            <span style="font-weight:600; font-size:13px;">John Doe <span style="font-weight:400; color:var(--text-muted)">on Job #9021</span></span>
+                                            <span style="color:#f59e0b; font-size:12px;">★★★★☆</span>
+                                        </div>
+                                        <p style="font-size:13px; color:var(--text-secondary)">Albert Lim arrived on time and fixed our leaky kitchen tap very quickly. Great service!</p>
+                                        <div style="margin-top:8px; padding-left:12px; border-left: 2px solid var(--border-color); font-size:12px;">
+                                            <span style="font-weight:600; color:var(--text-primary)">Plumbfix Staff reply:</span> Thank you for your feedback! We are glad we could resolve your leakage issue.
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                                            <span style="font-weight:600; font-size:13px;">Sarah Connor <span style="font-weight:400; color:var(--text-muted)">on Job #8993</span></span>
+                                            <span style="color:#f59e0b; font-size:12px;">★★★★★</span>
+                                        </div>
+                                        <p style="font-size:13px; color:var(--text-secondary)">Fantastic experience! Replaced the pipe fittings cleanly.</p>
+                                        <div class="mock-form-group" style="margin-top:10px;">
+                                            <input type="text" class="mock-input" placeholder="Type reply as staff..." id="reply-input">
+                                            <button class="mock-btn mock-btn-primary" style="padding:4px 8px; font-size:11px; margin-top:6px;" onclick="showToast('Reply published successfully!')">Submit Reply</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: "UC-22",
+                title: "Create Chat Message",
+                actor: "Customer / Staff",
+                actorType: "both",
+                url: "http://localhost/bookings/9021/chat",
+                desc: "Allows users to write message characters and trigger realtime socket delivery to clients.",
+                html: `
+                    <div class="mock-navbar">
+                        <div class="mock-logo">Plumbfix Chat</div>
+                        <div class="mock-nav-links">
+                            <span onclick="navigateTo('UC-07')" style="cursor:pointer">Exit Chat</span>
+                        </div>
+                    </div>
+                    <div class="chat-container">
+                        <div class="chat-header">
+                            <span>Chat with Plumber (Albert Lim)</span>
+                            <span style="font-size:11px; color:var(--success-color)">● Online</span>
+                        </div>
+                        <div class="chat-messages" id="chat-scroller-view">
+                            <div class="chat-bubble bubble-received">
+                                Hello John, I am currently headed to your location now for the drain clearing job.
+                            </div>
+                            <div class="chat-bubble bubble-sent">
+                                Great, thank you! I will prepare the area under the kitchen sink.
+                            </div>
+                        </div>
+                        <div class="chat-input-area">
+                            <input type="text" class="mock-input" placeholder="Type your message..." id="new-message-text" onkeyup="checkEnterKey(event)">
+                            <button class="mock-btn mock-btn-primary" onclick="sendMessageAction()">Send</button>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: "UC-23",
+                title: "View Chat Messages",
+                actor: "Customer / Staff",
+                actorType: "both",
+                url: "http://localhost/bookings/9021/chat/history",
+                desc: "Displays conversation bubble threads between assigned technicians and customers, with scrolling chat blocks.",
+                html: `
+                    <div class="mock-navbar">
+                        <div class="mock-logo">Plumbfix Chat History</div>
+                        <div class="mock-nav-links">
+                            <span onclick="navigateTo('UC-07')" style="cursor:pointer">Dashboard</span>
+                        </div>
+                    </div>
+                    <div class="mock-layout">
+                        <div class="mock-sidebar">
+                            <span class="mock-sidebar-link active">Active Chats</span>
+                        </div>
+                        <div class="mock-content">
+                            <div class="chat-container">
+                                <div class="chat-header">
+                                    <span>Conversation History: Job #9021</span>
+                                    <button class="mock-btn mock-btn-secondary" style="padding:4px 8px; font-size:11px;" onclick="navigateTo('UC-22')">Continue Live Chat</button>
+                                </div>
+                                <div class="chat-messages">
+                                    <div class="chat-bubble bubble-received">
+                                        Hello John, I am currently headed to your location now for the drain clearing job.
+                                    </div>
+                                    <div class="chat-bubble bubble-sent">
+                                        Great, thank you! I will prepare the area under the kitchen sink.
+                                    </div>
+                                    <div class="chat-bubble bubble-received">
+                                        Arrived at location. Began clearing work.
+                                    </div>
+                                    <div class="chat-bubble bubble-received">
+                                        Job completed successfully. Resealed PVC traps.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: "UC-24",
+                title: "View Push Notifications",
+                actor: "Customer, Admin/Staff",
+                actorType: "both",
+                url: "http://localhost/notifications/bell",
+                desc: "Alert banner list triggered by system backend events, notifying users about bookings, status updates, or messages.",
+                html: `
+                    <div class="mock-navbar">
+                        <div class="mock-logo">Plumbfix Hub</div>
+                        <div class="mock-nav-links">
+                            <span onclick="navigateTo('UC-07')" style="cursor:pointer">Dashboard</span>
+                            <span style="position:relative; cursor:pointer;" onclick="showToast('Toggling notification bell...')">
+                                🔔 <span style="position:absolute; top:-6px; right:-6px; background:var(--danger-color); color:white; font-size:9px; font-weight:bold; border-radius:50%; width:14px; height:14px; display:flex; align-items:center; justify-content:center;">2</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="mock-layout">
+                        <div class="mock-sidebar">
+                            <span class="mock-sidebar-link active">Overview</span>
+                        </div>
+                        <div class="mock-content" style="display:flex; justify-content:flex-end;">
+                            <!-- Simulatedbell dropdown opening -->
+                            <div class="notif-dropdown">
+                                <div style="padding: 10px 12px; border-bottom: 1px solid var(--border-color); font-weight:700; font-size:12px;">RECENT NOTIFICATIONS</div>
+                                <div class="notif-item" onclick="navigateTo('UC-11')">
+                                    <span class="notif-title">Payment Approved</span>
+                                    <span style="color:var(--text-secondary)">Your deposit receipt for #BF-9021 has been verified.</span>
+                                    <span class="notif-time">2 hours ago</span>
+                                </div>
+                                <div class="notif-item" onclick="navigateTo('UC-22')">
+                                    <span class="notif-title">New Chat Message</span>
+                                    <span style="color:var(--text-secondary)">Plumber Albert: "Hello John, I am currently headed..."</span>
+                                    <span class="notif-time">5 hours ago</span>
+                                </div>
+                                <div style="padding: 10px; text-align:center; font-size:11px; color:var(--text-muted); cursor:pointer;" onclick="showToast('All notifications marked as read')">Mark all as read</div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            }
+        ];
+
+        let activeUseCaseId = "UC-00";
+        let activeRoleFilter = "all";
+
+        // Initialize App View
+        function initApp() {
+            renderSidebar();
+            navigateTo(activeUseCaseId);
+        }
+
+        // Filter role switcher
+        function setRole(role) {
+            activeRoleFilter = role;
+            document.querySelectorAll('.role-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`role-${role}`).classList.add('active');
+            renderSidebar();
+        }
+
+        // Render sidebar items dynamically
+        function renderSidebar() {
+            const container = document.getElementById("menu-container");
+            container.innerHTML = "";
+
+            const categories = {
+                "General": ["UC-00"],
+                "Auth & Profile": ["UC-01", "UC-02", "UC-03", "UC-04", "UC-05"],
+                "Bookings": ["UC-06", "UC-07", "UC-08", "UC-09"],
+                "Payments & Billing": ["UC-10", "UC-11", "UC-12"],
+                "Refunds Processing": ["UC-13", "UC-14", "UC-15"],
+                "Job Records": ["UC-16", "UC-17", "UC-18"],
+                "Business Analytics": ["UC-19"],
+                "Feedback Operations": ["UC-20", "UC-21"],
+                "Real-time Chat & Alerts": ["UC-22", "UC-23", "UC-24"]
+            };
+
+            for (const [catName, ucIds] of Object.entries(categories)) {
+                // Filter categories based on active role
+                const filteredUcs = useCases.filter(uc => {
+                    if (ucIds.includes(uc.id)) {
+                        if (activeRoleFilter === "all") return true;
+                        if (activeRoleFilter === "customer" && (uc.actorType === "customer" || uc.actorType === "both")) return true;
+                        if (activeRoleFilter === "staff" && (uc.actorType === "staff" || uc.actorType === "both")) return true;
+                    }
+                    return false;
+                });
+
+                if (filteredUcs.length > 0) {
+                    const catDiv = document.createElement("div");
+                    catDiv.className = "category-group";
+
+                    const titleDiv = document.createElement("div");
+                    titleDiv.className = "category-title";
+                    titleDiv.innerText = catName;
+                    catDiv.appendChild(titleDiv);
+
+                    filteredUcs.forEach(uc => {
+                        const itemA = document.createElement("a");
+                        itemA.className = `menu-item ${uc.id === activeUseCaseId ? 'active' : ''}`;
+                        itemA.id = `item-${uc.id}`;
+                        itemA.onclick = () => navigateTo(uc.id);
+
+                        itemA.innerHTML = `
+                            <span class="uc-badge">${uc.id}</span>
+                            <span>${uc.title}</span>
+                        `;
+                        catDiv.appendChild(itemA);
+                    });
+
+                    container.appendChild(catDiv);
+                }
+            }
+        }
+
+        // Navigate between wireframes
+        function navigateTo(id) {
+            activeUseCaseId = id;
+            const uc = useCases.find(u => u.id === id);
+            if (!uc) return;
+
+            // Highlight active element in list
+            document.querySelectorAll('.menu-item').forEach(item => item.classList.remove('active'));
+            const activeMenuItem = document.getElementById(`item-${id}`);
+            if (activeMenuItem) activeMenuItem.classList.add('active');
+
+            // Update Info headers
+            document.getElementById("info-title").innerText = `${uc.id}: ${uc.title}`;
+            document.getElementById("info-desc").innerText = uc.desc;
+            
+            const actorTag = document.getElementById("info-actor");
+            actorTag.innerText = `Actor: ${uc.actor}`;
+            actorTag.className = `actor-tag actor-${uc.actorType}`;
+
+            // Update Simulated browser URL
+            document.getElementById("browser-url-text").innerText = uc.url;
+
+            // Load Content HTML into Browser view container
+            const viewport = document.getElementById("browser-viewport-content");
+            viewport.innerHTML = uc.html;
+        }
+
+        // Live Chat helpers
+        function checkEnterKey(e) {
+            if (e.key === "Enter") {
+                sendMessageAction();
+            }
+        }
+
+        function sendMessageAction() {
+            const input = document.getElementById("new-message-text");
+            if (!input || input.value.trim() === "") return;
+
+            const text = input.value;
+            const chatBox = document.getElementById("chat-scroller-view");
+
+            // Add sent bubble
+            const sentBubble = document.createElement("div");
+            sentBubble.className = "chat-bubble bubble-sent";
+            sentBubble.innerText = text;
+            chatBox.appendChild(sentBubble);
+
+            input.value = "";
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            showToast("Message broadcasted via Pusher WebSockets (Simulated)");
+
+            // Mock automatic reply from plumber after 1.5 seconds
+            setTimeout(() => {
+                const replyBubble = document.createElement("div");
+                replyBubble.className = "chat-bubble bubble-received";
+                replyBubble.innerText = "Received your message. Plumbfix staff is processing it.";
+                chatBox.appendChild(replyBubble);
+                chatBox.scrollTop = chatBox.scrollHeight;
+                showToast("Real-time reply received!");
+            }, 1500);
+        }
+
+        // Star feedback rating helpers
+        function toggleStars(rating) {
+            const stars = document.getElementById("feedback-stars").children;
+            for (let i = 0; i < stars.length; i++) {
+                if (i < rating) {
+                    stars[i].classList.add("active");
+                } else {
+                    stars[i].classList.remove("active");
+                }
+            }
+            showToast(`Rated ${rating} Star(s)`);
+        }
+
+        // Search/Filter list in sidebar
+        function filterUseCases() {
+            const query = document.getElementById("search-bar").value.toLowerCase();
+            const items = document.querySelectorAll(".menu-item");
+
+            items.forEach(item => {
+                const text = item.innerText.toLowerCase();
+                if (text.includes(query)) {
+                    item.style.display = "flex";
+                } else {
+                    item.style.display = "none";
+                }
+            });
+        }
+
+        // Toast feedback box creator
+        function showToast(msg) {
+            const container = document.getElementById("toast-container");
+            const toast = document.createElement("div");
+            toast.className = "toast";
+            toast.innerHTML = `
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg>
+                <span>${msg}</span>
+            `;
+            container.appendChild(toast);
+
+            // Remove toast after 3 seconds
+            setTimeout(() => {
+                toast.style.animation = "slideIn 0.2s ease-out reverse";
+                setTimeout(() => toast.remove(), 200);
+            }, 3000);
+        }
+
+        // Initialize app on page load
+        window.onload = initApp;
+    </script>
+</body>
+</html>

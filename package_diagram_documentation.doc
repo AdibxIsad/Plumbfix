@@ -1,0 +1,314 @@
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+<meta charset="utf-8">
+<title>Package Functions and Package Content - Plumbfix</title>
+<style>
+@page {
+    size: A4;
+    margin: 1in;
+}
+body {
+    font-family: 'Calibri', 'Arial', sans-serif;
+    font-size: 11pt;
+    line-height: 1.4;
+    color: #222222;
+}
+h1 {
+    font-family: 'Calibri', sans-serif;
+    font-size: 18pt;
+    color: #1F4E78;
+    margin-top: 0;
+    margin-bottom: 12pt;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 2px solid #1F4E78;
+    padding-bottom: 6px;
+}
+h2 {
+    font-family: 'Calibri', sans-serif;
+    font-size: 14pt;
+    color: #1F4E78;
+    margin-top: 16pt;
+    margin-bottom: 8pt;
+    font-weight: bold;
+}
+h3 {
+    font-family: 'Calibri', sans-serif;
+    font-size: 12pt;
+    color: #2E75B6;
+    margin-top: 12pt;
+    margin-bottom: 6pt;
+    font-weight: bold;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 18pt;
+}
+th {
+    background-color: #1F4E78;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 11pt;
+    padding: 8px 10px;
+    border: 1px solid #1F4E78;
+    text-align: left;
+}
+td {
+    padding: 7px 10px;
+    border: 1px solid #D9D9D9;
+    font-size: 10.5pt;
+    vertical-align: top;
+}
+tr:nth-child(even) td {
+    background-color: #F2F5F8;
+}
+ul {
+    margin: 0;
+    padding-left: 18px;
+}
+li {
+    margin-bottom: 4px;
+}
+</style>
+</head>
+<body>
+
+<h1>Plumbfix: Plumbing Management System — Package Architecture Specification</h1>
+
+<h2>4.1.2 Package Functions</h2>
+<p>Table 4.1 shows the package functions for each architectural layer in the system.</p>
+
+<h3>Table 4.1 Package functions</h3>
+<table>
+    <thead>
+        <tr>
+            <th style="width: 35%;">Package</th>
+            <th style="width: 65%;">Package Functions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>View Layer</strong><br>(SDD_PKG_100)</td>
+            <td>
+                <ul>
+                    <li>To display user interface forms and web screens</li>
+                    <li>To display dynamic data and accept input data from users</li>
+                    <li>To update and validate client-side input data</li>
+                    <li>To submit requests and display system feedback notifications</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Domain Layer (Controllers)</strong><br>(SDD_PKG_200)</td>
+            <td>
+                <ul>
+                    <li>To process system business rules and application logic</li>
+                    <li>To control information flow from the view layer to the data access layer</li>
+                    <li>To manage user authentication, session state, authorization, and payment processing logic</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Data Access Layer (Eloquent Models)</strong><br>(SDD_PKG_300)</td>
+            <td>
+                <ul>
+                    <li>To establish and maintain database connections</li>
+                    <li>To represent database entity models and manage relational mappings</li>
+                    <li>To execute SQL statements (retrieve, insert, update, delete) on the database</li>
+                </ul>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>4.1.3 Package Content</h2>
+<p>Table 4.2 shows the package content and class mapping for each architectural layer in the system.</p>
+
+<h3>Table 4.2 Package Content</h3>
+<table>
+    <thead>
+        <tr>
+            <th style="width: 35%;">Package</th>
+            <th style="width: 25%;">Class ID</th>
+            <th style="width: 40%;">Class Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- View Layer -->
+        <tr>
+            <td rowspan="18"><strong>View Layer</strong><br>(SDD_PKG_100)</td>
+            <td>SDD_CLASS_101</td>
+            <td>welcome</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_102</td>
+            <td>login</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_103</td>
+            <td>register</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_104</td>
+            <td>customer_dashboard</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_105</td>
+            <td>customer_profile</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_106</td>
+            <td>customer_bookings</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_107</td>
+            <td>customer_booking_create</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_108</td>
+            <td>customer_payment</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_109</td>
+            <td>customer_feedback</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_110</td>
+            <td>staff_dashboard</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_111</td>
+            <td>staff_profile</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_112</td>
+            <td>staff_bookings</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_113</td>
+            <td>staff_job_records</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_114</td>
+            <td>staff_job_record_create</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_115</td>
+            <td>admin_plumbers</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_116</td>
+            <td>admin_payment_verification</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_117</td>
+            <td>admin_refunds</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_118</td>
+            <td>admin_analytics</td>
+        </tr>
+
+        <!-- Domain Layer -->
+        <tr>
+            <td rowspan="12"><strong>Domain Layer (Controllers)</strong><br>(SDD_PKG_200)</td>
+            <td>SDD_CLASS_201</td>
+            <td>LoginController</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_202</td>
+            <td>RegisterController</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_203</td>
+            <td>ChatController</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_204</td>
+            <td>GoogleAuthController</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_205</td>
+            <td>CustomerController</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_206</td>
+            <td>StaffController</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_207</td>
+            <td>PlumberController</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_208</td>
+            <td>PaymentController</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_209</td>
+            <td>PaymentVerificationController</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_210</td>
+            <td>RefundController</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_211</td>
+            <td>AnalyticsController</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_212</td>
+            <td>InvoiceController</td>
+        </tr>
+
+        <!-- Data Access Layer -->
+        <tr>
+            <td rowspan="11"><strong>Data Access Layer (Eloquent Models)</strong><br>(SDD_PKG_300)</td>
+            <td>SDD_CLASS_301</td>
+            <td>Customer</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_302</td>
+            <td>Staff</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_303</td>
+            <td>Booking</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_304</td>
+            <td>Payment</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_305</td>
+            <td>PaymentReceipt</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_306</td>
+            <td>Cancellation</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_307</td>
+            <td>Refund</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_308</td>
+            <td>JobRecord</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_309</td>
+            <td>ChatMessage</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_310</td>
+            <td>Feedback</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_311</td>
+            <td>Notification</td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

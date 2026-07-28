@@ -1,0 +1,815 @@
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+<meta charset="utf-8">
+<title>Use Case Descriptions - Plumbfix</title>
+<style>
+@page {
+    size: A4;
+    margin: 1in;
+}
+body {
+    font-family: 'Calibri', 'Arial', sans-serif;
+    font-size: 11pt;
+    line-height: 1.3;
+}
+h1 {
+    font-family: 'Calibri', sans-serif;
+    font-size: 16pt;
+    color: #1f4e78;
+    margin-top: 18pt;
+    margin-bottom: 8pt;
+    font-weight: bold;
+    border-bottom: 1px solid #1f4e78;
+    padding-bottom: 4px;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 18pt;
+}
+th, td {
+    border: 1px solid #595959;
+    padding: 6px 8px;
+    vertical-align: top;
+    font-size: 10.5pt;
+}
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    width: 28%;
+    color: #262626;
+    text-align: left;
+}
+.page-break {
+    page-break-before: always;
+}
+</style>
+</head>
+<body>
+
+<h1>UCD001: Login</h1>
+<table>
+  <tr><th>Use Case ID</th><td>UCD001</td></tr>
+  <tr><th>Use Case Name</th><td>Login</td></tr>
+  <tr><th>Created By / Date</th><td>Adib / 16-07-2026</td></tr>
+  <tr><th>Last Updated By / Date</th><td>Adib / 16-07-2026</td></tr>
+  <tr><th>Actor</th><td>Customer, Staff, Admin</td></tr>
+  <tr><th>Description</th><td>Actors log in into the Plumbfix web-based system.</td></tr>
+  <tr><th>Preconditions</th><td>Actor must have a registered account.</td></tr>
+  <tr><th>Postconditions</th><td>Actor can successfully log in to their respective dashboard.</td></tr>
+  <tr><th>Priority / Frequency</th><td>High / High</td></tr>
+  <tr>
+    <th>Normal Course of Events</th>
+    <td>
+      <strong>Actor:</strong><br>
+      1. Actor browses to Plumbfix login page.<br>
+      2. Actor enters email and password.<br>
+      3. Actor clicks "Login" button.<br><br>
+      <strong>System:</strong><br>
+      1.1 System displays login form with email and password fields.<br>
+      3.1 System validates credentials.<br>
+      3.2 System redirects to the respective dashboard (Customer Dashboard or Staff Dashboard).
+    </td>
+  </tr>
+  <tr><th>Alternative Courses</th><td><strong>Google Login:</strong> (1) Actor clicks "Login with Google". (1.1 System redirects to Google OAuth, verifies user profile, sets session, and redirects to dashboard).</td></tr>
+  <tr><th>Exceptions</th><td><strong>Invalid credentials:</strong> (3.1) If credentials fail database match, system displays "These credentials do not match our records." and asks user to try again.</td></tr>
+  <tr><th>Includes</th><td>N/A</td></tr>
+  <tr><th>Notes and Issues</th><td>Google Login is only available to Customers.</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h1>UCD002: Create Account</h1>
+<table>
+  <tr><th>Use Case ID</th><td>UCD002</td></tr>
+  <tr><th>Use Case Name</th><td>Create Account</td></tr>
+  <tr><th>Created By / Date</th><td>Adib / 16-07-2026</td></tr>
+  <tr><th>Last Updated By / Date</th><td>Adib / 16-07-2026</td></tr>
+  <tr><th>Actor</th><td>Customer, Staff (Admin)</td></tr>
+  <tr><th>Description</th><td>Creates a new user account profile in the system.</td></tr>
+  <tr><th>Preconditions</th><td>N/A</td></tr>
+  <tr><th>Postconditions</th><td>A new active account is registered in the database.</td></tr>
+  <tr><th>Priority / Frequency</th><td>High / Medium</td></tr>
+  <tr>
+    <th>Normal Course of Events</th>
+    <td>
+      <strong>For Customer registration:</strong><br>
+      1. Customer clicks "Register" link on login page.<br>
+      2. Customer inputs details (Name, Email, Phone, Address, Password, Bank Info) and clicks "Register".<br><br>
+      <strong>System:</strong><br>
+      1.1 System redirects to Registration page and displays form fields.<br>
+      2.1 System validates details for uniqueness.<br>
+      2.2 System registers Customer and redirects to dashboard.<br><br>
+      <strong>For Admin creating a Plumber profile:</strong><br>
+      1. Admin navigates to "Plumbers" menu.<br>
+      2. Admin clicks "Add Plumber" button.<br>
+      3. Admin inputs plumber's name, email, phone, and password, and clicks "Save Plumber".<br><br>
+      <strong>System:</strong><br>
+      1.1 System redirects to Plumber list page.<br>
+      2.1 System displays form dialog.<br>
+      3.1 System validates details.<br>
+      3.2 System saves Plumber account in database with active status and refreshes list.
+    </td>
+  </tr>
+  <tr><th>Alternative Courses</th><td>N/A</td></tr>
+  <tr><th>Exceptions</th><td><strong>Validation failure:</strong> (2.1 / 3.1) If the email or phone number is already registered, the system returns validation errors.</td></tr>
+  <tr><th>Includes</th><td>N/A</td></tr>
+  <tr><th>Notes and Issues</th><td>Bank Name and Account Number are optional during Customer registration.</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h1>UCD003: View Account</h1>
+<table>
+  <tr><th>Use Case ID</th><td>UCD003</td></tr>
+  <tr><th>Use Case Name</th><td>View Account</td></tr>
+  <tr><th>Created By / Date</th><td>Adib / 16-07-2026</td></tr>
+  <tr><th>Last Updated By / Date</th><td>Adib / 16-07-2026</td></tr>
+  <tr><th>Actor</th><td>Customer, Staff, Admin</td></tr>
+  <tr><th>Description</th><td>Actor views their personal account profile details.</td></tr>
+  <tr><th>Preconditions</th><td>Actor must be logged in.</td></tr>
+  <tr><th>Postconditions</th><td>Account details are successfully displayed.</td></tr>
+  <tr><th>Priority / Frequency</th><td>Medium / Medium</td></tr>
+  <tr>
+    <th>Normal Course of Events</th>
+    <td>
+      <strong>Actor:</strong><br>
+      1. Actor clicks on the "Profile" link in the navigation menu.<br><br>
+      <strong>System:</strong><br>
+      1.1 System queries database for authenticated user ID.<br>
+      1.2 System redirects to Profile page.<br>
+      1.3 System displays current profile details (Name, Email, Phone No, Address, Bank details, and Avatar).
+    </td>
+  </tr>
+  <tr><th>Alternative Courses</th><td>N/A</td></tr>
+  <tr><th>Exceptions</th><td>N/A</td></tr>
+  <tr><th>Includes</th><td>N/A</td></tr>
+  <tr><th>Notes and Issues</th><td>Staff accounts do not contain banking details.</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h1>UCD004: Update Account</h1>
+<table>
+  <tr><th>Use Case ID</th><td>UCD004</td></tr>
+  <tr><th>Use Case Name</th><td>Update Account</td></tr>
+  <tr><th>Created By / Date</th><td>Adib / 16-07-2026</td></tr>
+  <tr><th>Last Updated By / Date</th><td>Adib / 16-07-2026</td></tr>
+  <tr><th>Actor</th><td>Customer, Staff, Admin</td></tr>
+  <tr><th>Description</th><td>Actor updates their profile account information.</td></tr>
+  <tr><th>Preconditions</th><td>Actor must be logged in and on the Profile page.</td></tr>
+  <tr><th>Postconditions</th><td>Account data is updated in the database.</td></tr>
+  <tr><th>Priority / Frequency</th><td>High / Low</td></tr>
+  <tr>
+    <th>Normal Course of Events</th>
+    <td>
+      <strong>Actor:</strong><br>
+      1. Actor modifies editable fields (Name, Phone No, Address, Bank info, or uploads new Avatar).<br>
+      2. Actor clicks on the "Update Profile" button.<br><br>
+      <strong>System:</strong><br>
+      2.1 System validates updated inputs.<br>
+      2.2 System saves changes to database.<br>
+      2.3 System displays success alert message: "Profile updated successfully!".
+    </td>
+  </tr>
+  <tr><th>Alternative Courses</th><td>N/A</td></tr>
+  <tr><th>Exceptions</th><td><strong>Invalid inputs:</strong> (2.1) If input validation fails (e.g. invalid phone number format), system displays error tips.</td></tr>
+  <tr><th>Includes</th><td>N/A</td></tr>
+  <tr><th>Notes and Issues</th><td>Avatar uploaded must be an image file (JPEG, PNG, etc.) under 2MB.</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h1>UCD005: Delete Account</h1>
+<table>
+  <tr><th>Use Case ID</th><td>UCD005</td></tr>
+  <tr><th>Use Case Name</th><td>Delete Account</td></tr>
+  <tr><th>Created By / Date</th><td>Adib / 16-07-2026</td></tr>
+  <tr><th>Last Updated By / Date</th><td>Adib / 16-07-2026</td></tr>
+  <tr><th>Actor</th><td>Staff (Admin)</td></tr>
+  <tr><th>Description</th><td>Admin deletes a plumber's account profile from the system.</td></tr>
+  <tr><th>Preconditions</th><td>Admin is logged in.</td></tr>
+  <tr><th>Postconditions</th><td>Plumber account is removed from the database.</td></tr>
+  <tr><th>Priority / Frequency</th><td>Medium / Low</td></tr>
+  <tr>
+    <th>Normal Course of Events</th>
+    <td>
+      <strong>Actor:</strong><br>
+      1. Admin navigates to the "Plumbers" menu.<br>
+      2. Admin finds Plumber and clicks "Delete" button.<br>
+      3. Admin clicks "OK" to confirm.<br><br>
+      <strong>System:</strong><br>
+      1.1 System displays plumbers list table.<br>
+      2.1 System displays confirmation popup: "Are you sure you want to delete this plumber?".<br>
+      3.1 System deletes the staff record from database.<br>
+      3.2 System displays success message: "Plumber deleted successfully!" and refreshes list.
+    </td>
+  </tr>
+  <tr><th>Alternative Courses</th><td>N/A</td></tr>
+  <tr><th>Exceptions</th><td>N/A</td></tr>
+  <tr><th>Includes</th><td>N/A</td></tr>
+  <tr><th>Notes and Issues</th><td>Admin cannot delete their own account.</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h1>UCD006: Create Booking</h1>
+<table>
+  <tr><th>Use Case ID</th><td>UCD006</td></tr>
+  <tr><th>Use Case Name</th><td>Create Booking</td></tr>
+  <tr><th>Created By / Date</th><td>Adib / 16-07-2026</td></tr>
+  <tr><th>Last Updated By / Date</th><td>Adib / 16-07-2026</td></tr>
+  <tr><th>Actor</th><td>Customer</td></tr>
+  <tr><th>Description</th><td>Customer schedules a new plumbing service appointment.</td></tr>
+  <tr><th>Preconditions</th><td>Customer is logged in.</td></tr>
+  <tr><th>Postconditions</th><td>Booking is saved as "Pending" and redirects to payment window.</td></tr>
+  <tr><th>Priority / Frequency</th><td>High / High</td></tr>
+  <tr>
+    <th>Normal Course of Events</th>
+    <td>
+      <strong>Actor:</strong><br>
+      1. Customer clicks "Create Booking" on menu.<br>
+      2. Customer selects Service Type, Date, Time Slot, and fills problem description.<br>
+      3. Customer uploads problem photos (optional) and clicks "Submit Booking".<br><br>
+      <strong>System:</strong><br>
+      1.1 System redirects to booking form page.<br>
+      1.2 System fetches booked slots to display on calendar.<br>
+      3.1 System validates time slot availability.<br>
+      3.2 System saves booking record in database with "Pending" status.<br>
+      3.3 System redirects customer to deposit payment page.
+    </td>
+  </tr>
+  <tr><th>Alternative Courses</th><td>N/A</td></tr>
+  <tr><th>Exceptions</th><td><strong>Time slot overlap:</strong> (3.1) If the slot is booked during customer entry, system prompts: "The selected time slot is already booked."</td></tr>
+  <tr><th>Includes</th><td>N/A</td></tr>
+  <tr><th>Notes and Issues</th><td>Booking is not assigned to a plumber until deposit is verified.</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h1>UCD007: View Booking</h1>
+<table>
+  <tr><th>Use Case ID</th><td>UCD007</td></tr>
+  <tr><th>Use Case Name</th><td>View Booking</td></tr>
+  <tr><th>Created By / Date</th><td>Adib / 16-07-2026</td></tr>
+  <tr><th>Last Updated By / Date</th><td>Adib / 16-07-2026</td></tr>
+  <tr><th>Actor</th><td>Customer, Staff, Admin</td></tr>
+  <tr><th>Description</th><td>Actor views their active or historical list of bookings.</td></tr>
+  <tr><th>Preconditions</th><td>Actor is logged in.</td></tr>
+  <tr><th>Postconditions</th><td>Bookings lists are rendered.</td></tr>
+  <tr><th>Priority / Frequency</th><td>High / High</td></tr>
+  <tr>
+    <th>Normal Course of Events</th>
+    <td>
+      <strong>Actor:</strong><br>
+      1. Actor clicks "Bookings" in sidebar menu.<br><br>
+      <strong>System:</strong><br>
+      1.1 System checks authenticated role.<br>
+      1.2 System retrieves bookings linked to User ID.<br>
+      1.3 System displays bookings table showing Booking ID, Type, Date, Time, Status, and Action buttons.
+    </td>
+  </tr>
+  <tr><th>Alternative Courses</th><td>N/A</td></tr>
+  <tr><th>Exceptions</th><td>N/A</td></tr>
+  <tr><th>Includes</th><td>N/A</td></tr>
+  <tr><th>Notes and Issues</th><td>Staff sees bookings assigned to them; Admin sees all bookings.</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h1>UCD008: Update Booking</h1>
+<table>
+  <tr><th>Use Case ID</th><td>UCD008</td></tr>
+  <tr><th>Use Case Name</th><td>Update Booking</td></tr>
+  <tr><th>Created By / Date</th><td>Adib / 16-07-2026</td></tr>
+  <tr><th>Last Updated By / Date</th><td>Adib / 16-07-2026</td></tr>
+  <tr><th>Actor</th><td>Customer, Staff, Admin</td></tr>
+  <tr><th>Description</th><td>Staff/Admin updates booking parameters, plumber assignment, or progress status.</td></tr>
+  <tr><th>Preconditions</th><td>Actor is logged in.</td></tr>
+  <tr><th>Postconditions</th><td>Booking record is updated in database.</td></tr>
+  <tr><th>Priority / Frequency</th><td>High / Medium</td></tr>
+  <tr>
+    <th>Normal Course of Events</th>
+    <td>
+      <strong>For Plumber updating job status:</strong><br>
+      1. Plumber navigates to bookings list.<br>
+      2. Plumber clicks "Update Status" dropdown, selects progress stage (e.g. "In Progress"), and clicks save.<br><br>
+      <strong>System:</strong><br>
+      1.1 System displays active assigned bookings list.<br>
+      2.1 System updates booking status in database.<br>
+      2.2 System triggers notification alert to Customer.
+    </td>
+  </tr>
+  <tr><th>Alternative Courses</th><td><strong>Admin assigning booking:</strong> (1) Admin clicks "Verify Payment" -> approves slip -> selects Plumber. (1.1 System sets Booking status to "Confirmed" and assigns selected Plumber ID).</td></tr>
+  <tr><th>Exceptions</th><td>N/A</td></tr>
+  <tr><th>Includes</th><td>N/A</td></tr>
+  <tr><th>Notes and Issues</th><td>Booking status workflow goes: Pending -> Confirmed -> In Progress -> Completed.</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h1>UCD009: Delete Booking (Cancel Booking)</h1>
+<table>
+  <tr><th>Use Case ID</th><td>UCD009</td></tr>
+  <tr><th>Use Case Name</th><td>Delete Booking</td></tr>
+  <tr><th>Created By / Date</th><td>Adib / 16-07-2026</td></tr>
+  <tr><th>Last Updated By / Date</th><td>Adib / 16-07-2026</td></tr>
+  <tr><th>Actor</th><td>Customer</td></tr>
+  <tr><th>Description</th><td>Customer cancels an active booking, triggering refund checks.</td></tr>
+  <tr><th>Preconditions</th><td>Booking status must not be Completed or In Progress.</td></tr>
+  <tr><th>Postconditions</th><td>Booking is soft-deleted/cancelled and refund checks are triggered.</td></tr>
+  <tr><th>Priority / Frequency</th><td>High / Low</td></tr>
+  <tr>
+    <th>Normal Course of Events</th>
+    <td>
+      <strong>Actor:</strong><br>
+      1. Customer finds booking in lists and clicks "Cancel Booking".<br>
+      2. Customer inputs Cancellation Reason & Description.<br>
+      3. Customer clicks "Confirm Cancellation" button.<br><br>
+      <strong>System:</strong><br>
+      1.1 System redirects customer to cancellation page.<br>
+      3.1 System calculates refund eligibility.<br>
+      3.2 System saves booking status as "Cancelled", records refund amount, and triggers alerts to staff.
+    </td>
+  </tr>
+  <tr><th>Alternative Courses</th><td>N/A</td></tr>
+  <tr><th>Exceptions</th><td><strong>Ineligible Cancel:</strong> (1.1) If booking is already Completed or In Progress, cancel button is disabled.</td></tr>
+  <tr><th>Includes</th><td>N/A</td></tr>
+  <tr><th>Notes and Issues</th><td>Refund eligibility is determined by 24h and 48h notice windows.</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h1>UCD010: Create Payment</h1>
+<table>
+  <tr><th>Use Case ID</th><td>UCD010</td></tr>
+  <tr><th>Use Case Name</th><td>Create Payment</td></tr>
+  <tr><th>Created By / Date</th><td>Adib / 16-07-2026</td></tr>
+  <tr><th>Last Updated By / Date</th><td>Adib / 16-07-2026</td></tr>
+  <tr><th>Actor</th><td>Customer</td></tr>
+  <tr><th>Description</th><td>Customer uploads bank deposit receipt slip for a pending booking.</td></tr>
+  <tr><th>Preconditions</th><td>Booking has been created.</td></tr>
+  <tr><th>Postconditions</th><td>PaymentReceipt record is logged in database.</td></tr>
+  <tr><th>Priority / Frequency</th><td>High / High</td></tr>
+  <tr>
+    <th>Normal Course of Events</th>
+    <td>
+      <strong>Actor:</strong><br>
+      1. Customer opens the deposit payment page.<br>
+      2. Customer selects Payment Method, uploads receipt file, and clicks "Submit Payment".<br><br>
+      <strong>System:</strong><br>
+      1.1 System displays payment details (RM 70.00) and bank account details.<br>
+      2.1 System validates file type and size.<br>
+      2.2 System saves receipt file in storage, inserts record in payment_receipts database table, and alerts administrators.
+    </td>
+  </tr>
+  <tr><th>Alternative Courses</th><td>N/A</td></tr>
+  <tr><th>Exceptions</th><td><strong>Upload failure:</strong> (2.1) If receipt upload is not a PDF/image or exceeds 4MB, system halts submission.</td></tr>
+  <tr><th>Includes</th><td>N/A</td></tr>
+  <tr><th>Notes and Issues</th><td>Multiple receipts can be uploaded if previous attempts were rejected by Admin.</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h1>UCD011: View Payment</h1>
+<table>
+  <tr><th>Use Case ID</th><td>UCD011</td></tr>
+  <tr><th>Use Case Name</th><td>View Payment</td></tr>
+  <tr><th>Created By / Date</th><td>Adib / 16-07-2026</td></tr>
+  <tr><th>Last Updated By / Date</th><td>Adib / 16-07-2026</td></tr>
+  <tr><th>Actor</th><td>Customer, Staff (Admin)</td></tr>
+  <tr><th>Description</th><td>Actor views payment details, receipt files, and verification statuses.</td></tr>
+  <tr><th>Preconditions</th><td>Actor is logged in.</td></tr>
+  <tr><th>Postconditions</th><td>Payment lists/receipt files are displayed.</td></tr>
+  <tr><th>Priority / Frequency</th><td>High / High</td></tr>
+  <tr>
+    <th>Normal Course of Events</th>
+    <td>
+      <strong>For Admin viewing payment queue:</strong><br>
+      1. Admin clicks "Payment Verification" on navigation panel.<br><br>
+      <strong>System:</strong><br>
+      1.1 System retrieves bookings with submitted receipts.<br>
+      1.2 System displays list of payments, showing Booking ID, Uploaded At, and Receipt Slip download link.<br><br>
+      <strong>For Customer viewing payment receipt:</strong><br>
+      1. Customer goes to Booking detail and clicks "Download Receipt".<br><br>
+      <strong>System:</strong><br>
+      1.1 System fetches payment receipt PDF and starts download.
+    </td>
+  </tr>
+  <tr><th>Alternative Courses</th><td>N/A</td></tr>
+  <tr><th>Exceptions</th><td>N/A</td></tr>
+  <tr><th>Includes</th><td>N/A</td></tr>
+  <tr><th>Notes and Issues</th><td>Receipts are available for download only after Payment Status is updated to "Paid".</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h1>UCD012: Update Payment</h1>
+<table>
+  <tr><th>Use Case ID</th><td>UCD012</td></tr>
+  <tr><th>Use Case Name</th><td>Update Payment</td></tr>
+  <tr><th>Created By / Date</th><td>Adib / 16-07-2026</td></tr>
+  <tr><th>Last Updated By / Date</th><td>Adib / 16-07-2026</td></tr>
+  <tr><th>Actor</th><td>Staff (Admin)</td></tr>
+  <tr><th>Description</th><td>Admin approves or rejects the customer's payment submission.</td></tr>
+  <tr><th>Preconditions</th><td>Admin is logged in and on the Payment Verification page.</td></tr>
+  <tr><th>Postconditions</th><td>Payment record and booking status are updated.</td></tr>
+  <tr><th>Priority / Frequency</th><td>High / High</td></tr>
+  <tr>
+    <th>Normal Course of Events</th>
+    <td>
+      <strong>For Payment Approval:</strong><br>
+      1. Admin reviews receipt, selects an active Plumber, and clicks "Approve".<br><br>
+      <strong>System:</strong><br>
+      1.1 System marks Payment Status as "Paid" and Booking Status as "Confirmed".<br>
+      1.2 System assigns plumber ID to booking, deducts inventory, generates receipt PDF, and sends confirmation email.<br><br>
+      <strong>For Payment Rejection:</strong><br>
+      1. Admin enters rejection reason and clicks "Reject".<br><br>
+      <strong>System:</strong><br>
+      1.1 System marks Payment Status as "Rejected" and saves rejection reason.<br>
+      1.2 System sends notification alert to Customer.
+    </td>
+  </tr>
+  <tr><th>Alternative Courses</th><td>N/A</td></tr>
+  <tr><th>Exceptions</th><td>N/A</td></tr>
+  <tr><th>Includes</th><td>N/A</td></tr>
+  <tr><th>Notes and Issues</th><td>Approving payment requires plumber assignment to confirm the slot.</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h1>UCD013: Create Refund</h1>
+<table>
+  <tr><th>Use Case ID</th><td>UCD013</td></tr>
+  <tr><th>Use Case Name</th><td>Create Refund</td></tr>
+  <tr><th>Created By / Date</th><td>Adib / 16-07-2026</td></tr>
+  <tr><th>Last Updated By / Date</th><td>Adib / 16-07-2026</td></tr>
+  <tr><th>Actor</th><td>Customer</td></tr>
+  <tr><th>Description</th><td>Triggers automated refund request log on booking cancellation.</td></tr>
+  <tr><th>Preconditions</th><td>Customer cancels a booking which has payment status "Paid".</td></tr>
+  <tr><th>Postconditions</th><td>A new pending refund record is logged in database.</td></tr>
+  <tr><th>Priority / Frequency</th><td>Medium / Low</td></tr>
+  <tr>
+    <th>Normal Course of Events</th>
+    <td>
+      <strong>Actor:</strong><br>
+      1. Customer cancels a paid booking.<br><br>
+      <strong>System:</strong><br>
+      1.1 System calls refund eligibility calculations.<br>
+      1.2 System checks cancellation timing constraints.<br>
+      1.3 System creates a pending Refund record with calculated refund amount, and notifies admin.
+    </td>
+  </tr>
+  <tr><th>Alternative Courses</th><td>N/A</td></tr>
+  <tr><th>Exceptions</th><td><strong>Non-eligible cancellation:</strong> (1.2) If cancellation is initiated under 24 hours prior, system sets refund status to 'not_applicable' and refund amount to 0.</td></tr>
+  <tr><th>Includes</th><td>N/A</td></tr>
+  <tr><th>Notes and Issues</th><td>Refund request is created automatically and does not require a separate Customer form.</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h1>UCD014: View Refund</h1>
+<table>
+  <tr><th>Use Case ID</th><td>UCD014</td></tr>
+  <tr><th>Use Case Name</th><td>View Refund</td></tr>
+  <tr><th>Created By / Date</th><td>Adib / 16-07-2026</td></tr>
+  <tr><th>Last Updated By / Date</th><td>Adib / 16-07-2026</td></tr>
+  <tr><th>Actor</th><td>Staff (Admin)</td></tr>
+  <tr><th>Description</th><td>Admin views list of pending and completed refund requests.</td></tr>
+  <tr><th>Preconditions</th><td>Admin is logged in.</td></tr>
+  <tr><th>Postconditions</th><td>Refund tables are successfully rendered.</td></tr>
+  <tr><th>Priority / Frequency</th><td>Medium / Low</td></tr>
+  <tr>
+    <th>Normal Course of Events</th>
+    <td>
+      <strong>Actor:</strong><br>
+      1. Admin clicks "Refunds" menu item.<br><br>
+      <strong>System:</strong><br>
+      1.1 System fetches records from database bookings table with cancelled status and pending/refunded status.<br>
+      1.2 System renders list showing Booking ID, Cancelled At, Customer Bank Name, Bank Account No, Refund Amount, and Refund Status.
+    </td>
+  </tr>
+  <tr><th>Alternative Courses</th><td>N/A</td></tr>
+  <tr><th>Exceptions</th><td>N/A</td></tr>
+  <tr><th>Includes</th><td>N/A</td></tr>
+  <tr><th>Notes and Issues</th><td>Admin can search for refunds by Customer Name or Booking ID.</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h1>UCD015: Update Refund</h1>
+<table>
+  <tr><th>Use Case ID</th><td>UCD015</td></tr>
+  <tr><th>Use Case Name</th><td>Update Refund</td></tr>
+  <tr><th>Created By / Date</th><td>Adib / 16-07-2026</td></tr>
+  <tr><th>Last Updated By / Date</th><td>Adib / 16-07-2026</td></tr>
+  <tr><th>Actor</th><td>Staff (Admin)</td></tr>
+  <tr><th>Description</th><td>Admin uploads transfer receipt to complete the refund workflow.</td></tr>
+  <tr><th>Preconditions</th><td>Admin is logged in and on the Refunds page.</td></tr>
+  <tr><th>Postconditions</th><td>Refund record status is set to "refunded".</td></tr>
+  <tr><th>Priority / Frequency</th><td>High / Low</td></tr>
+  <tr>
+    <th>Normal Course of Events</th>
+    <td>
+      <strong>Actor:</strong><br>
+      1. Admin transfers refund amount manually via banking portal.<br>
+      2. Admin uploads bank transfer transaction receipt PDF, enters remarks, and clicks "Complete Refund".<br><br>
+      <strong>System:</strong><br>
+      2.1 System validates receipt file upload.<br>
+      2.2 System saves receipt in storage, sets refund status to "refunded", saves completion timestamp, and sends confirmation notification email to customer.
+    </td>
+  </tr>
+  <tr><th>Alternative Courses</th><td>N/A</td></tr>
+  <tr><th>Exceptions</th><td>N/A</td></tr>
+  <tr><th>Includes</th><td>N/A</td></tr>
+  <tr><th>Notes and Issues</th><td>Emailed confirmation has the bank transfer slip attached as proof.</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h1>UCD016: Create Job Record</h1>
+<table>
+  <tr><th>Use Case ID</th><td>UCD016</td></tr>
+  <tr><th>Use Case Name</th><td>Create Job Record</td></tr>
+  <tr><th>Created By / Date</th><td>Adib / 16-07-2026</td></tr>
+  <tr><th>Last Updated By / Date</th><td>Adib / 16-07-2026</td></tr>
+  <tr><th>Actor</th><td>Staff (Plumber)</td></tr>
+  <tr><th>Description</th><td>Plumber enters final service completion details and costs.</td></tr>
+  <tr><th>Preconditions</th><td>Plumber is assigned to booking. Booking status is Confirmed or In Progress.</td></tr>
+  <tr><th>Postconditions</th><td>Job record is saved and booking status is set to "Completed".</td></tr>
+  <tr><th>Priority / Frequency</th><td>High / High</td></tr>
+  <tr>
+    <th>Normal Course of Events</th>
+    <td>
+      <strong>Actor:</strong><br>
+      1. Plumber navigates to active assigned bookings.<br>
+      2. Plumber clicks "Create Job Record" button.<br>
+      3. Plumber inputs Completion Date, Labor Cost, Parts/Material Costs, Job Notes, uploads photos, and clicks "Save Job Record".<br><br>
+      <strong>System:</strong><br>
+      1.1 System displays active assigned bookings.<br>
+      2.1 System redirects to job record form template.<br>
+      3.1 System validates inputs.<br>
+      3.2 System calculates total costs.<br>
+      3.3 System saves job record to database and updates booking status to "Completed".
+    </td>
+  </tr>
+  <tr><th>Alternative Courses</th><td>N/A</td></tr>
+  <tr><th>Exceptions</th><td>N/A</td></tr>
+  <tr><th>Includes</th><td>N/A</td></tr>
+  <tr><th>Notes and Issues</th><td>Saving the job record closes the booking, triggering the final invoice generation.</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h1>UCD017: View Job Record</h1>
+<table>
+  <tr><th>Use Case ID</th><td>UCD017</td></tr>
+  <tr><th>Use Case Name</th><td>View Job Record</td></tr>
+  <tr><th>Created By / Date</th><td>Adib / 16-07-2026</td></tr>
+  <tr><th>Last Updated By / Date</th><td>Adib / 16-07-2026</td></tr>
+  <tr><th>Actor</th><td>Staff, Admin</td></tr>
+  <tr><th>Description</th><td>Plumber/Admin views or prints completed job invoice sheets.</td></tr>
+  <tr><th>Preconditions</th><td>Booking must be Completed and Job Record must be created.</td></tr>
+  <tr><th>Postconditions</th><td>Job invoice sheet is displayed.</td></tr>
+  <tr><th>Priority / Frequency</th><td>Medium / High</td></tr>
+  <tr>
+    <th>Normal Course of Events</th>
+    <td>
+      <strong>Actor:</strong><br>
+      1. Plumber clicks "Job Records" in menu list.<br>
+      2. Plumber selects record and clicks "Print / View".<br><br>
+      <strong>System:</strong><br>
+      1.1 System queries database for job_records table records.<br>
+      1.2 System displays list of completed job sheets.<br>
+      2.1 System fetches record details, calculates invoice values, and displays printable job sheet layouts.
+    </td>
+  </tr>
+  <tr><th>Alternative Courses</th><td>N/A</td></tr>
+  <tr><th>Exceptions</th><td>N/A</td></tr>
+  <tr><th>Includes</th><td>N/A</td></tr>
+  <tr><th>Notes and Issues</th><td>Invoices can be downloaded as PDF files.</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h1>UCD018: Update Job Record</h1>
+<table>
+  <tr><th>Use Case ID</th><td>UCD018</td></tr>
+  <tr><th>Use Case Name</th><td>Update Job Record</td></tr>
+  <tr><th>Created By / Date</th><td>Adib / 16-07-2026</td></tr>
+  <tr><th>Last Updated By / Date</th><td>Adib / 16-07-2026</td></tr>
+  <tr><th>Actor</th><td>Staff (Plumber)</td></tr>
+  <tr><th>Description</th><td>Plumber updates job completion notes or pricing details.</td></tr>
+  <tr><th>Preconditions</th><td>Job Record exists.</td></tr>
+  <tr><th>Postconditions</th><td>Job Record details are updated.</td></tr>
+  <tr><th>Priority / Frequency</th><td>Medium / Low</td></tr>
+  <tr>
+    <th>Normal Course of Events</th>
+    <td>
+      <strong>Actor:</strong><br>
+      1. Plumber opens Job Records list.<br>
+      2. Plumber selects record and clicks "Edit Job Record".<br>
+      3. Plumber updates values and clicks "Update Record".<br><br>
+      <strong>System:</strong><br>
+      1.1 System displays list of completed job sheets.<br>
+      2.1 System displays the data-filled form (Labor, Parts cost, Notes).<br>
+      3.1 System recalculates total cost, saves updates to database, and shows confirmation popup: "Job record updated successfully!".
+    </td>
+  </tr>
+  <tr><th>Alternative Courses</th><td>N/A</td></tr>
+  <tr><th>Exceptions</th><td>N/A</td></tr>
+  <tr><th>Includes</th><td>N/A</td></tr>
+  <tr><th>Notes and Issues</th><td>Job Record edits do not change the booking status (remains Completed).</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h1>UCD019: Generate Report</h1>
+<table>
+  <tr><th>Use Case ID</th><td>UCD019</td></tr>
+  <tr><th>Use Case Name</th><td>Generate Report</td></tr>
+  <tr><th>Created By / Date</th><td>Adib / 16-07-2026</td></tr>
+  <tr><th>Last Updated By / Date</th><td>Adib / 16-07-2026</td></tr>
+  <tr><th>Actor</th><td>Staff, Admin</td></tr>
+  <tr><th>Description</th><td>Admin generates and views system performance reports.</td></tr>
+  <tr><th>Preconditions</th><td>Admin is logged in.</td></tr>
+  <tr><th>Postconditions</th><td>Reports graphs and averages are displayed.</td></tr>
+  <tr><th>Priority / Frequency</th><td>High / Medium</td></tr>
+  <tr>
+    <th>Normal Course of Events</th>
+    <td>
+      <strong>Actor:</strong><br>
+      1. Admin clicks on "Analytics" in menu panel.<br>
+      2. Admin selects Calendar Year from dropdown menu.<br><br>
+      <strong>System:</strong><br>
+      1.1 System retrieves bookings transaction statistics for current year.<br>
+      2.1 System recalculates monthly completed/cancelled ratios.<br>
+      2.2 System renders monsoonal peak averages and staffing surge suggestions.
+    </td>
+  </tr>
+  <tr><th>Alternative Courses</th><td>N/A</td></tr>
+  <tr><th>Exceptions</th><td>N/A</td></tr>
+  <tr><th>Includes</th><td>N/A</td></tr>
+  <tr><th>Notes and Issues</th><td>Analytics rely on rain seasons indexes (Dry Season: April-Oct, Rainy Season: Nov-March).</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h1>UCD020: Create Feedback</h1>
+<table>
+  <tr><th>Use Case ID</th><td>UCD020</td></tr>
+  <tr><th>Use Case Name</th><td>Create Feedback</td></tr>
+  <tr><th>Created By / Date</th><td>Adib / 16-07-2026</td></tr>
+  <tr><th>Last Updated By / Date</th><td>Adib / 16-07-2026</td></tr>
+  <tr><th>Actor</th><td>Customer</td></tr>
+  <tr><th>Description</th><td>Customer submits a service review rating for a completed booking.</td></tr>
+  <tr><th>Preconditions</th><td>Booking status is Completed.</td></tr>
+  <tr><th>Postconditions</th><td>Feedback record is logged in database feedbacks table.</td></tr>
+  <tr><th>Priority / Frequency</th><td>Medium / Medium</td></tr>
+  <tr>
+    <th>Normal Course of Events</th>
+    <td>
+      <strong>Actor:</strong><br>
+      1. Customer opens a completed booking page.<br>
+      2. Customer clicks "Submit Feedback".<br>
+      3. Customer rates service, enters comments, uploads photos, and clicks "Submit".<br><br>
+      <strong>System:</strong><br>
+      1.1 System displays booking overview and "Submit Feedback" button.<br>
+      2.1 System displays feedback popup form with Rating Stars (1-5), Comments box, and File Upload fields.<br>
+      3.1 System saves feedback linked to bookingID.<br>
+      3.2 System displays confirmation: "Thank you for your feedback!" and alerts the assigned plumber.
+    </td>
+  </tr>
+  <tr><th>Alternative Courses</th><td>N/A</td></tr>
+  <tr><th>Exceptions</th><td>N/A</td></tr>
+  <tr><th>Includes</th><td>N/A</td></tr>
+  <tr><th>Notes and Issues</th><td>Feedback rating is mandatory; comment and photos are optional.</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h1>UCD021: View Feedback</h1>
+<table>
+  <tr><th>Use Case ID</th><td>UCD021</td></tr>
+  <tr><th>Use Case Name</th><td>View Feedback</td></tr>
+  <tr><th>Created By / Date</th><td>Adib / 16-07-2026</td></tr>
+  <tr><th>Last Updated By / Date</th><td>Adib / 16-07-2026</td></tr>
+  <tr><th>Actor</th><td>Staff, Admin</td></tr>
+  <tr><th>Description</th><td>Staff/Admin views ratings and comments submitted by customers.</td></tr>
+  <tr><th>Preconditions</th><td>Staff/Admin is logged in.</td></tr>
+  <tr><th>Postconditions</th><td>Feedback log list is displayed.</td></tr>
+  <tr><th>Priority / Frequency</th><td>Medium / Medium</td></tr>
+  <tr>
+    <th>Normal Course of Events</th>
+    <td>
+      <strong>Actor:</strong><br>
+      1. Staff clicks "Feedback" menu tab.<br>
+      2. Staff selects a feedback.<br><br>
+      <strong>System:</strong><br>
+      1.1 System queries database for feedbacks database records.<br>
+      1.2 System displays list of ratings, booking types, customer names, and review comments.<br>
+      2.1 System displays full details including uploaded photos, and shows "Reply" button for staff response.
+    </td>
+  </tr>
+  <tr><th>Alternative Courses</th><td>N/A</td></tr>
+  <tr><th>Exceptions</th><td>N/A</td></tr>
+  <tr><th>Includes</th><td>N/A</td></tr>
+  <tr><th>Notes and Issues</th><td>Feedback replies (staffResponse) are saved directly onto the feedback record.</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h1>UCD022: Create Chat Message</h1>
+<table>
+  <tr><th>Use Case ID</th><td>UCD022</td></tr>
+  <tr><th>Use Case Name</th><td>Create Chat Message</td></tr>
+  <tr><th>Created By / Date</th><td>Adib / 16-07-2026</td></tr>
+  <tr><th>Last Updated By / Date</th><td>Adib / 16-07-2026</td></tr>
+  <tr><th>Actor</th><td>Customer, Staff, Admin</td></tr>
+  <tr><th>Description</th><td>Actor sends live messages to coordinate booking schedules.</td></tr>
+  <tr><th>Preconditions</th><td>Booking must be active (not completed or cancelled).</td></tr>
+  <tr><th>Postconditions</th><td>Message is stored in database and broadcasted in real-time.</td></tr>
+  <tr><th>Priority / Frequency</th><td>High / High</td></tr>
+  <tr>
+    <th>Normal Course of Events</th>
+    <td>
+      <strong>Actor:</strong><br>
+      1. Actor opens active booking details.<br>
+      2. Actor inputs text message in text input bar.<br>
+      3. Actor clicks "Send" button (or presses Enter key).<br><br>
+      <strong>System:</strong><br>
+      1.1 System displays booking overview and "Live Chat" widget window.<br>
+      3.1 System saves chat message record in database (setting is_read = false).<br>
+      3.2 System fires Pusher event broadcast to push message dynamically to recipient viewport.
+    </td>
+  </tr>
+  <tr><th>Alternative Courses</th><td>N/A</td></tr>
+  <tr><th>Exceptions</th><td><strong>Empty message:</strong> (3.1) If text input is blank, system disables send trigger.</td></tr>
+  <tr><th>Includes</th><td>N/A</td></tr>
+  <tr><th>Notes and Issues</th><td>Live chat messages are isolated to bookingID.</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h1>UCD023: View Chat Messages</h1>
+<table>
+  <tr><th>Use Case ID</th><td>UCD023</td></tr>
+  <tr><th>Use Case Name</th><td>View Chat Messages</td></tr>
+  <tr><th>Created By / Date</th><td>Adib / 16-07-2026</td></tr>
+  <tr><th>Last Updated By / Date</th><td>Adib / 16-07-2026</td></tr>
+  <tr><th>Actor</th><td>Customer, Staff, Admin</td></tr>
+  <tr><th>Description</th><td>Actor views active message logs inside booking chat interface.</td></tr>
+  <tr><th>Preconditions</th><td>Actor is logged in and booking is active.</td></tr>
+  <tr><th>Postconditions</th><td>Conversation logs are rendered, and unread flags are marked read.</td></tr>
+  <tr><th>Priority / Frequency</th><td>High / High</td></tr>
+  <tr>
+    <th>Normal Course of Events</th>
+    <td>
+      <strong>Actor:</strong><br>
+      1. Actor opens booking details chat window.<br><br>
+      <strong>System:</strong><br>
+      1.1 System fetches message logs for bookingID.<br>
+      1.2 System updates unread messages (setting is_read = true).<br>
+      1.3 System renders conversation history vertically in viewport.
+    </td>
+  </tr>
+  <tr><th>Alternative Courses</th><td>N/A</td></tr>
+  <tr><th>Exceptions</th><td>N/A</td></tr>
+  <tr><th>Includes</th><td>N/A</td></tr>
+  <tr><th>Notes and Issues</th><td>Visual indicators (read receipts) update dynamically.</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<h1>UCD024: View Push Notifications</h1>
+<table>
+  <tr><th>Use Case ID</th><td>UCD024</td></tr>
+  <tr><th>Use Case Name</th><td>View Push Notifications</td></tr>
+  <tr><th>Created By / Date</th><td>Adib / 16-07-2026</td></tr>
+  <tr><th>Last Updated By / Date</th><td>Adib / 16-07-2026</td></tr>
+  <tr><th>Actor</th><td>Customer, Staff, Admin</td></tr>
+  <tr><th>Description</th><td>Actor views their personal notification list to check recent updates.</td></tr>
+  <tr><th>Preconditions</th><td>Actor is logged in.</td></tr>
+  <tr><th>Postconditions</th><td>Unread notifications list is displayed and marked as read.</td></tr>
+  <tr><th>Priority / Frequency</th><td>High / High</td></tr>
+  <tr>
+    <th>Normal Course of Events</th>
+    <td>
+      <strong>Actor:</strong><br>
+      1. Actor clicks on the "Notification Bell" icon in top header.<br>
+      2. Actor clicks on "Mark all as read" button (or navigates to page).<br><br>
+      <strong>System:</strong><br>
+      1.1 System fetches unread notifications from DB for authenticated user ID.<br>
+      1.2 System displays dropdown showing last 5 unread alerts (Booking assignments, Payment updates, or Cancel logs).<br>
+      2.1 System updates all notifications status in database (sets read_at timestamp).<br>
+      2.2 System updates header bell icon counter to 0.
+    </td>
+  </tr>
+  <tr><th>Alternative Courses</th><td>N/A</td></tr>
+  <tr><th>Exceptions</th><td>N/A</td></tr>
+  <tr><th>Includes</th><td>N/A</td></tr>
+  <tr><th>Notes and Issues</th><td>Polling routes fetch unread alert counts periodically.</td></tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,215 @@
+<?php
+
+namespace App\Http\Controllers\Staff;
+
+use App\Http\Controllers\Controller;
+use App\Models\Booking;
+use App\Models\PaymentReceipt;
+use App\Services\InventoryService;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use Carbon\Carbon;
+use Barryvdh\DomPDF\Facade\Pdf;
+
+class PaymentVerificationController extends Controller
+{
+    /**
+     * Helper to verify if user is authenticated staff member.
+     */
+    private function verifyStaff()
+    {
+        $staff = Auth::guard('staff')->user();
+        if (!$staff) {
+            abort(403, 'Unauthorized action. Staff login required.');
+        }
+        return $staff;
+    }
+
+    /**
+     * Display all payment submissions.
+     */
+    public function index(Request $request)
+    {
+        $staff = $this->verifyStaff();
+
+        $query = Booking::with(['customer', 'paymentReceipts', 'approver', 'staff'])
+            ->whereNotNull('bookingDepositReceipt'); // Only show bookings that have submitted or initiated payment
+
+        // Search by Order ID (Booking ID)
+        if ($request->filled('search')) {
+            $search = trim($request->search);
+            // Allow numeric bookingID or search customer name
+            if (is_numeric($search)) {
+                $query->where('bookingID', $search);
+            } else {
+                $query->whereHas('customer', function ($q) use ($search) {
+                    $q->where('customerName', 'like', "%{$search}%");
+                });
+            }
+        }
+
+        // Filter by Payment Status
+        if ($request->filled('status')) {
+            $query->where('paymentStatus', $request->status);
+        }
+
+        // Filter by Year, Month, Day of paymentSubmittedAt
+        if ($request->filled('year')) {
+            $query->whereYear('paymentSubmittedAt', $request->year);
+        }
+        if ($request->filled('month')) {
+            $query->whereMonth('paymentSubmittedAt', $request->month);
+        }
+        if ($request->filled('day')) {
+            $query->whereDay('paymentSubmittedAt', $request->day);
+        }
+
+        $bookings = $query->orderBy('paymentSubmittedAt', 'desc')
+            ->orderBy('created_at', 'desc')
+            ->paginate(15)
+            ->withQueryString();
+
+        $plumbers = \App\Models\Staff::where('status', 'active')->get();
+
+        return view('staff.payment-verification', compact('staff', 'bookings', 'plumbers'));
+    }
+
+    /**
+     * Approve Payment submission.
+     */
+    public function approve(Request $request, $bookingID)
+    {
+        $staff = $this->verifyStaff();
+
+        $request->validate([
+            'staff_id' => ['required', 'exists:staffs,staffID'],
+        ], [
+            'staff_id.required' => 'Please select a plumber to assign before approving the payment.',
+            'staff_id.exists'   => 'The selected plumber is invalid.',
+        ]);
+
+        $booking = Booking::with('customer')->findOrFail($bookingID);
+
+        // Assign Plumber and update statuses
+        $booking->staffID              = $request->staff_id;
+        $booking->bookingStatus        = 'in_progress';
+        $booking->paymentStatus        = 'Paid';
+        $booking->bookingDepositStatus = 'paid'; // Keep in sync
+        $booking->paymentApprovedAt    = Carbon::now('Asia/Kuala_Lumpur');
+        $booking->approvedBy           = $staff->staffID;
+        $booking->rejectionReason      = null; // Clear rejection reason if approved
+
+        // Update payment_receipts latest status to Paid
+        $latestReceipt = PaymentReceipt::where('orderId', $booking->bookingID)
+            ->orderBy('uploadedAt', 'desc')
+            ->first();
+        if ($latestReceipt) {
+            $latestReceipt->update([
+                'status'  => 'Paid',
+                'remarks' => 'Approved by ' . $staff->staffName . ' (ID #' . $staff->staffID . ')',
+            ]);
+        }
+
+        // Deduct Inventory / Ingredients
+        InventoryService::deductIngredients($booking);
+
+        $booking->save();
+
+        // Send activity notification for assignment
+        try {
+            $assignedStaff = \App\Models\Staff::find($request->staff_id);
+            if ($assignedStaff) {
+                $assignedStaff->notify(new \App\Notifications\RecentActivityNotification("You have been assigned to Booking #{$booking->bookingID}."));
+            }
+            if ($booking->customer) {
+                $booking->customer->notify(new \App\Notifications\RecentActivityNotification("Your payment for Booking #{$booking->bookingID} has been verified and your booking is now In Progress with plumber {$assignedStaff->staffName}."));
+            }
+        } catch (\Exception $e) {
+            // Ignore errors
+        }
+
+        // Send confirmation email with PDF receipt
+        $customer = $booking->customer;
+        if ($customer && !empty($customer->customerEmail)) {
+            try {
+                // Generate PDF receipt
+                $pdf = Pdf::loadView('pdf.receipt', compact('booking'));
+                $pdfData = $pdf->output();
+
+                // Send email
+                $subject = "Payment Approved & Booking In Progress — Plumbfix";
+                $statusText = 'In Progress';
+                $formattedDeposit = number_format($booking->bookingDepositAmount ?? 50.00, 2);
+                $messageText = "Hi {$customer->customerName},\n\nWe are pleased to inform you that your deposit payment of RM {$formattedDeposit} for Booking #{$booking->bookingID} has been approved.\n\nYour booking is now in '{$statusText}' status and our team will get in touch shortly. Please find your official payment receipt attached.\n\nThank you for choosing Plumbfix!";
+                $pdfName = "Receipt-BKG-{$booking->bookingID}.pdf";
+
+                Mail::to($customer->customerEmail)->send(new \App\Mail\ActivityNotificationMail(
+                    $customer->customerName,
+                    $messageText,
+                    $subject,
+                    $pdfData,
+                    $pdfName
+                ));
+
+                // Send recent activity notification
+                $customer->notify(new \App\Notifications\RecentActivityNotification("Your payment receipt for booking #{$booking->bookingID} has been approved. Status is now {$statusText}."));
+            } catch (\Exception $e) {
+                // Log and continue, do not block the approval if email fails
+                \Illuminate\Support\Facades\Log::error("Failed to send payment approval email: " . $e->getMessage());
+            }
+        }
+
+        return redirect()->route('staff.payments.index')->with(
+            'success',
+            'Payment approved successfully. Receipt generated and sent to customer.'
+        );
+    }
+
+    /**
+     * Reject Payment submission.
+     */
+    public function reject(Request $request, $bookingID)
+    {
+        $staff = $this->verifyStaff();
+        
+        $request->validate([
+            'rejection_reason' => ['required', 'string', 'max:1000'],
+        ]);
+
+        $booking = Booking::with('customer')->findOrFail($bookingID);
+
+        // Update booking columns
+        $booking->paymentStatus = 'Rejected';
+        $booking->bookingDepositStatus = 'rejected'; // Keep in sync
+        $booking->paymentRejectedAt = Carbon::now('Asia/Kuala_Lumpur');
+        $booking->rejectionReason = $request->rejection_reason;
+        $booking->save();
+
+        // Update payment_receipts latest status to Rejected
+        $latestReceipt = PaymentReceipt::where('orderId', $booking->bookingID)
+            ->orderBy('uploadedAt', 'desc')
+            ->first();
+        if ($latestReceipt) {
+            $latestReceipt->update([
+                'status'  => 'Rejected',
+                'remarks' => $request->rejection_reason,
+            ]);
+        }
+
+        // Notify customer
+        $customer = $booking->customer;
+        if ($customer) {
+            try {
+                $customer->notify(new \App\Notifications\RecentActivityNotification("Your payment receipt for booking #{$booking->bookingID} was rejected. Reason: {$request->rejection_reason}"));
+            } catch (\Exception $e) {
+                // Ignore notification issues in tests
+            }
+        }
+
+        return redirect()->route('staff.payments.index')->with(
+            'success',
+            'Payment rejected successfully.'
+        );
+    }
+}

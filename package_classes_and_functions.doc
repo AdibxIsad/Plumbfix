@@ -1,0 +1,305 @@
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+<meta charset="utf-8">
+<title>Package Classes and Functions - Plumbfix</title>
+<style>
+@page {
+    size: A4;
+    margin: 1in;
+}
+body {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 12pt;
+    line-height: 1.4;
+    color: #000000;
+}
+h1 {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16pt;
+    color: #000000;
+    margin-top: 0;
+    margin-bottom: 12pt;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+}
+h2 {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 13pt;
+    color: #000000;
+    margin-top: 18pt;
+    margin-bottom: 8pt;
+    font-weight: bold;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 18pt;
+}
+th {
+    background-color: #F2F2F2;
+    color: #000000;
+    font-weight: bold;
+    font-size: 12pt;
+    padding: 6px 8px;
+    border: 1px solid #000000;
+    text-align: left;
+}
+td {
+    padding: 6px 8px;
+    border: 1px solid #000000;
+    font-size: 12pt;
+    vertical-align: top;
+}
+</style>
+</head>
+<body>
+
+<h1>Plumbfix: Plumbing Management System — Package Classes and Functions</h1>
+
+<h2>View Layer (SDD_PKG_100)</h2>
+<table>
+    <thead>
+        <tr>
+            <th style="width: 25%;">CLASS ID</th>
+            <th style="width: 30%;">CLASS NAME</th>
+            <th style="width: 45%;">FUNCTION</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>SDD_CLASS_101</td>
+            <td>welcome</td>
+            <td>Display the landing page and service overview page</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_102</td>
+            <td>login</td>
+            <td>Display the user login authentication page</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_103</td>
+            <td>register</td>
+            <td>Display the customer account registration page</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_104</td>
+            <td>customer_dashboard</td>
+            <td>Display the customer dashboard and quick actions overview page</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_105</td>
+            <td>customer_profile</td>
+            <td>Display the customer profile information page</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_106</td>
+            <td>customer_bookings</td>
+            <td>Display the list of customer service booking appointments page</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_107</td>
+            <td>customer_booking_create</td>
+            <td>Display the form page to create a new plumbing booking appointment</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_108</td>
+            <td>customer_payment</td>
+            <td>Display the payment deposit upload and transaction details page</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_109</td>
+            <td>customer_feedback</td>
+            <td>Display the review rating submission and feedback history page</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_110</td>
+            <td>staff_dashboard</td>
+            <td>Display the staff dashboard with task summaries and metrics page</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_111</td>
+            <td>staff_profile</td>
+            <td>Display the staff profile information page</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_112</td>
+            <td>staff_bookings</td>
+            <td>Display the assigned plumbing bookings management list page</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_113</td>
+            <td>staff_job_records</td>
+            <td>Display the completed job records history page</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_114</td>
+            <td>staff_job_record_create</td>
+            <td>Display the form page to log a completed plumbing job record</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_115</td>
+            <td>admin_plumbers</td>
+            <td>Display the admin plumber staff management list and creation page</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_116</td>
+            <td>admin_payment_verification</td>
+            <td>Display the payment deposit verification and approval queue page</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_117</td>
+            <td>admin_refunds</td>
+            <td>Display the customer refund request management and settlement page</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_118</td>
+            <td>admin_analytics</td>
+            <td>Display the business sales performance and analytics reports page</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>Domain Layer (Controllers) (SDD_PKG_200)</h2>
+<table>
+    <thead>
+        <tr>
+            <th style="width: 25%;">CLASS ID</th>
+            <th style="width: 30%;">CLASS NAME</th>
+            <th style="width: 45%;">FUNCTION</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>SDD_CLASS_201</td>
+            <td>LoginController</td>
+            <td>Handle user authentication, credential validation, and session initiation</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_202</td>
+            <td>RegisterController</td>
+            <td>Handle customer profile registration data validation and account creation</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_203</td>
+            <td>ChatController</td>
+            <td>Handle real-time messaging, fetching chat logs, and broadcasting messages</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_204</td>
+            <td>GoogleAuthController</td>
+            <td>Handle single sign-on (SSO) OAuth authentication via Google accounts</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_205</td>
+            <td>CustomerController</td>
+            <td>Process customer booking submissions, profile updates, and cancellations</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_206</td>
+            <td>StaffController</td>
+            <td>Process staff operations, plumber job assignments, and work status updates</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_207</td>
+            <td>PlumberController</td>
+            <td>Manage plumber accounts, registration, and status deactivations by Admin</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_208</td>
+            <td>PaymentController</td>
+            <td>Process customer deposit uploads and receipt file attachments</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_209</td>
+            <td>PaymentVerificationController</td>
+            <td>Handle admin payment approvals, rejection reasoning, and plumber assignments</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_210</td>
+            <td>RefundController</td>
+            <td>Manage customer cancellation refund calculations, slip uploads, and settlements</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_211</td>
+            <td>AnalyticsController</td>
+            <td>Aggregate booking statistics, monthly revenue data, and MoM performance metrics</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_212</td>
+            <td>InvoiceController</td>
+            <td>Generate and stream downloadable PDF invoices and service receipts</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>Data Access Layer (Eloquent Models) (SDD_PKG_300)</h2>
+<table>
+    <thead>
+        <tr>
+            <th style="width: 25%;">CLASS ID</th>
+            <th style="width: 30%;">CLASS NAME</th>
+            <th style="width: 45%;">FUNCTION</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>SDD_CLASS_301</td>
+            <td>Customer</td>
+            <td>Represent and manipulate customer account entity records in the database</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_302</td>
+            <td>Staff</td>
+            <td>Represent and manipulate staff and plumber profile entity records in the database</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_303</td>
+            <td>Booking</td>
+            <td>Represent and manipulate plumbing booking appointment records in the database</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_304</td>
+            <td>Payment</td>
+            <td>Represent and manipulate payment transaction records in the database</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_305</td>
+            <td>PaymentReceipt</td>
+            <td>Represent and store payment receipt image metadata records in the database</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_306</td>
+            <td>Cancellation</td>
+            <td>Represent and log booking cancellation records in the database</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_307</td>
+            <td>Refund</td>
+            <td>Represent and process refund transaction records in the database</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_308</td>
+            <td>JobRecord</td>
+            <td>Represent and manage completed plumbing job service records in the database</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_309</td>
+            <td>ChatMessage</td>
+            <td>Represent and retrieve chat conversation message records in the database</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_310</td>
+            <td>Feedback</td>
+            <td>Represent and manage customer service ratings and review records in the database</td>
+        </tr>
+        <tr>
+            <td>SDD_CLASS_311</td>
+            <td>Notification</td>
+            <td>Represent and query in-app and push notification records in the database</td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
