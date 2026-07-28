@@ -180,9 +180,9 @@ class StaffController extends Controller
         unset($data);
 
         // 3. Recent Activities (including Pending Payment Verifications and Pending Refunds)
-        $recentActivities = Booking::with(['customer', 'staff'])
+        $recentActivities = Booking::with(['customer', 'staff', 'paymentReceipts'])
             ->orderBy('created_at', 'desc')
-            ->take(30)
+            ->take(50)
             ->get();
 
         // 4. Top Performing Plumbers

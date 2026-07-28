@@ -2504,37 +2504,64 @@
                     <div class="activity-list">
                         @forelse($recentActivities as $booking)
                         @php
-                            $itemStatus = $booking->bookingStatus;
+                            $itemStatus = 'pending';
                             $targetRoute = route('staff.bookings');
                             $statusClass = 'pending';
-                            $statusLabel = 'Pending';
+                            $statusLabel = 'Pending Booking';
 
-                            if ($booking->refund_status == 'pending') {
+                            $hasReceipt = !empty($booking->bookingDepositReceipt) || ($booking->paymentReceipts && $booking->paymentReceipts->count() > 0);
+                            $pStatus = $booking->paymentStatus;
+                            $rStatus = $booking->refund_status;
+
+                            // 1. Check Refund status
+                            if ($rStatus && $rStatus !== 'not_applicable') {
                                 $itemStatus = 'refund';
                                 $targetRoute = route('staff.refunds.index');
-                                $statusClass = 'refund';
-                                $statusLabel = 'Pending Refund';
-                            } elseif ($booking->paymentStatus == 'Pending') {
+                                if ($rStatus == 'pending') {
+                                    $statusClass = 'refund';
+                                    $statusLabel = 'Pending Refund';
+                                } else {
+                                    $statusClass = 'completed';
+                                    $statusLabel = 'Refund ' . ucfirst($rStatus);
+                                }
+                            }
+                            // 2. Check Payment Verification status
+                            elseif ($hasReceipt || in_array($pStatus, ['Pending', 'Awaiting Verification', 'Submitted', 'Under Review', 'Paid', 'Rejected'])) {
                                 $itemStatus = 'payment';
                                 $targetRoute = route('staff.payments.index');
-                                $statusClass = 'payment';
-                                $statusLabel = 'Verify Payment';
-                            } elseif (!$booking->staffID || $booking->bookingStatus == 'pending') {
-                                $itemStatus = 'pending';
-                                $statusClass = 'pending';
-                                $statusLabel = 'Pending Booking';
-                            } elseif ($booking->bookingStatus == 'in_progress') {
-                                $itemStatus = 'in_progress';
-                                $statusClass = 'in_progress';
-                                $statusLabel = 'In Progress';
-                            } elseif ($booking->bookingStatus == 'completed') {
-                                $itemStatus = 'completed';
-                                $statusClass = 'completed';
-                                $statusLabel = 'Completed';
-                            } elseif ($booking->bookingStatus == 'cancelled') {
-                                $itemStatus = 'cancelled';
-                                $statusClass = 'cancelled';
-                                $statusLabel = 'Cancelled';
+                                if (in_array($pStatus, ['Pending', 'Awaiting Verification', 'Submitted', 'Under Review']) || ($hasReceipt && $pStatus !== 'Paid')) {
+                                    $statusClass = 'payment';
+                                    $statusLabel = 'Verify Payment';
+                                } elseif ($pStatus === 'Paid') {
+                                    $statusClass = 'completed';
+                                    $statusLabel = 'Payment Verified';
+                                } elseif ($pStatus === 'Rejected') {
+                                    $statusClass = 'cancelled';
+                                    $statusLabel = 'Payment Rejected';
+                                } else {
+                                    $statusClass = 'payment';
+                                    $statusLabel = 'Verify Payment';
+                                }
+                            }
+                            // 3. Regular Booking status
+                            else {
+                                if (!$booking->staffID || $booking->bookingStatus == 'pending') {
+                                    $itemStatus = 'pending';
+                                    $statusClass = 'pending';
+                                    $statusLabel = 'Pending Booking';
+                                } elseif ($booking->bookingStatus == 'in_progress') {
+                                    $itemStatus = 'in_progress';
+                                    $statusClass = 'in_progress';
+                                    $statusLabel = 'In Progress';
+                                } elseif ($booking->bookingStatus == 'completed') {
+                                    $itemStatus = 'completed';
+                                    $statusClass = 'completed';
+                                    $statusLabel = 'Completed';
+                                } elseif ($booking->bookingStatus == 'cancelled') {
+                                    $itemStatus = 'cancelled';
+                                    $statusClass = 'cancelled';
+                                    $statusLabel = 'Cancelled';
+                                }
                             }
                         @endphp
                         <a href="{{ $targetRoute }}" class="activity-item" data-status="{{ $itemStatus }}">
