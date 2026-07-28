@@ -1726,56 +1726,165 @@
             }
         }
 
-        @media (max-width: 768px) {
-            .filter-bar {
-                flex-direction: column;
-                gap: 12px;
-                align-items: stretch;
+        /* ── Responsive ── */
+        @media (max-width: 1200px) {
+            .sidebar {
+                left: 20px;
+                transform: translateX(-120%);
+                z-index: 1005;
+                bottom: 20px;
+                top: 20px;
             }
-            .filter-container {
-                padding: 16px;
+
+            body.mobile-sidebar-active .sidebar {
+                transform: translateX(0);
             }
-            .filter-form {
-                flex-direction: column;
-                align-items: stretch;
+
+            body.collapsed-sidebar-active .sidebar {
+                transform: translateX(-120%);
             }
-            .btn-reset-filter {
-                margin-top: 0;
+
+            .main-wrapper {
+                margin-left: 20px;
+                padding-right: 20px;
             }
-            .main-header {
-                padding: 0 20px;
-                height: 75px;
+
+            body.collapsed-sidebar-active .main-wrapper {
+                margin-left: 20px;
             }
-            .content {
-                padding: 24px 0;
+
+            .mobile-hamburger {
+                display: flex;
+            }
             
-            min-width: 0;
-            max-width: 100%;}
+            .chat-drawer {
+                width: calc(100% - 32px);
+                max-width: 400px;
+            }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 768px) {
+            .filter-bar {
+                display: flex;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                gap: 8px;
+                padding-bottom: 6px;
+                margin-bottom: 12px;
+                scrollbar-width: none;
+            }
+            .filter-bar::-webkit-scrollbar {
+                display: none;
+            }
+            .filter-btn {
+                flex-shrink: 0;
+                white-space: nowrap;
+                padding: 8px 14px;
+                font-size: 12.5px;
+            }
+            .search-form {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+                width: 100%;
+            }
+            .search-input {
+                flex: 1 1 100%;
+                width: 100%;
+            }
+            .filter-select {
+                flex: 1 1 calc(33.333% - 6px);
+                min-width: 70px;
+            }
+            .btn-search, .btn-reset {
+                flex: 1 1 auto;
+            }
             .main-header {
-                height: auto;
-                flex-direction: column;
-                gap: 16px;
-                padding: 16px;
-                align-items: stretch;
+                padding: 0 16px;
+                height: 68px;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                gap: 10px;
+                margin-top: 12px;
             }
-
             .welcome-meta {
+                min-width: 0;
+                flex: 1;
+                gap: 10px;
+            }
+            .welcome-text {
+                min-width: 0;
+                overflow: hidden;
+            }
+            .welcome-text h1 {
+                font-size: 16px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .welcome-text p {
+                font-size: 11px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .content {
+                padding: 16px 0;
+                min-width: 0;
+                max-width: 100%;
+            }
+            .table-wrap {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
                 width: 100%;
             }
+            table {
+                min-width: 650px;
+            }
+        }
 
+        @media (max-width: 576px) {
+            .welcome-text p {
+                display: none;
+            }
             .header-actions {
-                justify-content: flex-end;
-                width: 100%;
+                gap: 8px;
             }
-
-            .profile-dropdown-menu,
+            .action-btn {
+                width: 36px;
+                height: 36px;
+                font-size: 14px;
+                border-radius: 10px;
+            }
+            .profile-dropdown-trigger {
+                padding: 3px;
+                border-radius: 10px;
+            }
+            .profile-avatar {
+                width: 28px;
+                height: 28px;
+            }
+            .profile-dropdown-menu {
+                position: absolute;
+                top: 52px;
+                right: 0;
+                left: auto;
+                width: 240px;
+                max-width: calc(100vw - 32px);
+            }
             .notification-dropdown-menu {
-                right: auto;
-                left: 0;
-                width: 100%;
+                position: absolute;
+                top: 52px;
+                right: 0;
+                left: auto;
+                width: 280px;
+                max-width: calc(100vw - 32px);
+            }
+            .filter-select {
+                flex: 1 1 calc(50% - 4px);
             }
         }
     </style>
@@ -2056,21 +2165,21 @@
                     <input type="text" name="search" class="search-input" placeholder="Search by Booking ID or Customer Name..." value="{{ request('search') }}">
                     
                     <!-- Year, Month, Day Filter Selects -->
-                    <select name="year" class="filter-select" style="width: 100px;">
+                    <select name="year" class="filter-select">
                         <option value="">Year</option>
                         @for($y = date('Y') + 1; $y >= 2024; $y--)
                             <option value="{{ $y }}" {{ request('year') == $y ? 'selected' : '' }}>{{ $y }}</option>
                         @endfor
                     </select>
 
-                    <select name="month" class="filter-select" style="width: 120px;">
+                    <select name="month" class="filter-select">
                         <option value="">Month</option>
                         @for($m = 1; $m <= 12; $m++)
                             <option value="{{ $m }}" {{ request('month') == $m ? 'selected' : '' }}>{{ date('F', mktime(0, 0, 0, $m, 1)) }}</option>
                         @endfor
                     </select>
 
-                    <select name="day" class="filter-select" style="width: 90px;">
+                    <select name="day" class="filter-select">
                         <option value="">Day</option>
                         @for($d = 1; $d <= 31; $d++)
                             <option value="{{ $d }}" {{ request('day') == $d ? 'selected' : '' }}>{{ sprintf('%02d', $d) }}</option>

@@ -1529,32 +1529,97 @@
 
         @media (max-width: 768px) {
             .filter-bar {
-                flex-direction: column;
-                gap: 16px;
-                align-items: stretch;
+                display: flex;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                gap: 8px;
+                padding-bottom: 6px;
+                margin-bottom: 12px;
             }
             .main-header {
-                padding: 0 20px;
-                height: 75px;
+                padding: 0 16px;
+                height: 68px;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                gap: 10px;
+                margin-top: 12px;
+            }
+            .welcome-meta {
+                min-width: 0;
+                flex: 1;
+                gap: 10px;
+            }
+            .welcome-text {
+                min-width: 0;
+                overflow: hidden;
+            }
+            .welcome-text h1 {
+                font-size: 16px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .welcome-text p {
+                font-size: 11px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
             .content {
-                padding: 24px 0;
-            
-            min-width: 0;
-            max-width: 100%;}
+                padding: 16px 0;
+                min-width: 0;
+                max-width: 100%;
+            }
+            .table-wrap, .table-container {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                width: 100%;
+            }
+            table {
+                min-width: 650px;
+            }
         }
 
-        @media (max-width: 480px) {
-            .main-header {
-                height: auto;
-                flex-direction: column;
-                gap: 16px;
-                padding: 16px;
-                align-items: stretch;
+        @media (max-width: 576px) {
+            .welcome-text p {
+                display: none;
             }
-
-            .nav-item.active i {
-            color: var(--brand-color);
+            .header-actions {
+                gap: 8px;
+            }
+            .action-btn {
+                width: 36px;
+                height: 36px;
+                font-size: 14px;
+                border-radius: 10px;
+            }
+            .profile-dropdown-trigger {
+                padding: 3px;
+                border-radius: 10px;
+            }
+            .profile-avatar {
+                width: 28px;
+                height: 28px;
+            }
+            .profile-dropdown-menu {
+                position: absolute;
+                top: 52px;
+                right: 0;
+                left: auto;
+                width: 240px;
+                max-width: calc(100vw - 32px);
+            }
+            .notification-dropdown-menu {
+                position: absolute;
+                top: 52px;
+                right: 0;
+                left: auto;
+                width: 280px;
+                max-width: calc(100vw - 32px);
+            }
         }
 
         /* Sidebar Nav Dropdown Styling */

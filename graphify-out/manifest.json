@@ -315,8 +315,8 @@
     "semantic_hash": ""
   },
   "resources/views/customer/dashboard.blade.php": {
-    "mtime": 1784262584.2920818,
-    "ast_hash": "64e1bffa9f9a07466d5efca770c56216",
+    "mtime": 1785242578.2430444,
+    "ast_hash": "77ba6cad97a54321cc3c92955b9668cd",
     "semantic_hash": ""
   },
   "resources/views/customer/feedback.blade.php": {
@@ -350,23 +350,23 @@
     "semantic_hash": ""
   },
   "resources/views/staff/analytics.blade.php": {
-    "mtime": 1784372703.9030683,
-    "ast_hash": "f95d1b249250ac994e502c4dd01ef933",
+    "mtime": 1785242486.9961915,
+    "ast_hash": "9b1588f156bd6e7fbabc394374a70dcd",
     "semantic_hash": ""
   },
   "resources/views/staff/bookings.blade.php": {
-    "mtime": 1784372697.5116103,
-    "ast_hash": "052b69f163b57977662188f66622275e",
+    "mtime": 1785242453.300888,
+    "ast_hash": "48116270051659d6e6b0a4cf7782f6ea",
     "semantic_hash": ""
   },
   "resources/views/staff/dashboard.blade.php": {
-    "mtime": 1784372684.63714,
-    "ast_hash": "d8699041673590aca0d73b79d08f2316",
+    "mtime": 1785242431.270714,
+    "ast_hash": "a247629b6b55c8c0f14c1d89d56a671d",
     "semantic_hash": ""
   },
   "resources/views/staff/feedback.blade.php": {
-    "mtime": 1784372678.6488025,
-    "ast_hash": "aa2729b6a3c07e698771a761deca1a9c",
+    "mtime": 1785242561.0626478,
+    "ast_hash": "a6b9d6ce1344a61e3e9e1ede912b67b2",
     "semantic_hash": ""
   },
   "resources/views/staff/job-record-create.blade.php": {
@@ -380,13 +380,13 @@
     "semantic_hash": "30f6ccf1eb9aae80acabba9a6f87d085"
   },
   "resources/views/staff/job-records.blade.php": {
-    "mtime": 1784372665.1692898,
-    "ast_hash": "162dc3d11a4bbc72676fc80f9d8a7d4f",
+    "mtime": 1785242543.0195174,
+    "ast_hash": "457e5cfc8108f3ac7bd877367f083091",
     "semantic_hash": ""
   },
   "resources/views/staff/plumbers.blade.php": {
-    "mtime": 1784372624.7775612,
-    "ast_hash": "4a5bb551109fe07e2afe69c8e2c65993",
+    "mtime": 1785242524.058654,
+    "ast_hash": "189751db691d4c3de4a3fa2aa8974fff",
     "semantic_hash": ""
   },
   "resources/views/staff/profile.blade.php": {
@@ -690,8 +690,8 @@
     "semantic_hash": ""
   },
   "resources/views/staff/payment-verification.blade.php": {
-    "mtime": 1784373227.9673624,
-    "ast_hash": "644d079bb7d6764b166554933e7e9c31",
+    "mtime": 1785242533.3355,
+    "ast_hash": "ef04be46daf6a9d3b427881421956ef9",
     "semantic_hash": ""
   },
   "public/images/company_qr_temp.jpg": {
@@ -735,8 +735,8 @@
     "semantic_hash": ""
   },
   "resources/views/staff/refunds.blade.php": {
-    "mtime": 1784372636.454877,
-    "ast_hash": "9e8a83561a1d01e8c2e85c3ca8fd66c9",
+    "mtime": 1785242513.8472524,
+    "ast_hash": "cd01d15db3705824f57d13493b641999",
     "semantic_hash": ""
   },
   "public/uploads/receipts/1781627904_6a317c002431f.pdf": {

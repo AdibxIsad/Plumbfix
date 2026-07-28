@@ -1468,41 +1468,96 @@
             }
             .control-panel {
                 flex-direction: column;
-                gap: 16px;
+                gap: 12px;
                 align-items: flex-start;
             }
             .main-header {
-                padding: 0 20px;
-                height: 75px;
+                padding: 0 16px;
+                height: 68px;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                gap: 10px;
+                margin-top: 12px;
+            }
+            .welcome-meta {
+                min-width: 0;
+                flex: 1;
+                gap: 10px;
+            }
+            .welcome-text {
+                min-width: 0;
+                overflow: hidden;
+            }
+            .welcome-text h1 {
+                font-size: 16px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .welcome-text p {
+                font-size: 11px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
             .content-container {
-                padding: 24px 0;
+                padding: 16px 0;
+            }
+            .card-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+            .header-filters {
+                width: 100%;
+                justify-content: flex-start;
+                flex-wrap: wrap;
+            }
+            .chart-wrapper, .chart-container {
+                width: 100%;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
             }
         }
 
-        @media (max-width: 480px) {
-            .main-header {
-                height: auto;
-                flex-direction: column;
-                gap: 16px;
-                padding: 16px;
-                align-items: stretch;
+        @media (max-width: 576px) {
+            .welcome-text p {
+                display: none;
             }
-
-            .welcome-meta {
-                width: 100%;
-            }
-
             .header-actions {
-                justify-content: flex-end;
-                width: 100%;
+                gap: 8px;
             }
-
-            .profile-dropdown-menu,
+            .action-btn {
+                width: 36px;
+                height: 36px;
+                font-size: 14px;
+                border-radius: 10px;
+            }
+            .profile-dropdown-trigger {
+                padding: 3px;
+                border-radius: 10px;
+            }
+            .profile-avatar {
+                width: 28px;
+                height: 28px;
+            }
+            .profile-dropdown-menu {
+                position: absolute;
+                top: 52px;
+                right: 0;
+                left: auto;
+                width: 240px;
+                max-width: calc(100vw - 32px);
+            }
             .notification-dropdown-menu {
-                right: auto;
-                left: 0;
-                width: 100%;
+                position: absolute;
+                top: 52px;
+                right: 0;
+                left: auto;
+                width: 280px;
+                max-width: calc(100vw - 32px);
             }
         }
 
