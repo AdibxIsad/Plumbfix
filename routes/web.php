@@ -115,6 +115,7 @@ Route::middleware('auth:staff')->prefix('staff')->group(function () {
 
     // Payment Verification
     Route::get('/payment-verification', [\App\Http\Controllers\Staff\PaymentVerificationController::class, 'index'])->name('staff.payments.index');
+    Route::get('/payment-verification-list', [\App\Http\Controllers\Staff\PaymentVerificationController::class, 'index'])->name('staff.payment-verification');
     Route::post('/payment-verification/{id}/approve', [\App\Http\Controllers\Staff\PaymentVerificationController::class, 'approve'])->name('staff.payments.approve');
     Route::post('/payment-verification/{id}/reject', [\App\Http\Controllers\Staff\PaymentVerificationController::class, 'reject'])->name('staff.payments.reject');
     Route::get('/bookings/{id}/receipt/download', [\App\Http\Controllers\Customer\PaymentController::class, 'downloadReceipt'])->name('staff.booking.receipt.download');

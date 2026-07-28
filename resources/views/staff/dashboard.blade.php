@@ -2516,7 +2516,7 @@
                                 $statusLabel = 'Pending Refund';
                             } elseif ($booking->paymentStatus == 'Pending') {
                                 $itemStatus = 'payment';
-                                $targetRoute = route('staff.payment-verification');
+                                $targetRoute = route('staff.payments.index');
                                 $statusClass = 'payment';
                                 $statusLabel = 'Verify Payment';
                             } elseif (!$booking->staffID || $booking->bookingStatus == 'pending') {
