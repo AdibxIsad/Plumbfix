@@ -30,7 +30,9 @@ COPY . .
 
 # Install Composer dependencies
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-RUN composer install --no-dev --optimize-autoloader
+ENV COMPOSER_PROCESS_TIMEOUT 2000
+RUN composer config --global process-timeout 2000 \
+    && composer install --no-dev --prefer-dist --no-interaction --optimize-autoloader
 
 # Install NPM dependencies & build Vite assets
 RUN npm install && npm run build
