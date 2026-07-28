@@ -39,9 +39,10 @@ class BrevoApiTransport extends AbstractTransport
 
         $attachments = [];
         foreach ($email->getAttachments() as $attachment) {
+            $body = method_exists($attachment, 'bodyToString') ? $attachment->bodyToString() : $attachment->getBody();
             $attachments[] = [
                 'name' => $attachment->getFilename() ?: 'attachment.pdf',
-                'content' => base64_encode($attachment->getBody()),
+                'content' => base64_encode($body),
             ];
         }
 
@@ -76,14 +77,17 @@ class BrevoApiTransport extends AbstractTransport
         
         $response = curl_exec($ch);
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $curlErr = curl_error($ch);
         curl_close($ch);
 
-        if ($httpCode >= 400) {
+        if ($curlErr) {
+            \Illuminate\Support\Facades\Log::error("Brevo API cURL error: " . $curlErr);
+            throw new \Exception("Brevo API cURL error: " . $curlErr);
+        }
+
+        if ($httpCode >= 400 || $httpCode === 0) {
             \Illuminate\Support\Facades\Log::error("Brevo API send failed with HTTP code $httpCode: " . $response);
-            if (app()->environment('local')) {
-                return;
-            }
-            throw new \Exception("Brevo API send failed with HTTP code $httpCode: " . $response);
+            throw new \Exception("Brevo API send failed (HTTP $httpCode): " . $response);
         }
     }
 

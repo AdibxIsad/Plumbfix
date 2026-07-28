@@ -1,12 +1,12 @@
-# Graph Report - plumbfix  (2026-07-28)
+# Graph Report - plumbfix  (2026-07-19)
 
 ## Corpus Check
-- 202 files · ~864,912 words
+- 197 files · ~816,436 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 705 nodes · 746 edges · 179 communities (175 shown, 4 thin omitted)
-- Extraction: 96% EXTRACTED · 4% INFERRED · 0% AMBIGUOUS · INFERRED: 32 edges (avg confidence: 0.8)
+- 635 nodes · 678 edges · 176 communities (172 shown, 4 thin omitted)
+- Extraction: 95% EXTRACTED · 5% INFERRED · 0% AMBIGUOUS · INFERRED: 32 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Community Hubs (Navigation)
@@ -39,39 +39,38 @@
 - [[_COMMUNITY_Community 166|Community 166]]
 - [[_COMMUNITY_Community 167|Community 167]]
 - [[_COMMUNITY_Community 168|Community 168]]
-- [[_COMMUNITY_Community 169|Community 169]]
 - [[_COMMUNITY_Community 216|Community 216]]
 - [[_COMMUNITY_Community 217|Community 217]]
 - [[_COMMUNITY_Community 218|Community 218]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `Controller` - 28 edges
-2. `4.6 System Sequence Diagrams (SSD)` - 26 edges
-3. `Business Activity Diagrams` - 25 edges
-4. `System Sequence Diagrams` - 25 edges
-5. `Use Case Specifications` - 25 edges
-6. `StaffController` - 16 edges
-7. `BookingDepositTest` - 14 edges
-8. `TestCase` - 14 edges
-9. `CustomerController` - 13 edges
-10. `Booking` - 13 edges
+2. `System Sequence Diagrams` - 25 edges
+3. `Use Case Specifications` - 25 edges
+4. `StaffController` - 16 edges
+5. `BookingDepositTest` - 14 edges
+6. `TestCase` - 14 edges
+7. `CustomerController` - 13 edges
+8. `Booking` - 13 edges
+9. `User` - 13 edges
+10. `PlumbfixImprovementsTest` - 12 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `ChatController` --inherits--> `Controller`  [EXTRACTED]
   app/Http/Controllers/Chat/ChatController.php → app/Http/Controllers/Controller.php
 - `CustomerController` --inherits--> `Controller`  [EXTRACTED]
   app/Http/Controllers/Customer/CustomerController.php → app/Http/Controllers/Controller.php
+- `PaymentController` --inherits--> `Controller`  [EXTRACTED]
+  app/Http/Controllers/Customer/PaymentController.php → app/Http/Controllers/Controller.php
 - `InvoiceController` --inherits--> `Controller`  [EXTRACTED]
   app/Http/Controllers/Invoice/InvoiceController.php → app/Http/Controllers/Controller.php
 - `PaymentVerificationController` --inherits--> `Controller`  [EXTRACTED]
   app/Http/Controllers/Staff/PaymentVerificationController.php → app/Http/Controllers/Controller.php
-- `PlumberController` --inherits--> `Controller`  [EXTRACTED]
-  app/Http/Controllers/Staff/PlumberController.php → app/Http/Controllers/Controller.php
 
 ## Import Cycles
 - None detected.
 
-## Communities (179 total, 4 thin omitted)
+## Communities (176 total, 4 thin omitted)
 
 ### Community 0 - "Feature & Unit Tests"
 Cohesion: 0.22
@@ -87,15 +86,15 @@ Nodes (5): Request, Request, CustomerController, JobRecord, StaffController
 
 ### Community 3 - "Database Migrations"
 Cohesion: 0.10
-Nodes (9): BaseTestCase, ExampleTest, LoginWelcomeTest, PlumberTest, PlumbfixImprovementsTest, Notification, RefreshDatabase, TestCase (+1 more)
+Nodes (7): BaseTestCase, ExampleTest, LoginWelcomeTest, PlumberTest, RefreshDatabase, TestCase, ExampleTest
 
 ### Community 4 - "Booking Model Group"
-Cohesion: 0.10
+Cohesion: 0.09
 Nodes (7): HasFactory, Model, Booking, ChatMessage, Feedback, JobRecord, Report
 
 ### Community 5 - "User Model Group"
-Cohesion: 0.07
-Nodes (8): Authenticatable, Customer, Staff, User, Notifiable, Seeder, DatabaseSeeder, PlumbersSeeder
+Cohesion: 0.09
+Nodes (5): Authenticatable, Customer, Staff, User, Notifiable
 
 ### Community 7 - "Chat Controller Group"
 Cohesion: 0.17
@@ -110,8 +109,8 @@ Cohesion: 0.10
 Nodes (6): Request, Booking, BookingDepositTest, PaymentReceipt, InventoryService, PaymentVerificationController
 
 ### Community 10 - "Application Models"
-Cohesion: 0.07
-Nodes (27): 4.4.10 BAD010 Create Payment, 4.4.11 BAD011 View Payment, 4.4.12 BAD012 Update Payment, 4.4.13 BAD013 Create Refund, 4.4.14 BAD014 View Refund, 4.4.15 BAD015 Update Refund, 4.4.16 BAD016 Create Job Record, 4.4.17 BAD017 View Job Record (+19 more)
+Cohesion: 0.39
+Nodes (4): Seeder, DatabaseSeeder, PlumbersSeeder, WithoutModelEvents
 
 ### Community 11 - "BrevoApiTransport & BrevoApiTransport"
 Cohesion: 0.38
@@ -162,16 +161,16 @@ Cohesion: 0.67
 Nodes (3): extra, laravel, dont-discover
 
 ### Community 160 - "Community 160"
-Cohesion: 0.09
-Nodes (15): Request, ChatController, ChatMessage, Content, Dispatchable, Envelope, ChatMessageSent, InteractsWithSockets (+7 more)
+Cohesion: 0.13
+Nodes (12): Request, ChatController, ChatMessage, Content, Dispatchable, Envelope, ChatMessageSent, InteractsWithSockets (+4 more)
 
 ### Community 163 - "Community 163"
 Cohesion: 0.14
 Nodes (13): 10. Feedback, 11. ChatMessage, 1. Staff, 2. Customer, 3. Notification, 4. Booking, 5. Payment, 6. PaymentReceipt (+5 more)
 
 ### Community 164 - "Community 164"
-Cohesion: 0.07
-Nodes (26): 4.6.10 SSD010 Create Payment, 4.6.11 SSD011 View Payment, 4.6.12 SSD012 Update Payment, 4.6.13 SSD013 Create Refund, 4.6.14 SSD014 View Refund, 4.6.15 SSD015 Update Refund, 4.6.16 SSD016 Create Job Record, 4.6.17 SSD017 View Job Record (+18 more)
+Cohesion: 0.23
+Nodes (4): PlumbfixImprovementsTest, Notification, RecentActivityNotification, Queueable
 
 ### Community 167 - "Community 167"
 Cohesion: 0.33
@@ -181,33 +180,29 @@ Nodes (5): 4.1.2 Package Functions, 4.1.3 Package Content, Plumbfix Package Diag
 Cohesion: 0.50
 Nodes (3): Entity Descriptions Table, Entity Relationship Overview, Plumbfix Database Entity Descriptions
 
-### Community 169 - "Community 169"
-Cohesion: 0.80
-Nodes (4): Draw-ArrowLine(), Draw-PolylineArrow(), Render-InteractiveDiagram(), Render-LinearDiagram()
-
 ### Community 216 - "Community 216"
-Cohesion: 0.13
-Nodes (15): 👤 Author, 👤 Customer Portal, 🚀 Getting Started, Installation Steps, ✨ Key Features, 📄 License, 🌐 Live System Demo, 📌 Overview (+7 more)
+Cohesion: 0.22
+Nodes (8): About Laravel, Code of Conduct, Contributing, Laravel Sponsors, Learning Laravel, License, Premium Partners, Security Vulnerabilities
 
 ## Knowledge Gaps
-- **188 isolated node(s):** `Request`, `$schema`, `name`, `type`, `description` (+183 more)
+- **134 isolated node(s):** `Request`, `$schema`, `name`, `type`, `description` (+129 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **4 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `PaymentReceipt` connect `Plumber Controller Group` to `Invoice Controller Group`, `Booking Model Group`?**
-  _High betweenness centrality (0.059) - this node is a cross-community bridge._
+- **Why does `PaymentReceipt` connect `Plumber Controller Group` to `Booking Model Group`, `Community 166`?**
+  _High betweenness centrality (0.073) - this node is a cross-community bridge._
 - **Why does `Controller` connect `Invoice Controller Group` to `Community 160`, `Staff Controller Group`, `Community 166`, `Plumber Controller Group`, `Community 138`?**
-  _High betweenness centrality (0.048) - this node is a cross-community bridge._
+  _High betweenness centrality (0.060) - this node is a cross-community bridge._
 - **Why does `BookingDepositTest` connect `Plumber Controller Group` to `Database Migrations`?**
-  _High betweenness centrality (0.026) - this node is a cross-community bridge._
+  _High betweenness centrality (0.032) - this node is a cross-community bridge._
 - **What connects `Request`, `$schema`, `name` to the rest of the system?**
-  _188 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _134 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Invoice Controller Group` be split into smaller, more focused modules?**
-  _Cohesion score 0.06852497096399536 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.07053140096618357 - nodes in this community are weakly interconnected._
 - **Should `Staff Controller Group` be split into smaller, more focused modules?**
   _Cohesion score 0.13825757575757575 - nodes in this community are weakly interconnected._
 - **Should `Database Migrations` be split into smaller, more focused modules?**
-  _Cohesion score 0.09716599190283401 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.10317460317460317 - nodes in this community are weakly interconnected._
