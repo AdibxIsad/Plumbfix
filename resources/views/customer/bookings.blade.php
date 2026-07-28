@@ -711,6 +711,20 @@
         }
 
         @media (max-width: 768px) {
+            .notification-dropdown-menu,
+            #emailDropdownMenu,
+            #notificationDropdownMenu,
+            .profile-dropdown-menu {
+                position: fixed !important;
+                top: 80px !important;
+                left: 50% !important;
+                transform: translateX(-50%) !important;
+                width: calc(100vw - 32px) !important;
+                max-width: 360px !important;
+                right: auto !important;
+                z-index: 9999 !important;
+                box-shadow: 0 12px 36px rgba(15, 23, 42, 0.2) !important;
+            }
             .main-wrapper {
                 margin-left: 10px !important;
                 padding-right: 10px !important;
@@ -1813,7 +1827,7 @@
                                         @endif
 
                                         @if($booking->staffID && $booking->bookingStatus !== 'cancelled')
-                                        <button class="btn-chat" onclick="openChatDrawer({{ $booking->bookingID }}, '{{ $booking->staff->staffName ?? 'Staff' }}', this)" style="display: inline-flex; align-items: center; justify-content: center; gap: 6px; background-color: var(--brand-light); border: 1px solid rgba(79,70,229,0.25); color: var(--brand-color); padding: 6px 12px; border-radius: 8px; font-family: 'Outfit', sans-serif; font-size: 12.5px; font-weight: 600; cursor: pointer; transition: all 0.2s; border-style: solid; position: relative;">
+                                        <button class="btn-chat" onclick="openChatDrawer({{ $booking->bookingID }}, {{ json_encode($booking->staff?->staffName ?? 'Staff') }}, this)" style="display: inline-flex; align-items: center; justify-content: center; gap: 6px; background-color: var(--brand-light); border: 1px solid rgba(79,70,229,0.25); color: var(--brand-color); padding: 6px 12px; border-radius: 8px; font-family: 'Outfit', sans-serif; font-size: 12.5px; font-weight: 600; cursor: pointer; transition: all 0.2s; border-style: solid; position: relative;">
                                             <i class="fa-solid fa-comments"></i> Chat
                                             @if($booking->chatMessages->where('sender_type', 'staff')->where('is_read', false)->count() > 0)
                                             <span class="booking-chat-dot"></span>

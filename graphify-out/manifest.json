@@ -305,13 +305,13 @@
     "semantic_hash": "78f909acc19aea4717eddca5a87c1ba3"
   },
   "resources/views/customer/booking-create.blade.php": {
-    "mtime": 1784262575.671431,
-    "ast_hash": "28067e295b067f95c08a6436a416002a",
+    "mtime": 1785249394.1288314,
+    "ast_hash": "e724a08c441b5aeac67e71364d1857b2",
     "semantic_hash": ""
   },
   "resources/views/customer/bookings.blade.php": {
-    "mtime": 1785248380.6377,
-    "ast_hash": "430d7ac3c8831ed0052818f110d051a7",
+    "mtime": 1785249341.2561083,
+    "ast_hash": "88352d9bfa67fd7e29b4deb21de5841b",
     "semantic_hash": ""
   },
   "resources/views/customer/dashboard.blade.php": {
@@ -320,13 +320,13 @@
     "semantic_hash": ""
   },
   "resources/views/customer/feedback.blade.php": {
-    "mtime": 1784262591.6498783,
-    "ast_hash": "bcbfbbc4693cb983d6fd44f069291371",
+    "mtime": 1785249426.0275743,
+    "ast_hash": "c91713b0c56773afe32302136f890de3",
     "semantic_hash": ""
   },
   "resources/views/customer/profile.blade.php": {
-    "mtime": 1785243779.5810683,
-    "ast_hash": "c84ef569b89441c275d8ac3c0c36996d",
+    "mtime": 1785249410.4175842,
+    "ast_hash": "38cdd64c6227f4ee9ae925a2cf252f70",
     "semantic_hash": ""
   },
   "resources/views/emails/activity_notification.blade.php": {
@@ -355,13 +355,13 @@
     "semantic_hash": ""
   },
   "resources/views/staff/bookings.blade.php": {
-    "mtime": 1785248451.0351145,
-    "ast_hash": "c8948ad365fda0a8aab362e008fcfbc3",
+    "mtime": 1785249107.037673,
+    "ast_hash": "dbdc80eee69d971acda3b3b457d7eb59",
     "semantic_hash": ""
   },
   "resources/views/staff/dashboard.blade.php": {
-    "mtime": 1785248623.1898928,
-    "ast_hash": "c3171ff72bf8980831bc899c8df00a1c",
+    "mtime": 1785249129.2785678,
+    "ast_hash": "b3c9967af9c61ca6a5f9bd05dc41167e",
     "semantic_hash": ""
   },
   "resources/views/staff/feedback.blade.php": {
@@ -680,8 +680,8 @@
     "semantic_hash": ""
   },
   "resources/views/customer/payment.blade.php": {
-    "mtime": 1784262601.0884182,
-    "ast_hash": "65b9e22f295c27dff2c6ee699bd04149",
+    "mtime": 1785249439.1587,
+    "ast_hash": "0cac0829d4f7ec4fa585a424bfd50a6a",
     "semantic_hash": ""
   },
   "resources/views/pdf/receipt.blade.php": {

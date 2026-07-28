@@ -1255,10 +1255,73 @@
             box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.15) !important;
             animation: shake 0.3s ease-in-out;
         }
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            20%, 60% { transform: translateX(-6px); }
-            40%, 80% { transform: translateX(6px); }
+        @media (max-width: 1200px) {
+            .sidebar {
+                transform: translateX(calc(-100% - 40px));
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                bottom: 20px;
+                z-index: 1005;
+            }
+            .main-wrapper {
+                margin-left: 20px;
+                padding-right: 20px;
+            }
+            .mobile-hamburger {
+                display: flex;
+            }
+            body.mobile-sidebar-active .sidebar {
+                transform: translateX(0);
+            }
+            body.mobile-sidebar-active .sidebar-overlay {
+                display: block;
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            #emailDropdownMenu,
+            #notificationDropdownMenu,
+            .notification-dropdown-menu,
+            .profile-dropdown-menu {
+                position: fixed !important;
+                top: 80px !important;
+                left: 50% !important;
+                right: auto !important;
+                transform: translateX(-50%) !important;
+                width: calc(100vw - 32px) !important;
+                max-width: 360px !important;
+                z-index: 99999 !important;
+                box-shadow: 0 12px 36px rgba(15, 23, 42, 0.22) !important;
+            }
+            .main-wrapper {
+                margin-left: 10px !important;
+                padding-right: 10px !important;
+                width: calc(100% - 20px) !important;
+                max-width: 100% !important;
+                overflow-x: hidden;
+            }
+            .content, .content-container {
+                padding: 16px 10px !important;
+                width: 100% !important;
+            }
+            .main-header {
+                padding: 10px 14px !important;
+                margin-top: 10px !important;
+                height: auto !important;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            .welcome-text h1 {
+                font-size: 18px !important;
+            }
+            .welcome-text p {
+                font-size: 11.5px !important;
+            }
+            .form-grid, .slots-grid {
+                grid-template-columns: 1fr !important;
+            }
         }
     </style>
 </head>

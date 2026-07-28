@@ -2055,7 +2055,7 @@
                                     ->take(6);
                             @endphp
                             @forelse($recentChats as $chatMsg)
-                                <a href="javascript:void(0)" onclick="openChatDrawer({{ $chatMsg->bookingID }}, '{{ addslashes($chatMsg->booking->customer->customerName ?? 'Customer') }}')" class="notification-item" style="display:block; text-decoration:none;">
+                                <a href="javascript:void(0)" onclick="openChatDrawer({{ $chatMsg->bookingID }}, {{ json_encode($chatMsg->booking?->customer?->customerName ?? 'Customer') }})" class="notification-item" style="display:block; text-decoration:none;">
                                     <div class="notification-message" style="font-weight:700; color:var(--text-dark); display:flex; justify-content:space-between; align-items:center;">
                                         <span>💬 {{ $chatMsg->booking->customer->customerName ?? 'Customer' }}</span>
                                         <span style="font-size:10px; color:var(--brand-color); font-weight:800;">#BKG-{{ $chatMsg->bookingID }}</span>
@@ -2390,7 +2390,7 @@
                                         @endif
 
                                         @if($b->bookingStatus !== 'cancelled')
-                                        <button type="button" class="btn-chat" onclick="openChatDrawer({{ $b->bookingID }}, '{{ $b->customer->customerName ?? 'Customer' }}', this)" style="display: inline-flex; align-items: center; justify-content: center; gap: 6px; background-color: var(--brand-light); border: 1px solid rgba(37,99,235,0.25); color: var(--brand-color); padding: 8px 12px; border-radius: 8px; font-family: 'Outfit', sans-serif; font-size: 12.5px; font-weight: 600; cursor: pointer; transition: all 0.2s; border-style: solid; height: 35px; position: relative;">
+                                        <button type="button" class="btn-chat" onclick="openChatDrawer({{ $b->bookingID }}, {{ json_encode($b->customer?->customerName ?? 'Customer') }}, this)" style="display: inline-flex; align-items: center; justify-content: center; gap: 6px; background-color: var(--brand-light); border: 1px solid rgba(37,99,235,0.25); color: var(--brand-color); padding: 8px 12px; border-radius: 8px; font-family: 'Outfit', sans-serif; font-size: 12.5px; font-weight: 600; cursor: pointer; transition: all 0.2s; border-style: solid; height: 35px; position: relative;">
                                             <i class="fa-solid fa-comments"></i> Chat
                                             @if($b->chatMessages->where('sender_type', 'customer')->where('is_read', false)->count() > 0)
                                             <span class="booking-chat-dot"></span>
