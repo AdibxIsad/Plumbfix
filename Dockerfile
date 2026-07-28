@@ -37,9 +37,15 @@ RUN composer config --global process-timeout 2000 \
 # Install NPM dependencies & build Vite assets
 RUN npm install && npm run build
 
-# Fix permissions for Laravel storage and cache
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache \
-    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+# Fix permissions and create upload directories for Laravel storage, cache, and public uploads
+RUN mkdir -p /var/www/html/public/uploads/receipts \
+             /var/www/html/public/uploads/bookings \
+             /var/www/html/public/uploads/feedback \
+             /var/www/html/public/uploads/job_records \
+             /var/www/html/public/uploads/refunds \
+             /var/www/html/public/uploads/avatars \
+    && chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/public/uploads \
+    && chmod -R 777 /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/public/uploads
 
 EXPOSE 80
 

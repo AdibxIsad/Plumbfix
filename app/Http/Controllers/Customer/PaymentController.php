@@ -74,7 +74,11 @@ class PaymentController extends Controller
         if ($request->hasFile('payment_receipt')) {
             $file = $request->file('payment_receipt');
             $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('uploads/receipts'), $fileName);
+            $targetDir = public_path('uploads/receipts');
+            if (!file_exists($targetDir)) {
+                mkdir($targetDir, 0777, true);
+            }
+            $file->move($targetDir, $fileName);
             $receiptPath = 'uploads/receipts/' . $fileName;
 
             // Save to payment_receipts table

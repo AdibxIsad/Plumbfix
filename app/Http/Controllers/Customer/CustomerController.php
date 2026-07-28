@@ -180,7 +180,11 @@ class CustomerController extends Controller
         if ($request->hasFile('bookingAttachment')) {
             $file = $request->file('bookingAttachment');
             $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('uploads/bookings'), $fileName);
+            $targetDir = public_path('uploads/bookings');
+            if (!file_exists($targetDir)) {
+                mkdir($targetDir, 0777, true);
+            }
+            $file->move($targetDir, $fileName);
             $attachmentPath = 'uploads/bookings/' . $fileName;
         }
 
@@ -336,9 +340,13 @@ class CustomerController extends Controller
 
         $attachmentPaths = [];
         if ($request->hasFile('feedbackAttachments')) {
+            $targetDir = public_path('uploads/feedback');
+            if (!file_exists($targetDir)) {
+                mkdir($targetDir, 0777, true);
+            }
             foreach ($request->file('feedbackAttachments') as $file) {
                 $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-                $file->move(public_path('uploads/feedback'), $fileName);
+                $file->move($targetDir, $fileName);
                 $attachmentPaths[] = 'uploads/feedback/' . $fileName;
             }
         }
