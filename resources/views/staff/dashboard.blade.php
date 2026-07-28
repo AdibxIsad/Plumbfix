@@ -3656,5 +3656,77 @@
             });
         }
     </script>
+
+    <!-- Smart Auto-Refresh & Real-Time Sync Script -->
+    <script>
+        (function() {
+            let autoSyncInterval = 12000; // Auto-refresh every 12 seconds
+            let lastUserActivity = Date.now();
+
+            ['mousedown', 'mousemove', 'keydown', 'scroll', 'touchstart'].forEach(evt => {
+                document.addEventListener(evt, () => {
+                    lastUserActivity = Date.now();
+                }, { passive: true });
+            });
+
+            function isUserBusy() {
+                const activeEl = document.activeElement;
+                if (activeEl && (activeEl.tagName === 'INPUT' || activeEl.tagName === 'TEXTAREA' || activeEl.tagName === 'SELECT')) {
+                    return true;
+                }
+                const chatDrawer = document.getElementById('chatDrawer');
+                if (chatDrawer && chatDrawer.classList.contains('open')) {
+                    return true;
+                }
+                const modal = document.querySelector('.modal.show, .confirm-modal-overlay.show, .lightbox-modal[style*="display: block"]');
+                if (modal) {
+                    return true;
+                }
+                if (Date.now() - lastUserActivity < 4000) {
+                    return true;
+                }
+                return false;
+            }
+
+            function performBackgroundSync() {
+                if (isUserBusy()) return;
+
+                fetch('/staff/chat/unread-status')
+                    .then(res => res.json())
+                    .then(data => {
+                        const chatDot = document.querySelector('#emailTriggerBtn .chat-dot');
+                        if (chatDot) {
+                            chatDot.style.display = (data.unread_count > 0) ? 'inline-block' : 'none';
+                        }
+                    })
+                    .catch(() => {});
+
+                if (!isUserBusy()) {
+                    fetch(window.location.href, { headers: { 'X-Requested-With': 'XMLHttpRequest' } })
+                        .then(res => res.text())
+                        .then(html => {
+                            if (isUserBusy()) return;
+                            const parser = new DOMParser();
+                            const newDoc = parser.parseFromString(html, 'text/html');
+
+                            const newActivities = newDoc.querySelector('.activity-list');
+                            const currentActivities = document.querySelector('.activity-list');
+                            if (newActivities && currentActivities && !isUserBusy()) {
+                                currentActivities.innerHTML = newActivities.innerHTML;
+                            }
+
+                            const newJobs = newDoc.querySelector('.jobs-table tbody');
+                            const currentJobs = document.querySelector('.jobs-table tbody');
+                            if (newJobs && currentJobs && !isUserBusy()) {
+                                currentJobs.innerHTML = newJobs.innerHTML;
+                            }
+                        })
+                        .catch(() => {});
+                }
+            }
+
+            setInterval(performBackgroundSync, autoSyncInterval);
+        })();
+    </script>
 </body>
 </html>

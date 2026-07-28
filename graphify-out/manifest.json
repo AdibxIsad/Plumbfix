@@ -310,13 +310,13 @@
     "semantic_hash": ""
   },
   "resources/views/customer/bookings.blade.php": {
-    "mtime": 1785249341.2561083,
-    "ast_hash": "88352d9bfa67fd7e29b4deb21de5841b",
+    "mtime": 1785251751.0386927,
+    "ast_hash": "e15b5f9cea2a22db991c66c2ca9d412e",
     "semantic_hash": ""
   },
   "resources/views/customer/dashboard.blade.php": {
-    "mtime": 1785243241.5475516,
-    "ast_hash": "bfafe0f819be581b3d40af7fc7f9dfc0",
+    "mtime": 1785251758.4842248,
+    "ast_hash": "5e52e8e7cac71a9aef6abfa302e6132b",
     "semantic_hash": ""
   },
   "resources/views/customer/feedback.blade.php": {
@@ -355,13 +355,13 @@
     "semantic_hash": ""
   },
   "resources/views/staff/bookings.blade.php": {
-    "mtime": 1785249107.037673,
-    "ast_hash": "dbdc80eee69d971acda3b3b457d7eb59",
+    "mtime": 1785251741.0093253,
+    "ast_hash": "26c5c6dee2f6fedffe7fc2500558181a",
     "semantic_hash": ""
   },
   "resources/views/staff/dashboard.blade.php": {
-    "mtime": 1785249129.2785678,
-    "ast_hash": "b3c9967af9c61ca6a5f9bd05dc41167e",
+    "mtime": 1785251732.875589,
+    "ast_hash": "35184e70de0e0152f01f24d8c7ed3e1a",
     "semantic_hash": ""
   },
   "resources/views/staff/feedback.blade.php": {
