@@ -20,9 +20,14 @@ class BrevoApiTransport extends AbstractTransport
     {
         $email = MessageConverter::toEmail($message->getOriginalMessage());
         
-        $sender = $email->getFrom()[0] ?? null;
-        $senderEmail = $sender ? $sender->getAddress() : env('MAIL_FROM_ADDRESS');
-        $senderName = $sender ? ($sender->getName() ?: env('MAIL_FROM_NAME', 'PlumbFix')) : env('MAIL_FROM_NAME', 'PlumbFix');
+        $envFrom = env('MAIL_FROM_ADDRESS', config('mail.from.address'));
+        if ($envFrom && $envFrom !== 'hello@example.com') {
+            $senderEmail = $envFrom;
+        } else {
+            $sender = $email->getFrom()[0] ?? null;
+            $senderEmail = ($sender && $sender->getAddress() !== 'hello@example.com') ? $sender->getAddress() : 'adibisad@gmail.com';
+        }
+        $senderName = env('MAIL_FROM_NAME', config('mail.from.name', 'Plumbfix'));
 
         $tos = [];
         foreach ($email->getTo() as $to) {
