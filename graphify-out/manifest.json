@@ -5,9 +5,9 @@
     "semantic_hash": ""
   },
   "app/Http/Controllers/Auth/GoogleAuthController.php": {
-    "mtime": 1784194616.1171486,
-    "ast_hash": "6f91eccaf1b315f32603deb01182e2a6",
-    "semantic_hash": "6f91eccaf1b315f32603deb01182e2a6"
+    "mtime": 1785241067.329609,
+    "ast_hash": "5e310c5789a89bc832aad5d6d98633b4",
+    "semantic_hash": ""
   },
   "app/Http/Controllers/Auth/LoginController.php": {
     "mtime": 1784194706.0271227,

@@ -437,7 +437,7 @@
       "label": ".getBookedSlots()",
       "file_type": "code",
       "source_file": "app/Http/Controllers/Customer/CustomerController.php",
-      "source_location": "L212",
+      "source_location": "L220",
       "_origin": "ast",
       "id": "customer_customercontroller_customercontroller_getbookedslots",
       "community": 2,
@@ -447,7 +447,7 @@
       "label": ".confirmCancel()",
       "file_type": "code",
       "source_file": "app/Http/Controllers/Customer/CustomerController.php",
-      "source_location": "L225",
+      "source_location": "L233",
       "_origin": "ast",
       "id": "customer_customercontroller_customercontroller_confirmcancel",
       "community": 2,
@@ -457,7 +457,7 @@
       "label": ".bookingDelete()",
       "file_type": "code",
       "source_file": "app/Http/Controllers/Customer/CustomerController.php",
-      "source_location": "L237",
+      "source_location": "L245",
       "_origin": "ast",
       "id": "customer_customercontroller_customercontroller_bookingdelete",
       "community": 2,
@@ -467,7 +467,7 @@
       "label": ".feedback()",
       "file_type": "code",
       "source_file": "app/Http/Controllers/Customer/CustomerController.php",
-      "source_location": "L291",
+      "source_location": "L301",
       "_origin": "ast",
       "id": "customer_customercontroller_customercontroller_feedback",
       "community": 2,
@@ -477,7 +477,7 @@
       "label": ".feedbackStore()",
       "file_type": "code",
       "source_file": "app/Http/Controllers/Customer/CustomerController.php",
-      "source_location": "L309",
+      "source_location": "L319",
       "_origin": "ast",
       "id": "customer_customercontroller_customercontroller_feedbackstore",
       "community": 2,
@@ -490,7 +490,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "customer_paymentcontroller",
-      "community": 166,
+      "community": 1,
       "norm_label": "paymentcontroller.php"
     },
     {
@@ -500,7 +500,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "customer_paymentcontroller_paymentcontroller",
-      "community": 166,
+      "community": 1,
       "norm_label": "paymentcontroller"
     },
     {
@@ -510,7 +510,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "customer_paymentcontroller_paymentcontroller_showpaymentpage",
-      "community": 166,
+      "community": 1,
       "norm_label": ".showpaymentpage()"
     },
     {
@@ -520,7 +520,7 @@
       "source_location": "L44",
       "_origin": "ast",
       "id": "customer_paymentcontroller_paymentcontroller_uploadreceipt",
-      "community": 166,
+      "community": 1,
       "norm_label": ".uploadreceipt()"
     },
     {
@@ -530,17 +530,17 @@
       "source_location": "L44",
       "_origin": "ast",
       "id": "app_http_controllers_customer_paymentcontroller_php_request",
-      "community": 166,
+      "community": 1,
       "norm_label": "request"
     },
     {
       "label": ".downloadReceipt()",
       "file_type": "code",
       "source_file": "app/Http/Controllers/Customer/PaymentController.php",
-      "source_location": "L122",
+      "source_location": "L126",
       "_origin": "ast",
       "id": "customer_paymentcontroller_paymentcontroller_downloadreceipt",
-      "community": 166,
+      "community": 1,
       "norm_label": ".downloadreceipt()"
     },
     {
@@ -800,7 +800,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "staff_plumbercontroller",
-      "community": 1,
+      "community": 166,
       "norm_label": "plumbercontroller.php"
     },
     {
@@ -810,7 +810,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "staff_plumbercontroller_plumbercontroller",
-      "community": 1,
+      "community": 166,
       "norm_label": "plumbercontroller"
     },
     {
@@ -820,7 +820,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "staff_plumbercontroller_plumbercontroller_checkstaff",
-      "community": 1,
+      "community": 166,
       "norm_label": ".checkstaff()"
     },
     {
@@ -830,7 +830,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "staff_plumbercontroller_plumbercontroller_checkadmin",
-      "community": 1,
+      "community": 166,
       "norm_label": ".checkadmin()"
     },
     {
@@ -840,7 +840,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "staff_plumbercontroller_plumbercontroller_index",
-      "community": 1,
+      "community": 166,
       "norm_label": ".index()"
     },
     {
@@ -850,7 +850,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "app_http_controllers_staff_plumbercontroller_php_request",
-      "community": 1,
+      "community": 166,
       "norm_label": "request"
     },
     {
@@ -860,7 +860,7 @@
       "source_location": "L63",
       "_origin": "ast",
       "id": "staff_plumbercontroller_plumbercontroller_formatmalaysianphonenumber",
-      "community": 1,
+      "community": 166,
       "norm_label": ".formatmalaysianphonenumber()"
     },
     {
@@ -870,7 +870,7 @@
       "source_location": "L110",
       "_origin": "ast",
       "id": "staff_plumbercontroller_plumbercontroller_store",
-      "community": 1,
+      "community": 166,
       "norm_label": ".store()"
     },
     {
@@ -880,7 +880,7 @@
       "source_location": "L153",
       "_origin": "ast",
       "id": "staff_plumbercontroller_plumbercontroller_update",
-      "community": 1,
+      "community": 166,
       "norm_label": ".update()"
     },
     {
@@ -890,7 +890,7 @@
       "source_location": "L197",
       "_origin": "ast",
       "id": "staff_plumbercontroller_plumbercontroller_destroy",
-      "community": 1,
+      "community": 166,
       "norm_label": ".destroy()"
     },
     {
@@ -1007,7 +1007,7 @@
       "label": ".profile()",
       "file_type": "code",
       "source_file": "app/Http/Controllers/Staff/StaffController.php",
-      "source_location": "L225",
+      "source_location": "L231",
       "_origin": "ast",
       "id": "staff_staffcontroller_staffcontroller_profile",
       "community": 2,
@@ -1017,7 +1017,7 @@
       "label": ".profileUpdate()",
       "file_type": "code",
       "source_file": "app/Http/Controllers/Staff/StaffController.php",
-      "source_location": "L231",
+      "source_location": "L237",
       "_origin": "ast",
       "id": "staff_staffcontroller_staffcontroller_profileupdate",
       "community": 2,
@@ -1027,7 +1027,7 @@
       "label": ".bookings()",
       "file_type": "code",
       "source_file": "app/Http/Controllers/Staff/StaffController.php",
-      "source_location": "L258",
+      "source_location": "L264",
       "_origin": "ast",
       "id": "staff_staffcontroller_staffcontroller_bookings",
       "community": 2,
@@ -1037,7 +1037,7 @@
       "label": ".bookingUpdateStatus()",
       "file_type": "code",
       "source_file": "app/Http/Controllers/Staff/StaffController.php",
-      "source_location": "L308",
+      "source_location": "L314",
       "_origin": "ast",
       "id": "staff_staffcontroller_staffcontroller_bookingupdatestatus",
       "community": 2,
@@ -1047,7 +1047,7 @@
       "label": ".bookingAccept()",
       "file_type": "code",
       "source_file": "app/Http/Controllers/Staff/StaffController.php",
-      "source_location": "L356",
+      "source_location": "L366",
       "_origin": "ast",
       "id": "staff_staffcontroller_staffcontroller_bookingaccept",
       "community": 2,
@@ -1057,7 +1057,7 @@
       "label": ".jobRecords()",
       "file_type": "code",
       "source_file": "app/Http/Controllers/Staff/StaffController.php",
-      "source_location": "L378",
+      "source_location": "L392",
       "_origin": "ast",
       "id": "staff_staffcontroller_staffcontroller_jobrecords",
       "community": 2,
@@ -1067,7 +1067,7 @@
       "label": ".jobRecordCreate()",
       "file_type": "code",
       "source_file": "app/Http/Controllers/Staff/StaffController.php",
-      "source_location": "L626",
+      "source_location": "L646",
       "_origin": "ast",
       "id": "staff_staffcontroller_staffcontroller_jobrecordcreate",
       "community": 2,
@@ -1077,7 +1077,7 @@
       "label": ".jobRecordStore()",
       "file_type": "code",
       "source_file": "app/Http/Controllers/Staff/StaffController.php",
-      "source_location": "L639",
+      "source_location": "L659",
       "_origin": "ast",
       "id": "staff_staffcontroller_staffcontroller_jobrecordstore",
       "community": 2,
@@ -1087,7 +1087,7 @@
       "label": ".jobRecordPrint()",
       "file_type": "code",
       "source_file": "app/Http/Controllers/Staff/StaffController.php",
-      "source_location": "L717",
+      "source_location": "L737",
       "_origin": "ast",
       "id": "staff_staffcontroller_staffcontroller_jobrecordprint",
       "community": 2,
@@ -1097,7 +1097,7 @@
       "label": ".feedback()",
       "file_type": "code",
       "source_file": "app/Http/Controllers/Staff/StaffController.php",
-      "source_location": "L734",
+      "source_location": "L754",
       "_origin": "ast",
       "id": "staff_staffcontroller_staffcontroller_feedback",
       "community": 2,
@@ -1107,7 +1107,7 @@
       "label": ".feedbackReply()",
       "file_type": "code",
       "source_file": "app/Http/Controllers/Staff/StaffController.php",
-      "source_location": "L743",
+      "source_location": "L763",
       "_origin": "ast",
       "id": "staff_staffcontroller_staffcontroller_feedbackreply",
       "community": 2,
@@ -1117,7 +1117,7 @@
       "label": ".logout()",
       "file_type": "code",
       "source_file": "app/Http/Controllers/Staff/StaffController.php",
-      "source_location": "L759",
+      "source_location": "L779",
       "_origin": "ast",
       "id": "staff_staffcontroller_staffcontroller_logout",
       "community": 2,
@@ -1210,7 +1210,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "queueable",
-      "community": 164,
+      "community": 160,
       "norm_label": "queueable"
     },
     {
@@ -1337,7 +1337,7 @@
       "label": ".__toString()",
       "file_type": "code",
       "source_file": "app/Mail/BrevoApiTransport.php",
-      "source_location": "L85",
+      "source_location": "L94",
       "_origin": "ast",
       "id": "mail_brevoapitransport_brevoapitransport_tostring",
       "community": 11,
@@ -1870,7 +1870,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "models_user",
-      "community": 4,
+      "community": 5,
       "norm_label": "user.php"
     },
     {
@@ -1970,7 +1970,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "notifications_recentactivitynotification",
-      "community": 164,
+      "community": 160,
       "norm_label": "recentactivitynotification.php"
     },
     {
@@ -1980,7 +1980,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "notifications_recentactivitynotification_recentactivitynotification",
-      "community": 164,
+      "community": 160,
       "norm_label": "recentactivitynotification"
     },
     {
@@ -1990,7 +1990,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "notification",
-      "community": 164,
+      "community": 3,
       "norm_label": "notification"
     },
     {
@@ -2000,7 +2000,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "notifications_recentactivitynotification_recentactivitynotification_construct",
-      "community": 164,
+      "community": 160,
       "norm_label": ".__construct()"
     },
     {
@@ -2010,37 +2010,37 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "notifications_recentactivitynotification_recentactivitynotification_via",
-      "community": 164,
+      "community": 160,
       "norm_label": ".via()"
-    },
-    {
-      "label": ".shouldSendEmail()",
-      "file_type": "code",
-      "source_file": "app/Notifications/RecentActivityNotification.php",
-      "source_location": "L43",
-      "_origin": "ast",
-      "id": "notifications_recentactivitynotification_recentactivitynotification_shouldsendemail",
-      "community": 164,
-      "norm_label": ".shouldsendemail()"
     },
     {
       "label": ".toMail()",
       "file_type": "code",
       "source_file": "app/Notifications/RecentActivityNotification.php",
-      "source_location": "L55",
+      "source_location": "L36",
       "_origin": "ast",
       "id": "notifications_recentactivitynotification_recentactivitynotification_tomail",
-      "community": 164,
+      "community": 160,
       "norm_label": ".tomail()"
+    },
+    {
+      "label": "MailMessage",
+      "file_type": "code",
+      "source_file": "app/Notifications/RecentActivityNotification.php",
+      "source_location": "L36",
+      "_origin": "ast",
+      "id": "mailmessage",
+      "community": 160,
+      "norm_label": "mailmessage"
     },
     {
       "label": ".toArray()",
       "file_type": "code",
       "source_file": "app/Notifications/RecentActivityNotification.php",
-      "source_location": "L80",
+      "source_location": "L65",
       "_origin": "ast",
       "id": "notifications_recentactivitynotification_recentactivitynotification_toarray",
-      "community": 164,
+      "community": 160,
       "norm_label": ".toarray()"
     },
     {
@@ -3480,17 +3480,17 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "seeders_databaseseeder",
-      "community": 10,
+      "community": 5,
       "norm_label": "databaseseeder.php"
     },
     {
       "label": "DatabaseSeeder",
       "file_type": "code",
       "source_file": "database/seeders/DatabaseSeeder.php",
-      "source_location": "L9",
+      "source_location": "L10",
       "_origin": "ast",
       "id": "seeders_databaseseeder_databaseseeder",
-      "community": 10,
+      "community": 5,
       "norm_label": "databaseseeder"
     },
     {
@@ -3500,27 +3500,17 @@
       "source_location": "",
       "_origin": "ast",
       "id": "seeder",
-      "community": 10,
+      "community": 5,
       "norm_label": "seeder"
-    },
-    {
-      "label": "WithoutModelEvents",
-      "file_type": "code",
-      "source_file": "",
-      "source_location": "",
-      "_origin": "ast",
-      "id": "withoutmodelevents",
-      "community": 10,
-      "norm_label": "withoutmodelevents"
     },
     {
       "label": ".run()",
       "file_type": "code",
       "source_file": "database/seeders/DatabaseSeeder.php",
-      "source_location": "L16",
+      "source_location": "L15",
       "_origin": "ast",
       "id": "seeders_databaseseeder_databaseseeder_run",
-      "community": 10,
+      "community": 5,
       "norm_label": ".run()"
     },
     {
@@ -3530,7 +3520,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "seeders_plumbersseeder",
-      "community": 10,
+      "community": 5,
       "norm_label": "plumbersseeder.php"
     },
     {
@@ -3540,7 +3530,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "seeders_plumbersseeder_plumbersseeder",
-      "community": 10,
+      "community": 5,
       "norm_label": "plumbersseeder"
     },
     {
@@ -3550,8 +3540,98 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "seeders_plumbersseeder_plumbersseeder_run",
-      "community": 10,
+      "community": 5,
       "norm_label": ".run()"
+    },
+    {
+      "label": "generate_classic_ssd.ps1",
+      "file_type": "code",
+      "source_file": "generate_classic_ssd.ps1",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "generate_classic_ssd",
+      "community": 170,
+      "norm_label": "generate_classic_ssd.ps1"
+    },
+    {
+      "label": "Create-ClassicSSD()",
+      "file_type": "code",
+      "source_file": "generate_classic_ssd.ps1",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "generate_classic_ssd_create_classicssd",
+      "community": 170,
+      "norm_label": "create-classicssd()"
+    },
+    {
+      "label": "generate_diagrams.ps1",
+      "file_type": "code",
+      "source_file": "generate_diagrams.ps1",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "generate_diagrams",
+      "community": 169,
+      "norm_label": "generate_diagrams.ps1"
+    },
+    {
+      "label": "Draw-ArrowLine()",
+      "file_type": "code",
+      "source_file": "generate_diagrams.ps1",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "generate_diagrams_draw_arrowline",
+      "community": 169,
+      "norm_label": "draw-arrowline()"
+    },
+    {
+      "label": "Draw-PolylineArrow()",
+      "file_type": "code",
+      "source_file": "generate_diagrams.ps1",
+      "source_location": "L63",
+      "_origin": "ast",
+      "id": "generate_diagrams_draw_polylinearrow",
+      "community": 169,
+      "norm_label": "draw-polylinearrow()"
+    },
+    {
+      "label": "Render-InteractiveDiagram()",
+      "file_type": "code",
+      "source_file": "generate_diagrams.ps1",
+      "source_location": "L120",
+      "_origin": "ast",
+      "id": "generate_diagrams_render_interactivediagram",
+      "community": 169,
+      "norm_label": "render-interactivediagram()"
+    },
+    {
+      "label": "Render-LinearDiagram()",
+      "file_type": "code",
+      "source_file": "generate_diagrams.ps1",
+      "source_location": "L309",
+      "_origin": "ast",
+      "id": "generate_diagrams_render_lineardiagram",
+      "community": 169,
+      "norm_label": "render-lineardiagram()"
+    },
+    {
+      "label": "generate_ssd_diagrams.ps1",
+      "file_type": "code",
+      "source_file": "generate_ssd_diagrams.ps1",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "generate_ssd_diagrams",
+      "community": 171,
+      "norm_label": "generate_ssd_diagrams.ps1"
+    },
+    {
+      "label": "Render-SSD()",
+      "file_type": "code",
+      "source_file": "generate_ssd_diagrams.ps1",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "generate_ssd_diagrams_render_ssd",
+      "community": 171,
+      "norm_label": "render-ssd()"
     },
     {
       "label": "package.json",
@@ -5130,7 +5210,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "feature_plumbfiximprovementstest_plumbfiximprovementstest",
-      "community": 164,
+      "community": 3,
       "norm_label": "plumbfiximprovementstest"
     },
     {
@@ -5140,7 +5220,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "feature_plumbfiximprovementstest_plumbfiximprovementstest_createcustomer",
-      "community": 164,
+      "community": 3,
       "norm_label": ".createcustomer()"
     },
     {
@@ -5150,7 +5230,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "feature_plumbfiximprovementstest_plumbfiximprovementstest_createstaff",
-      "community": 164,
+      "community": 3,
       "norm_label": ".createstaff()"
     },
     {
@@ -5160,7 +5240,7 @@
       "source_location": "L49",
       "_origin": "ast",
       "id": "feature_plumbfiximprovementstest_plumbfiximprovementstest_createbooking",
-      "community": 164,
+      "community": 3,
       "norm_label": ".createbooking()"
     },
     {
@@ -5170,7 +5250,7 @@
       "source_location": "L65",
       "_origin": "ast",
       "id": "feature_plumbfiximprovementstest_plumbfiximprovementstest_test_booking_status_update_state_machine_validations",
-      "community": 164,
+      "community": 3,
       "norm_label": ".test_booking_status_update_state_machine_validations()"
     },
     {
@@ -5180,7 +5260,7 @@
       "source_location": "L96",
       "_origin": "ast",
       "id": "feature_plumbfiximprovementstest_plumbfiximprovementstest_test_route_notification_for_mail_works_on_custom_columns",
-      "community": 164,
+      "community": 3,
       "norm_label": ".test_route_notification_for_mail_works_on_custom_columns()"
     },
     {
@@ -5190,7 +5270,7 @@
       "source_location": "L105",
       "_origin": "ast",
       "id": "feature_plumbfiximprovementstest_plumbfiximprovementstest_test_save_job_record_and_send_email_invoice",
-      "community": 164,
+      "community": 3,
       "norm_label": ".test_save_job_record_and_send_email_invoice()"
     },
     {
@@ -5200,7 +5280,7 @@
       "source_location": "L142",
       "_origin": "ast",
       "id": "feature_plumbfiximprovementstest_plumbfiximprovementstest_test_deposit_payment_request_sends_email_to_customer_email",
-      "community": 164,
+      "community": 3,
       "norm_label": ".test_deposit_payment_request_sends_email_to_customer_email()"
     },
     {
@@ -5210,7 +5290,7 @@
       "source_location": "L168",
       "_origin": "ast",
       "id": "feature_plumbfiximprovementstest_plumbfiximprovementstest_test_feedback_store_requires_completed_unreviewed_booking",
-      "community": 164,
+      "community": 3,
       "norm_label": ".test_feedback_store_requires_completed_unreviewed_booking()"
     },
     {
@@ -5220,7 +5300,7 @@
       "source_location": "L220",
       "_origin": "ast",
       "id": "feature_plumbfiximprovementstest_plumbfiximprovementstest_test_staff_can_reply_to_customer_feedback",
-      "community": 164,
+      "community": 3,
       "norm_label": ".test_staff_can_reply_to_customer_feedback()"
     },
     {
@@ -5332,6 +5412,286 @@
       "id": "workflows_graphify_workflow_graphify",
       "community": 218,
       "norm_label": "workflow: graphify"
+    },
+    {
+      "label": "ACTIVITY_DIAGRAMS.md",
+      "file_type": "document",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "activity_diagrams",
+      "community": 10,
+      "norm_label": "activity_diagrams.md"
+    },
+    {
+      "label": "Plumbfix Business Activity Diagrams (BAD)",
+      "file_type": "document",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "activity_diagrams_plumbfix_business_activity_diagrams_bad",
+      "community": 10,
+      "norm_label": "plumbfix business activity diagrams (bad)"
+    },
+    {
+      "label": "Table of Contents",
+      "file_type": "document",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "activity_diagrams_table_of_contents",
+      "community": 10,
+      "norm_label": "table of contents"
+    },
+    {
+      "label": "Business Activity Diagrams",
+      "file_type": "document",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L36",
+      "_origin": "ast",
+      "id": "activity_diagrams_business_activity_diagrams",
+      "community": 10,
+      "norm_label": "business activity diagrams"
+    },
+    {
+      "label": "4.4.1 BAD001 Login",
+      "file_type": "document",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L38",
+      "_origin": "ast",
+      "id": "activity_diagrams_4_4_1_bad001_login",
+      "community": 10,
+      "norm_label": "4.4.1 bad001 login"
+    },
+    {
+      "label": "4.4.2 BAD002 Create Account",
+      "file_type": "document",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L67",
+      "_origin": "ast",
+      "id": "activity_diagrams_4_4_2_bad002_create_account",
+      "community": 10,
+      "norm_label": "4.4.2 bad002 create account"
+    },
+    {
+      "label": "4.4.3 BAD003 View Account",
+      "file_type": "document",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L95",
+      "_origin": "ast",
+      "id": "activity_diagrams_4_4_3_bad003_view_account",
+      "community": 10,
+      "norm_label": "4.4.3 bad003 view account"
+    },
+    {
+      "label": "4.4.4 BAD004 Update Account",
+      "file_type": "document",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L120",
+      "_origin": "ast",
+      "id": "activity_diagrams_4_4_4_bad004_update_account",
+      "community": 10,
+      "norm_label": "4.4.4 bad004 update account"
+    },
+    {
+      "label": "4.4.5 BAD005 Delete Account",
+      "file_type": "document",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L150",
+      "_origin": "ast",
+      "id": "activity_diagrams_4_4_5_bad005_delete_account",
+      "community": 10,
+      "norm_label": "4.4.5 bad005 delete account"
+    },
+    {
+      "label": "4.4.6 BAD006 Create Booking",
+      "file_type": "document",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L181",
+      "_origin": "ast",
+      "id": "activity_diagrams_4_4_6_bad006_create_booking",
+      "community": 10,
+      "norm_label": "4.4.6 bad006 create booking"
+    },
+    {
+      "label": "4.4.7 BAD007 View Booking",
+      "file_type": "document",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L212",
+      "_origin": "ast",
+      "id": "activity_diagrams_4_4_7_bad007_view_booking",
+      "community": 10,
+      "norm_label": "4.4.7 bad007 view booking"
+    },
+    {
+      "label": "4.4.8 BAD008 Update Booking",
+      "file_type": "document",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L237",
+      "_origin": "ast",
+      "id": "activity_diagrams_4_4_8_bad008_update_booking",
+      "community": 10,
+      "norm_label": "4.4.8 bad008 update booking"
+    },
+    {
+      "label": "4.4.9 BAD009 Delete Booking",
+      "file_type": "document",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L267",
+      "_origin": "ast",
+      "id": "activity_diagrams_4_4_9_bad009_delete_booking",
+      "community": 10,
+      "norm_label": "4.4.9 bad009 delete booking"
+    },
+    {
+      "label": "4.4.10 BAD010 Create Payment",
+      "file_type": "document",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L297",
+      "_origin": "ast",
+      "id": "activity_diagrams_4_4_10_bad010_create_payment",
+      "community": 10,
+      "norm_label": "4.4.10 bad010 create payment"
+    },
+    {
+      "label": "4.4.11 BAD011 View Payment",
+      "file_type": "document",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L327",
+      "_origin": "ast",
+      "id": "activity_diagrams_4_4_11_bad011_view_payment",
+      "community": 10,
+      "norm_label": "4.4.11 bad011 view payment"
+    },
+    {
+      "label": "4.4.12 BAD012 Update Payment",
+      "file_type": "document",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L348",
+      "_origin": "ast",
+      "id": "activity_diagrams_4_4_12_bad012_update_payment",
+      "community": 10,
+      "norm_label": "4.4.12 bad012 update payment"
+    },
+    {
+      "label": "4.4.13 BAD013 Create Refund",
+      "file_type": "document",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L379",
+      "_origin": "ast",
+      "id": "activity_diagrams_4_4_13_bad013_create_refund",
+      "community": 10,
+      "norm_label": "4.4.13 bad013 create refund"
+    },
+    {
+      "label": "4.4.14 BAD014 View Refund",
+      "file_type": "document",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L407",
+      "_origin": "ast",
+      "id": "activity_diagrams_4_4_14_bad014_view_refund",
+      "community": 10,
+      "norm_label": "4.4.14 bad014 view refund"
+    },
+    {
+      "label": "4.4.15 BAD015 Update Refund",
+      "file_type": "document",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L430",
+      "_origin": "ast",
+      "id": "activity_diagrams_4_4_15_bad015_update_refund",
+      "community": 10,
+      "norm_label": "4.4.15 bad015 update refund"
+    },
+    {
+      "label": "4.4.16 BAD016 Create Job Record",
+      "file_type": "document",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L460",
+      "_origin": "ast",
+      "id": "activity_diagrams_4_4_16_bad016_create_job_record",
+      "community": 10,
+      "norm_label": "4.4.16 bad016 create job record"
+    },
+    {
+      "label": "4.4.17 BAD017 View Job Record",
+      "file_type": "document",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L492",
+      "_origin": "ast",
+      "id": "activity_diagrams_4_4_17_bad017_view_job_record",
+      "community": 10,
+      "norm_label": "4.4.17 bad017 view job record"
+    },
+    {
+      "label": "4.4.18 BAD018 Update Job Record",
+      "file_type": "document",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L513",
+      "_origin": "ast",
+      "id": "activity_diagrams_4_4_18_bad018_update_job_record",
+      "community": 10,
+      "norm_label": "4.4.18 bad018 update job record"
+    },
+    {
+      "label": "4.4.19 BAD019 Generate Report",
+      "file_type": "document",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L544",
+      "_origin": "ast",
+      "id": "activity_diagrams_4_4_19_bad019_generate_report",
+      "community": 10,
+      "norm_label": "4.4.19 bad019 generate report"
+    },
+    {
+      "label": "4.4.20 BAD020 Create Feedback",
+      "file_type": "document",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L569",
+      "_origin": "ast",
+      "id": "activity_diagrams_4_4_20_bad020_create_feedback",
+      "community": 10,
+      "norm_label": "4.4.20 bad020 create feedback"
+    },
+    {
+      "label": "4.4.21 BAD021 View Feedback",
+      "file_type": "document",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L600",
+      "_origin": "ast",
+      "id": "activity_diagrams_4_4_21_bad021_view_feedback",
+      "community": 10,
+      "norm_label": "4.4.21 bad021 view feedback"
+    },
+    {
+      "label": "4.4.22 BAD022 Create Chat Message",
+      "file_type": "document",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L623",
+      "_origin": "ast",
+      "id": "activity_diagrams_4_4_22_bad022_create_chat_message",
+      "community": 10,
+      "norm_label": "4.4.22 bad022 create chat message"
+    },
+    {
+      "label": "4.4.23 BAD023 View Chat Messages",
+      "file_type": "document",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L652",
+      "_origin": "ast",
+      "id": "activity_diagrams_4_4_23_bad023_view_chat_messages",
+      "community": 10,
+      "norm_label": "4.4.23 bad023 view chat messages"
+    },
+    {
+      "label": "4.4.24 BAD024 View Push Notifications",
+      "file_type": "document",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L675",
+      "_origin": "ast",
+      "id": "activity_diagrams_4_4_24_bad024_view_push_notifications",
+      "community": 10,
+      "norm_label": "4.4.24 bad024 view push notifications"
     },
     {
       "label": "DATA_DICTIONARY.md",
@@ -5584,84 +5944,154 @@
       "norm_label": "readme.md"
     },
     {
-      "label": "About Laravel",
+      "label": "\ud83d\udee0\ufe0f Plumbfix - Plumbing Service & Operations Management System",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L10",
+      "source_location": "L1",
       "_origin": "ast",
-      "id": "readme_about_laravel",
+      "id": "readme_plumbfix_plumbing_service_operations_management_system",
       "community": 216,
-      "norm_label": "about laravel"
+      "norm_label": "\ud83d\udee0\ufe0f plumbfix - plumbing service & operations management system"
     },
     {
-      "label": "Learning Laravel",
+      "label": "\ud83c\udf10 Live System Demo",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L24",
+      "source_location": "L17",
       "_origin": "ast",
-      "id": "readme_learning_laravel",
+      "id": "readme_live_system_demo",
       "community": 216,
-      "norm_label": "learning laravel"
+      "norm_label": "\ud83c\udf10 live system demo"
     },
     {
-      "label": "Laravel Sponsors",
+      "label": "\ud83d\udccc Overview",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L30",
+      "source_location": "L25",
       "_origin": "ast",
-      "id": "readme_laravel_sponsors",
+      "id": "readme_overview",
       "community": 216,
-      "norm_label": "laravel sponsors"
+      "norm_label": "\ud83d\udccc overview"
     },
     {
-      "label": "Premium Partners",
+      "label": "\u2728 Key Features",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L34",
+      "source_location": "L31",
       "_origin": "ast",
-      "id": "readme_premium_partners",
+      "id": "readme_key_features",
       "community": 216,
-      "norm_label": "premium partners"
+      "norm_label": "\u2728 key features"
     },
     {
-      "label": "Contributing",
+      "label": "\ud83d\udc64 Customer Portal",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L45",
+      "source_location": "L33",
       "_origin": "ast",
-      "id": "readme_contributing",
+      "id": "readme_customer_portal",
       "community": 216,
-      "norm_label": "contributing"
+      "norm_label": "\ud83d\udc64 customer portal"
     },
     {
-      "label": "Code of Conduct",
+      "label": "\ud83d\udd11 Staff & Admin Dashboard",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L49",
+      "source_location": "L41",
       "_origin": "ast",
-      "id": "readme_code_of_conduct",
+      "id": "readme_staff_admin_dashboard",
       "community": 216,
-      "norm_label": "code of conduct"
+      "norm_label": "\ud83d\udd11 staff & admin dashboard"
     },
     {
-      "label": "Security Vulnerabilities",
+      "label": "\ud83d\udd10 Security & Integrations",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L53",
+      "source_location": "L47",
       "_origin": "ast",
-      "id": "readme_security_vulnerabilities",
+      "id": "readme_security_integrations",
       "community": 216,
-      "norm_label": "security vulnerabilities"
+      "norm_label": "\ud83d\udd10 security & integrations"
     },
     {
-      "label": "License",
+      "label": "\ud83c\udfd7\ufe0f Technology Stack",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L57",
+      "source_location": "L54",
+      "_origin": "ast",
+      "id": "readme_technology_stack",
+      "community": 216,
+      "norm_label": "\ud83c\udfd7\ufe0f technology stack"
+    },
+    {
+      "label": "\ud83d\udcc1 System Architecture & Documentation",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L69",
+      "_origin": "ast",
+      "id": "readme_system_architecture_documentation",
+      "community": 216,
+      "norm_label": "\ud83d\udcc1 system architecture & documentation"
+    },
+    {
+      "label": "\ud83d\ude80 Getting Started",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L80",
+      "_origin": "ast",
+      "id": "readme_getting_started",
+      "community": 216,
+      "norm_label": "\ud83d\ude80 getting started"
+    },
+    {
+      "label": "Prerequisites",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L84",
+      "_origin": "ast",
+      "id": "readme_prerequisites",
+      "community": 216,
+      "norm_label": "prerequisites"
+    },
+    {
+      "label": "Installation Steps",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L92",
+      "_origin": "ast",
+      "id": "readme_installation_steps",
+      "community": 216,
+      "norm_label": "installation steps"
+    },
+    {
+      "label": "\ud83e\uddea Testing",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L139",
+      "_origin": "ast",
+      "id": "readme_testing",
+      "community": 216,
+      "norm_label": "\ud83e\uddea testing"
+    },
+    {
+      "label": "\ud83d\udc64 Author",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L149",
+      "_origin": "ast",
+      "id": "readme_author",
+      "community": 216,
+      "norm_label": "\ud83d\udc64 author"
+    },
+    {
+      "label": "\ud83d\udcc4 License",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L155",
       "_origin": "ast",
       "id": "readme_license",
       "community": 216,
-      "norm_label": "license"
+      "norm_label": "\ud83d\udcc4 license"
     },
     {
       "label": "SYSTEM_ARCHITECTURE.md",
@@ -6072,6 +6502,276 @@
       "id": "system_diagram_uc_24_view_push_notifications",
       "community": 154,
       "norm_label": "uc-24: view push notifications"
+    },
+    {
+      "label": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "file_type": "document",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "system_sequence_diagrams",
+      "community": 164,
+      "norm_label": "system_sequence_diagrams.md"
+    },
+    {
+      "label": "4.6 System Sequence Diagrams (SSD)",
+      "file_type": "document",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "system_sequence_diagrams_4_6_system_sequence_diagrams_ssd",
+      "community": 164,
+      "norm_label": "4.6 system sequence diagrams (ssd)"
+    },
+    {
+      "label": "Table of Contents",
+      "file_type": "document",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "system_sequence_diagrams_table_of_contents",
+      "community": 164,
+      "norm_label": "table of contents"
+    },
+    {
+      "label": "4.6.1 SSD001 Create Account",
+      "file_type": "document",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L36",
+      "_origin": "ast",
+      "id": "system_sequence_diagrams_4_6_1_ssd001_create_account",
+      "community": 164,
+      "norm_label": "4.6.1 ssd001 create account"
+    },
+    {
+      "label": "4.6.2 SSD002 Login",
+      "file_type": "document",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L49",
+      "_origin": "ast",
+      "id": "system_sequence_diagrams_4_6_2_ssd002_login",
+      "community": 164,
+      "norm_label": "4.6.2 ssd002 login"
+    },
+    {
+      "label": "4.6.3 SSD003 View Account",
+      "file_type": "document",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L62",
+      "_origin": "ast",
+      "id": "system_sequence_diagrams_4_6_3_ssd003_view_account",
+      "community": 164,
+      "norm_label": "4.6.3 ssd003 view account"
+    },
+    {
+      "label": "4.6.4 SSD004 Update Account",
+      "file_type": "document",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L75",
+      "_origin": "ast",
+      "id": "system_sequence_diagrams_4_6_4_ssd004_update_account",
+      "community": 164,
+      "norm_label": "4.6.4 ssd004 update account"
+    },
+    {
+      "label": "4.6.5 SSD005 Delete Account",
+      "file_type": "document",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L88",
+      "_origin": "ast",
+      "id": "system_sequence_diagrams_4_6_5_ssd005_delete_account",
+      "community": 164,
+      "norm_label": "4.6.5 ssd005 delete account"
+    },
+    {
+      "label": "4.6.6 SSD006 Create Booking",
+      "file_type": "document",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L101",
+      "_origin": "ast",
+      "id": "system_sequence_diagrams_4_6_6_ssd006_create_booking",
+      "community": 164,
+      "norm_label": "4.6.6 ssd006 create booking"
+    },
+    {
+      "label": "4.6.7 SSD007 View Booking",
+      "file_type": "document",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L114",
+      "_origin": "ast",
+      "id": "system_sequence_diagrams_4_6_7_ssd007_view_booking",
+      "community": 164,
+      "norm_label": "4.6.7 ssd007 view booking"
+    },
+    {
+      "label": "4.6.8 SSD008 Update Booking",
+      "file_type": "document",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L127",
+      "_origin": "ast",
+      "id": "system_sequence_diagrams_4_6_8_ssd008_update_booking",
+      "community": 164,
+      "norm_label": "4.6.8 ssd008 update booking"
+    },
+    {
+      "label": "4.6.9 SSD009 Delete Booking",
+      "file_type": "document",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L140",
+      "_origin": "ast",
+      "id": "system_sequence_diagrams_4_6_9_ssd009_delete_booking",
+      "community": 164,
+      "norm_label": "4.6.9 ssd009 delete booking"
+    },
+    {
+      "label": "4.6.10 SSD010 Create Payment",
+      "file_type": "document",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L153",
+      "_origin": "ast",
+      "id": "system_sequence_diagrams_4_6_10_ssd010_create_payment",
+      "community": 164,
+      "norm_label": "4.6.10 ssd010 create payment"
+    },
+    {
+      "label": "4.6.11 SSD011 View Payment",
+      "file_type": "document",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L166",
+      "_origin": "ast",
+      "id": "system_sequence_diagrams_4_6_11_ssd011_view_payment",
+      "community": 164,
+      "norm_label": "4.6.11 ssd011 view payment"
+    },
+    {
+      "label": "4.6.12 SSD012 Update Payment",
+      "file_type": "document",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L179",
+      "_origin": "ast",
+      "id": "system_sequence_diagrams_4_6_12_ssd012_update_payment",
+      "community": 164,
+      "norm_label": "4.6.12 ssd012 update payment"
+    },
+    {
+      "label": "4.6.13 SSD013 Create Refund",
+      "file_type": "document",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L192",
+      "_origin": "ast",
+      "id": "system_sequence_diagrams_4_6_13_ssd013_create_refund",
+      "community": 164,
+      "norm_label": "4.6.13 ssd013 create refund"
+    },
+    {
+      "label": "4.6.14 SSD014 View Refund",
+      "file_type": "document",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L205",
+      "_origin": "ast",
+      "id": "system_sequence_diagrams_4_6_14_ssd014_view_refund",
+      "community": 164,
+      "norm_label": "4.6.14 ssd014 view refund"
+    },
+    {
+      "label": "4.6.15 SSD015 Update Refund",
+      "file_type": "document",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L218",
+      "_origin": "ast",
+      "id": "system_sequence_diagrams_4_6_15_ssd015_update_refund",
+      "community": 164,
+      "norm_label": "4.6.15 ssd015 update refund"
+    },
+    {
+      "label": "4.6.16 SSD016 Create Job Record",
+      "file_type": "document",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L231",
+      "_origin": "ast",
+      "id": "system_sequence_diagrams_4_6_16_ssd016_create_job_record",
+      "community": 164,
+      "norm_label": "4.6.16 ssd016 create job record"
+    },
+    {
+      "label": "4.6.17 SSD017 View Job Record",
+      "file_type": "document",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L244",
+      "_origin": "ast",
+      "id": "system_sequence_diagrams_4_6_17_ssd017_view_job_record",
+      "community": 164,
+      "norm_label": "4.6.17 ssd017 view job record"
+    },
+    {
+      "label": "4.6.18 SSD018 Update Job Record",
+      "file_type": "document",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L257",
+      "_origin": "ast",
+      "id": "system_sequence_diagrams_4_6_18_ssd018_update_job_record",
+      "community": 164,
+      "norm_label": "4.6.18 ssd018 update job record"
+    },
+    {
+      "label": "4.6.19 SSD019 Generate Report",
+      "file_type": "document",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L270",
+      "_origin": "ast",
+      "id": "system_sequence_diagrams_4_6_19_ssd019_generate_report",
+      "community": 164,
+      "norm_label": "4.6.19 ssd019 generate report"
+    },
+    {
+      "label": "4.6.20 SSD020 Create Feedback",
+      "file_type": "document",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L283",
+      "_origin": "ast",
+      "id": "system_sequence_diagrams_4_6_20_ssd020_create_feedback",
+      "community": 164,
+      "norm_label": "4.6.20 ssd020 create feedback"
+    },
+    {
+      "label": "4.6.21 SSD021 View Feedback",
+      "file_type": "document",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L296",
+      "_origin": "ast",
+      "id": "system_sequence_diagrams_4_6_21_ssd021_view_feedback",
+      "community": 164,
+      "norm_label": "4.6.21 ssd021 view feedback"
+    },
+    {
+      "label": "4.6.22 SSD022 Create Chat Message",
+      "file_type": "document",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L309",
+      "_origin": "ast",
+      "id": "system_sequence_diagrams_4_6_22_ssd022_create_chat_message",
+      "community": 164,
+      "norm_label": "4.6.22 ssd022 create chat message"
+    },
+    {
+      "label": "4.6.23 SSD023 View Chat Messages",
+      "file_type": "document",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L322",
+      "_origin": "ast",
+      "id": "system_sequence_diagrams_4_6_23_ssd023_view_chat_messages",
+      "community": 164,
+      "norm_label": "4.6.23 ssd023 view chat messages"
+    },
+    {
+      "label": "4.6.24 SSD024 View Push Notifications",
+      "file_type": "document",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L335",
+      "_origin": "ast",
+      "id": "system_sequence_diagrams_4_6_24_ssd024_view_push_notifications",
+      "community": 164,
+      "norm_label": "4.6.24 ssd024 view push notifications"
     },
     {
       "label": "USE_CASE_DESCRIPTIONS.md",
@@ -10060,6 +10760,17 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "app/Notifications/RecentActivityNotification.php",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "notifications_recentactivitynotification",
+      "target": "mailmessage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/Notifications/RecentActivityNotification.php",
       "source_location": "L7",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -10095,16 +10806,6 @@
       "confidence_score": 1.0,
       "source": "notifications_recentactivitynotification_recentactivitynotification",
       "target": "notifications_recentactivitynotification_recentactivitynotification_construct"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "app/Notifications/RecentActivityNotification.php",
-      "source_location": "L43",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "notifications_recentactivitynotification_recentactivitynotification",
-      "target": "notifications_recentactivitynotification_recentactivitynotification_shouldsendemail"
     },
     {
       "relation": "method",
@@ -10181,15 +10882,15 @@
       "target": "notification"
     },
     {
-      "relation": "calls",
-      "context": "call",
+      "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "app/Notifications/RecentActivityNotification.php",
-      "source_location": "L33",
+      "source_location": "L36",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "notifications_recentactivitynotification_recentactivitynotification_via",
-      "target": "notifications_recentactivitynotification_recentactivitynotification_shouldsendemail"
+      "context": "return_type",
+      "source": "notifications_recentactivitynotification_recentactivitynotification_tomail",
+      "target": "mailmessage",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -11298,17 +11999,6 @@
       "target": "seeders_databaseseeder_databaseseeder"
     },
     {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "database/seeders/DatabaseSeeder.php",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "seeders_databaseseeder",
-      "target": "withoutmodelevents"
-    },
-    {
       "relation": "inherits",
       "confidence": "EXTRACTED",
       "source_file": "database/seeders/DatabaseSeeder.php",
@@ -11329,16 +12019,6 @@
       "target": "seeders_databaseseeder_databaseseeder_run"
     },
     {
-      "relation": "mixes_in",
-      "confidence": "EXTRACTED",
-      "source_file": "database/seeders/DatabaseSeeder.php",
-      "source_location": "L11",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "seeders_databaseseeder_databaseseeder",
-      "target": "withoutmodelevents"
-    },
-    {
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
@@ -11360,17 +12040,6 @@
       "target": "seeder"
     },
     {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "database/seeders/PlumbersSeeder.php",
-      "source_location": "L5",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "seeders_plumbersseeder",
-      "target": "withoutmodelevents"
-    },
-    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "database/seeders/PlumbersSeeder.php",
@@ -11389,6 +12058,106 @@
       "confidence_score": 1.0,
       "source": "seeders_plumbersseeder_plumbersseeder",
       "target": "seeders_plumbersseeder_plumbersseeder_run"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "generate_classic_ssd.ps1",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "generate_classic_ssd",
+      "target": "generate_classic_ssd_create_classicssd",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "generate_diagrams.ps1",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "generate_diagrams",
+      "target": "generate_diagrams_draw_arrowline",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "generate_diagrams.ps1",
+      "source_location": "L63",
+      "weight": 1.0,
+      "source": "generate_diagrams",
+      "target": "generate_diagrams_draw_polylinearrow",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "generate_diagrams.ps1",
+      "source_location": "L120",
+      "weight": 1.0,
+      "source": "generate_diagrams",
+      "target": "generate_diagrams_render_interactivediagram",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "generate_diagrams.ps1",
+      "source_location": "L309",
+      "weight": 1.0,
+      "source": "generate_diagrams",
+      "target": "generate_diagrams_render_lineardiagram",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "generate_diagrams.ps1",
+      "source_location": "L207",
+      "weight": 1.0,
+      "source": "generate_diagrams_render_interactivediagram",
+      "target": "generate_diagrams_draw_arrowline",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "generate_diagrams.ps1",
+      "source_location": "L391",
+      "weight": 1.0,
+      "source": "generate_diagrams_render_lineardiagram",
+      "target": "generate_diagrams_draw_arrowline",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "generate_diagrams.ps1",
+      "source_location": "L231",
+      "weight": 1.0,
+      "source": "generate_diagrams_render_interactivediagram",
+      "target": "generate_diagrams_draw_polylinearrow",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "generate_diagrams.ps1",
+      "source_location": "L416",
+      "weight": 1.0,
+      "source": "generate_diagrams_render_lineardiagram",
+      "target": "generate_diagrams_draw_polylinearrow",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "generate_ssd_diagrams.ps1",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "generate_ssd_diagrams",
+      "target": "generate_ssd_diagrams_render_ssd",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -12405,12 +13174,282 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "activity_diagrams",
+      "target": "activity_diagrams_plumbfix_business_activity_diagrams_bad",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "activity_diagrams_plumbfix_business_activity_diagrams_bad",
+      "target": "activity_diagrams_business_activity_diagrams",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "activity_diagrams_plumbfix_business_activity_diagrams_bad",
+      "target": "activity_diagrams_table_of_contents",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L297",
+      "weight": 1.0,
+      "source": "activity_diagrams_business_activity_diagrams",
+      "target": "activity_diagrams_4_4_10_bad010_create_payment",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L327",
+      "weight": 1.0,
+      "source": "activity_diagrams_business_activity_diagrams",
+      "target": "activity_diagrams_4_4_11_bad011_view_payment",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L348",
+      "weight": 1.0,
+      "source": "activity_diagrams_business_activity_diagrams",
+      "target": "activity_diagrams_4_4_12_bad012_update_payment",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L379",
+      "weight": 1.0,
+      "source": "activity_diagrams_business_activity_diagrams",
+      "target": "activity_diagrams_4_4_13_bad013_create_refund",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L407",
+      "weight": 1.0,
+      "source": "activity_diagrams_business_activity_diagrams",
+      "target": "activity_diagrams_4_4_14_bad014_view_refund",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L430",
+      "weight": 1.0,
+      "source": "activity_diagrams_business_activity_diagrams",
+      "target": "activity_diagrams_4_4_15_bad015_update_refund",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L460",
+      "weight": 1.0,
+      "source": "activity_diagrams_business_activity_diagrams",
+      "target": "activity_diagrams_4_4_16_bad016_create_job_record",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L492",
+      "weight": 1.0,
+      "source": "activity_diagrams_business_activity_diagrams",
+      "target": "activity_diagrams_4_4_17_bad017_view_job_record",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L513",
+      "weight": 1.0,
+      "source": "activity_diagrams_business_activity_diagrams",
+      "target": "activity_diagrams_4_4_18_bad018_update_job_record",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L544",
+      "weight": 1.0,
+      "source": "activity_diagrams_business_activity_diagrams",
+      "target": "activity_diagrams_4_4_19_bad019_generate_report",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "activity_diagrams_business_activity_diagrams",
+      "target": "activity_diagrams_4_4_1_bad001_login",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L569",
+      "weight": 1.0,
+      "source": "activity_diagrams_business_activity_diagrams",
+      "target": "activity_diagrams_4_4_20_bad020_create_feedback",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L600",
+      "weight": 1.0,
+      "source": "activity_diagrams_business_activity_diagrams",
+      "target": "activity_diagrams_4_4_21_bad021_view_feedback",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L623",
+      "weight": 1.0,
+      "source": "activity_diagrams_business_activity_diagrams",
+      "target": "activity_diagrams_4_4_22_bad022_create_chat_message",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L652",
+      "weight": 1.0,
+      "source": "activity_diagrams_business_activity_diagrams",
+      "target": "activity_diagrams_4_4_23_bad023_view_chat_messages",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L675",
+      "weight": 1.0,
+      "source": "activity_diagrams_business_activity_diagrams",
+      "target": "activity_diagrams_4_4_24_bad024_view_push_notifications",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L67",
+      "weight": 1.0,
+      "source": "activity_diagrams_business_activity_diagrams",
+      "target": "activity_diagrams_4_4_2_bad002_create_account",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L95",
+      "weight": 1.0,
+      "source": "activity_diagrams_business_activity_diagrams",
+      "target": "activity_diagrams_4_4_3_bad003_view_account",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L120",
+      "weight": 1.0,
+      "source": "activity_diagrams_business_activity_diagrams",
+      "target": "activity_diagrams_4_4_4_bad004_update_account",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L150",
+      "weight": 1.0,
+      "source": "activity_diagrams_business_activity_diagrams",
+      "target": "activity_diagrams_4_4_5_bad005_delete_account",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L181",
+      "weight": 1.0,
+      "source": "activity_diagrams_business_activity_diagrams",
+      "target": "activity_diagrams_4_4_6_bad006_create_booking",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L212",
+      "weight": 1.0,
+      "source": "activity_diagrams_business_activity_diagrams",
+      "target": "activity_diagrams_4_4_7_bad007_view_booking",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L237",
+      "weight": 1.0,
+      "source": "activity_diagrams_business_activity_diagrams",
+      "target": "activity_diagrams_4_4_8_bad008_update_booking",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ACTIVITY_DIAGRAMS.md",
+      "source_location": "L267",
+      "weight": 1.0,
+      "source": "activity_diagrams_business_activity_diagrams",
+      "target": "activity_diagrams_4_4_9_bad009_delete_booking",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "DATA_DICTIONARY.md",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "data_dictionary",
-      "target": "data_dictionary_plumbfix_database_data_dictionary",
-      "confidence_score": 1.0
+      "target": "data_dictionary_plumbfix_database_data_dictionary"
     },
     {
       "relation": "contains",
@@ -12418,9 +13457,9 @@
       "source_file": "DATA_DICTIONARY.md",
       "source_location": "L11",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "data_dictionary_plumbfix_database_data_dictionary",
-      "target": "data_dictionary_table_of_contents",
-      "confidence_score": 1.0
+      "target": "data_dictionary_table_of_contents"
     },
     {
       "relation": "contains",
@@ -12428,9 +13467,9 @@
       "source_file": "DATA_DICTIONARY.md",
       "source_location": "L156",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "data_dictionary_table_of_contents",
-      "target": "data_dictionary_10_feedback",
-      "confidence_score": 1.0
+      "target": "data_dictionary_10_feedback"
     },
     {
       "relation": "contains",
@@ -12438,9 +13477,9 @@
       "source_file": "DATA_DICTIONARY.md",
       "source_location": "L170",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "data_dictionary_table_of_contents",
-      "target": "data_dictionary_11_chatmessage",
-      "confidence_score": 1.0
+      "target": "data_dictionary_11_chatmessage"
     },
     {
       "relation": "contains",
@@ -12448,9 +13487,9 @@
       "source_file": "DATA_DICTIONARY.md",
       "source_location": "L27",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "data_dictionary_table_of_contents",
-      "target": "data_dictionary_1_staff",
-      "confidence_score": 1.0
+      "target": "data_dictionary_1_staff"
     },
     {
       "relation": "contains",
@@ -12458,9 +13497,9 @@
       "source_file": "DATA_DICTIONARY.md",
       "source_location": "L41",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "data_dictionary_table_of_contents",
-      "target": "data_dictionary_2_customer",
-      "confidence_score": 1.0
+      "target": "data_dictionary_2_customer"
     },
     {
       "relation": "contains",
@@ -12468,9 +13507,9 @@
       "source_file": "DATA_DICTIONARY.md",
       "source_location": "L56",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "data_dictionary_table_of_contents",
-      "target": "data_dictionary_3_notification",
-      "confidence_score": 1.0
+      "target": "data_dictionary_3_notification"
     },
     {
       "relation": "contains",
@@ -12478,9 +13517,9 @@
       "source_file": "DATA_DICTIONARY.md",
       "source_location": "L69",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "data_dictionary_table_of_contents",
-      "target": "data_dictionary_4_booking",
-      "confidence_score": 1.0
+      "target": "data_dictionary_4_booking"
     },
     {
       "relation": "contains",
@@ -12488,9 +13527,9 @@
       "source_file": "DATA_DICTIONARY.md",
       "source_location": "L86",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "data_dictionary_table_of_contents",
-      "target": "data_dictionary_5_payment",
-      "confidence_score": 1.0
+      "target": "data_dictionary_5_payment"
     },
     {
       "relation": "contains",
@@ -12498,9 +13537,9 @@
       "source_file": "DATA_DICTIONARY.md",
       "source_location": "L103",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "data_dictionary_table_of_contents",
-      "target": "data_dictionary_6_paymentreceipt",
-      "confidence_score": 1.0
+      "target": "data_dictionary_6_paymentreceipt"
     },
     {
       "relation": "contains",
@@ -12508,9 +13547,9 @@
       "source_file": "DATA_DICTIONARY.md",
       "source_location": "L116",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "data_dictionary_table_of_contents",
-      "target": "data_dictionary_7_cancellation",
-      "confidence_score": 1.0
+      "target": "data_dictionary_7_cancellation"
     },
     {
       "relation": "contains",
@@ -12518,9 +13557,9 @@
       "source_file": "DATA_DICTIONARY.md",
       "source_location": "L128",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "data_dictionary_table_of_contents",
-      "target": "data_dictionary_8_refund",
-      "confidence_score": 1.0
+      "target": "data_dictionary_8_refund"
     },
     {
       "relation": "contains",
@@ -12528,9 +13567,9 @@
       "source_file": "DATA_DICTIONARY.md",
       "source_location": "L142",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "data_dictionary_table_of_contents",
-      "target": "data_dictionary_9_jobrecord",
-      "confidence_score": 1.0
+      "target": "data_dictionary_9_jobrecord"
     },
     {
       "relation": "contains",
@@ -12538,9 +13577,9 @@
       "source_file": "ERD_DESCRIPTIONS.md",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "erd_descriptions",
-      "target": "erd_descriptions_plumbfix_database_entity_descriptions",
-      "confidence_score": 1.0
+      "target": "erd_descriptions_plumbfix_database_entity_descriptions"
     },
     {
       "relation": "contains",
@@ -12548,9 +13587,9 @@
       "source_file": "ERD_DESCRIPTIONS.md",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "erd_descriptions_plumbfix_database_entity_descriptions",
-      "target": "erd_descriptions_entity_descriptions_table",
-      "confidence_score": 1.0
+      "target": "erd_descriptions_entity_descriptions_table"
     },
     {
       "relation": "contains",
@@ -12558,9 +13597,9 @@
       "source_file": "ERD_DESCRIPTIONS.md",
       "source_location": "L25",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "erd_descriptions_plumbfix_database_entity_descriptions",
-      "target": "erd_descriptions_entity_relationship_overview",
-      "confidence_score": 1.0
+      "target": "erd_descriptions_entity_relationship_overview"
     },
     {
       "relation": "contains",
@@ -12568,9 +13607,9 @@
       "source_file": "PACKAGE_DIAGRAM.md",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "package_diagram",
-      "target": "package_diagram_plumbfix_package_diagram_functions_and_content",
-      "confidence_score": 1.0
+      "target": "package_diagram_plumbfix_package_diagram_functions_and_content"
     },
     {
       "relation": "contains",
@@ -12578,9 +13617,9 @@
       "source_file": "PACKAGE_DIAGRAM.md",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "package_diagram_plumbfix_package_diagram_functions_and_content",
-      "target": "package_diagram_4_1_2_package_functions",
-      "confidence_score": 1.0
+      "target": "package_diagram_4_1_2_package_functions"
     },
     {
       "relation": "contains",
@@ -12588,9 +13627,9 @@
       "source_file": "PACKAGE_DIAGRAM.md",
       "source_location": "L19",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "package_diagram_plumbfix_package_diagram_functions_and_content",
-      "target": "package_diagram_4_1_3_package_content",
-      "confidence_score": 1.0
+      "target": "package_diagram_4_1_3_package_content"
     },
     {
       "relation": "contains",
@@ -12598,9 +13637,9 @@
       "source_file": "PACKAGE_DIAGRAM.md",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "package_diagram_4_1_2_package_functions",
-      "target": "package_diagram_table_4_1_package_functions",
-      "confidence_score": 1.0
+      "target": "package_diagram_table_4_1_package_functions"
     },
     {
       "relation": "contains",
@@ -12608,59 +13647,9 @@
       "source_file": "PACKAGE_DIAGRAM.md",
       "source_location": "L21",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "package_diagram_4_1_3_package_content",
-      "target": "package_diagram_table_4_2_package_content",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "README.md",
-      "source_location": "L10",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "readme",
-      "target": "readme_about_laravel"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "README.md",
-      "source_location": "L49",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "readme",
-      "target": "readme_code_of_conduct"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "README.md",
-      "source_location": "L45",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "readme",
-      "target": "readme_contributing"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "README.md",
-      "source_location": "L30",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "readme",
-      "target": "readme_laravel_sponsors"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "README.md",
-      "source_location": "L24",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "readme",
-      "target": "readme_learning_laravel"
+      "target": "package_diagram_table_4_2_package_content"
     },
     {
       "relation": "contains",
@@ -12676,21 +13665,151 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L53",
+      "source_location": "L1",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "readme",
-      "target": "readme_security_vulnerabilities"
+      "target": "readme_plumbfix_plumbing_service_operations_management_system",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L34",
+      "source_location": "L149",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "readme_laravel_sponsors",
-      "target": "readme_premium_partners"
+      "source": "readme_plumbfix_plumbing_service_operations_management_system",
+      "target": "readme_author",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L80",
+      "weight": 1.0,
+      "source": "readme_plumbfix_plumbing_service_operations_management_system",
+      "target": "readme_getting_started",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "readme_plumbfix_plumbing_service_operations_management_system",
+      "target": "readme_key_features",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L155",
+      "weight": 1.0,
+      "source": "readme_plumbfix_plumbing_service_operations_management_system",
+      "target": "readme_license",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "readme_plumbfix_plumbing_service_operations_management_system",
+      "target": "readme_live_system_demo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "readme_plumbfix_plumbing_service_operations_management_system",
+      "target": "readme_overview",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L69",
+      "weight": 1.0,
+      "source": "readme_plumbfix_plumbing_service_operations_management_system",
+      "target": "readme_system_architecture_documentation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L54",
+      "weight": 1.0,
+      "source": "readme_plumbfix_plumbing_service_operations_management_system",
+      "target": "readme_technology_stack",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L139",
+      "weight": 1.0,
+      "source": "readme_plumbfix_plumbing_service_operations_management_system",
+      "target": "readme_testing",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "readme_key_features",
+      "target": "readme_customer_portal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L47",
+      "weight": 1.0,
+      "source": "readme_key_features",
+      "target": "readme_security_integrations",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L41",
+      "weight": 1.0,
+      "source": "readme_key_features",
+      "target": "readme_staff_admin_dashboard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L92",
+      "weight": 1.0,
+      "source": "readme_getting_started",
+      "target": "readme_installation_steps",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L84",
+      "weight": 1.0,
+      "source": "readme_getting_started",
+      "target": "readme_prerequisites",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -13085,12 +14204,272 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "system_sequence_diagrams",
+      "target": "system_sequence_diagrams_4_6_system_sequence_diagrams_ssd",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L153",
+      "weight": 1.0,
+      "source": "system_sequence_diagrams_4_6_system_sequence_diagrams_ssd",
+      "target": "system_sequence_diagrams_4_6_10_ssd010_create_payment",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L166",
+      "weight": 1.0,
+      "source": "system_sequence_diagrams_4_6_system_sequence_diagrams_ssd",
+      "target": "system_sequence_diagrams_4_6_11_ssd011_view_payment",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L179",
+      "weight": 1.0,
+      "source": "system_sequence_diagrams_4_6_system_sequence_diagrams_ssd",
+      "target": "system_sequence_diagrams_4_6_12_ssd012_update_payment",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L192",
+      "weight": 1.0,
+      "source": "system_sequence_diagrams_4_6_system_sequence_diagrams_ssd",
+      "target": "system_sequence_diagrams_4_6_13_ssd013_create_refund",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L205",
+      "weight": 1.0,
+      "source": "system_sequence_diagrams_4_6_system_sequence_diagrams_ssd",
+      "target": "system_sequence_diagrams_4_6_14_ssd014_view_refund",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L218",
+      "weight": 1.0,
+      "source": "system_sequence_diagrams_4_6_system_sequence_diagrams_ssd",
+      "target": "system_sequence_diagrams_4_6_15_ssd015_update_refund",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L231",
+      "weight": 1.0,
+      "source": "system_sequence_diagrams_4_6_system_sequence_diagrams_ssd",
+      "target": "system_sequence_diagrams_4_6_16_ssd016_create_job_record",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L244",
+      "weight": 1.0,
+      "source": "system_sequence_diagrams_4_6_system_sequence_diagrams_ssd",
+      "target": "system_sequence_diagrams_4_6_17_ssd017_view_job_record",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L257",
+      "weight": 1.0,
+      "source": "system_sequence_diagrams_4_6_system_sequence_diagrams_ssd",
+      "target": "system_sequence_diagrams_4_6_18_ssd018_update_job_record",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L270",
+      "weight": 1.0,
+      "source": "system_sequence_diagrams_4_6_system_sequence_diagrams_ssd",
+      "target": "system_sequence_diagrams_4_6_19_ssd019_generate_report",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "system_sequence_diagrams_4_6_system_sequence_diagrams_ssd",
+      "target": "system_sequence_diagrams_4_6_1_ssd001_create_account",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L283",
+      "weight": 1.0,
+      "source": "system_sequence_diagrams_4_6_system_sequence_diagrams_ssd",
+      "target": "system_sequence_diagrams_4_6_20_ssd020_create_feedback",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L296",
+      "weight": 1.0,
+      "source": "system_sequence_diagrams_4_6_system_sequence_diagrams_ssd",
+      "target": "system_sequence_diagrams_4_6_21_ssd021_view_feedback",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L309",
+      "weight": 1.0,
+      "source": "system_sequence_diagrams_4_6_system_sequence_diagrams_ssd",
+      "target": "system_sequence_diagrams_4_6_22_ssd022_create_chat_message",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L322",
+      "weight": 1.0,
+      "source": "system_sequence_diagrams_4_6_system_sequence_diagrams_ssd",
+      "target": "system_sequence_diagrams_4_6_23_ssd023_view_chat_messages",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L335",
+      "weight": 1.0,
+      "source": "system_sequence_diagrams_4_6_system_sequence_diagrams_ssd",
+      "target": "system_sequence_diagrams_4_6_24_ssd024_view_push_notifications",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L49",
+      "weight": 1.0,
+      "source": "system_sequence_diagrams_4_6_system_sequence_diagrams_ssd",
+      "target": "system_sequence_diagrams_4_6_2_ssd002_login",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L62",
+      "weight": 1.0,
+      "source": "system_sequence_diagrams_4_6_system_sequence_diagrams_ssd",
+      "target": "system_sequence_diagrams_4_6_3_ssd003_view_account",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L75",
+      "weight": 1.0,
+      "source": "system_sequence_diagrams_4_6_system_sequence_diagrams_ssd",
+      "target": "system_sequence_diagrams_4_6_4_ssd004_update_account",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L88",
+      "weight": 1.0,
+      "source": "system_sequence_diagrams_4_6_system_sequence_diagrams_ssd",
+      "target": "system_sequence_diagrams_4_6_5_ssd005_delete_account",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L101",
+      "weight": 1.0,
+      "source": "system_sequence_diagrams_4_6_system_sequence_diagrams_ssd",
+      "target": "system_sequence_diagrams_4_6_6_ssd006_create_booking",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L114",
+      "weight": 1.0,
+      "source": "system_sequence_diagrams_4_6_system_sequence_diagrams_ssd",
+      "target": "system_sequence_diagrams_4_6_7_ssd007_view_booking",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L127",
+      "weight": 1.0,
+      "source": "system_sequence_diagrams_4_6_system_sequence_diagrams_ssd",
+      "target": "system_sequence_diagrams_4_6_8_ssd008_update_booking",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L140",
+      "weight": 1.0,
+      "source": "system_sequence_diagrams_4_6_system_sequence_diagrams_ssd",
+      "target": "system_sequence_diagrams_4_6_9_ssd009_delete_booking",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SYSTEM_SEQUENCE_DIAGRAMS.md",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "system_sequence_diagrams_4_6_system_sequence_diagrams_ssd",
+      "target": "system_sequence_diagrams_table_of_contents",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "USE_CASE_DESCRIPTIONS.md",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "use_case_descriptions",
-      "target": "use_case_descriptions_plumbfix_plumbing_management_system_use_case_descriptions",
-      "confidence_score": 1.0
+      "target": "use_case_descriptions_plumbfix_plumbing_management_system_use_case_descriptions"
     },
     {
       "relation": "contains",
@@ -13098,9 +14477,9 @@
       "source_file": "USE_CASE_DESCRIPTIONS.md",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "use_case_descriptions_plumbfix_plumbing_management_system_use_case_descriptions",
-      "target": "use_case_descriptions_table_of_contents",
-      "confidence_score": 1.0
+      "target": "use_case_descriptions_table_of_contents"
     },
     {
       "relation": "contains",
@@ -13108,9 +14487,9 @@
       "source_file": "USE_CASE_DESCRIPTIONS.md",
       "source_location": "L36",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "use_case_descriptions_plumbfix_plumbing_management_system_use_case_descriptions",
-      "target": "use_case_descriptions_use_case_specifications",
-      "confidence_score": 1.0
+      "target": "use_case_descriptions_use_case_specifications"
     },
     {
       "relation": "contains",
@@ -13118,9 +14497,9 @@
       "source_file": "USE_CASE_DESCRIPTIONS.md",
       "source_location": "L38",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "use_case_descriptions_use_case_specifications",
-      "target": "use_case_descriptions_uc_01_login",
-      "confidence_score": 1.0
+      "target": "use_case_descriptions_uc_01_login"
     },
     {
       "relation": "contains",
@@ -13128,9 +14507,9 @@
       "source_file": "USE_CASE_DESCRIPTIONS.md",
       "source_location": "L53",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "use_case_descriptions_use_case_specifications",
-      "target": "use_case_descriptions_uc_02_create_account",
-      "confidence_score": 1.0
+      "target": "use_case_descriptions_uc_02_create_account"
     },
     {
       "relation": "contains",
@@ -13138,9 +14517,9 @@
       "source_file": "USE_CASE_DESCRIPTIONS.md",
       "source_location": "L68",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "use_case_descriptions_use_case_specifications",
-      "target": "use_case_descriptions_uc_03_view_account",
-      "confidence_score": 1.0
+      "target": "use_case_descriptions_uc_03_view_account"
     },
     {
       "relation": "contains",
@@ -13148,9 +14527,9 @@
       "source_file": "USE_CASE_DESCRIPTIONS.md",
       "source_location": "L83",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "use_case_descriptions_use_case_specifications",
-      "target": "use_case_descriptions_uc_04_update_account",
-      "confidence_score": 1.0
+      "target": "use_case_descriptions_uc_04_update_account"
     },
     {
       "relation": "contains",
@@ -13158,9 +14537,9 @@
       "source_file": "USE_CASE_DESCRIPTIONS.md",
       "source_location": "L98",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "use_case_descriptions_use_case_specifications",
-      "target": "use_case_descriptions_uc_05_delete_account",
-      "confidence_score": 1.0
+      "target": "use_case_descriptions_uc_05_delete_account"
     },
     {
       "relation": "contains",
@@ -13168,9 +14547,9 @@
       "source_file": "USE_CASE_DESCRIPTIONS.md",
       "source_location": "L113",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "use_case_descriptions_use_case_specifications",
-      "target": "use_case_descriptions_uc_06_create_booking",
-      "confidence_score": 1.0
+      "target": "use_case_descriptions_uc_06_create_booking"
     },
     {
       "relation": "contains",
@@ -13178,9 +14557,9 @@
       "source_file": "USE_CASE_DESCRIPTIONS.md",
       "source_location": "L128",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "use_case_descriptions_use_case_specifications",
-      "target": "use_case_descriptions_uc_07_view_booking",
-      "confidence_score": 1.0
+      "target": "use_case_descriptions_uc_07_view_booking"
     },
     {
       "relation": "contains",
@@ -13188,9 +14567,9 @@
       "source_file": "USE_CASE_DESCRIPTIONS.md",
       "source_location": "L143",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "use_case_descriptions_use_case_specifications",
-      "target": "use_case_descriptions_uc_08_update_booking",
-      "confidence_score": 1.0
+      "target": "use_case_descriptions_uc_08_update_booking"
     },
     {
       "relation": "contains",
@@ -13198,9 +14577,9 @@
       "source_file": "USE_CASE_DESCRIPTIONS.md",
       "source_location": "L158",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "use_case_descriptions_use_case_specifications",
-      "target": "use_case_descriptions_uc_09_delete_booking",
-      "confidence_score": 1.0
+      "target": "use_case_descriptions_uc_09_delete_booking"
     },
     {
       "relation": "contains",
@@ -13208,9 +14587,9 @@
       "source_file": "USE_CASE_DESCRIPTIONS.md",
       "source_location": "L173",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "use_case_descriptions_use_case_specifications",
-      "target": "use_case_descriptions_uc_10_create_payment",
-      "confidence_score": 1.0
+      "target": "use_case_descriptions_uc_10_create_payment"
     },
     {
       "relation": "contains",
@@ -13218,9 +14597,9 @@
       "source_file": "USE_CASE_DESCRIPTIONS.md",
       "source_location": "L188",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "use_case_descriptions_use_case_specifications",
-      "target": "use_case_descriptions_uc_11_view_payment",
-      "confidence_score": 1.0
+      "target": "use_case_descriptions_uc_11_view_payment"
     },
     {
       "relation": "contains",
@@ -13228,9 +14607,9 @@
       "source_file": "USE_CASE_DESCRIPTIONS.md",
       "source_location": "L203",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "use_case_descriptions_use_case_specifications",
-      "target": "use_case_descriptions_uc_12_update_payment",
-      "confidence_score": 1.0
+      "target": "use_case_descriptions_uc_12_update_payment"
     },
     {
       "relation": "contains",
@@ -13238,9 +14617,9 @@
       "source_file": "USE_CASE_DESCRIPTIONS.md",
       "source_location": "L218",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "use_case_descriptions_use_case_specifications",
-      "target": "use_case_descriptions_uc_13_create_refund",
-      "confidence_score": 1.0
+      "target": "use_case_descriptions_uc_13_create_refund"
     },
     {
       "relation": "contains",
@@ -13248,9 +14627,9 @@
       "source_file": "USE_CASE_DESCRIPTIONS.md",
       "source_location": "L233",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "use_case_descriptions_use_case_specifications",
-      "target": "use_case_descriptions_uc_14_view_refund",
-      "confidence_score": 1.0
+      "target": "use_case_descriptions_uc_14_view_refund"
     },
     {
       "relation": "contains",
@@ -13258,9 +14637,9 @@
       "source_file": "USE_CASE_DESCRIPTIONS.md",
       "source_location": "L248",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "use_case_descriptions_use_case_specifications",
-      "target": "use_case_descriptions_uc_15_update_refund",
-      "confidence_score": 1.0
+      "target": "use_case_descriptions_uc_15_update_refund"
     },
     {
       "relation": "contains",
@@ -13268,9 +14647,9 @@
       "source_file": "USE_CASE_DESCRIPTIONS.md",
       "source_location": "L263",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "use_case_descriptions_use_case_specifications",
-      "target": "use_case_descriptions_uc_16_create_job_record",
-      "confidence_score": 1.0
+      "target": "use_case_descriptions_uc_16_create_job_record"
     },
     {
       "relation": "contains",
@@ -13278,9 +14657,9 @@
       "source_file": "USE_CASE_DESCRIPTIONS.md",
       "source_location": "L278",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "use_case_descriptions_use_case_specifications",
-      "target": "use_case_descriptions_uc_17_view_job_record",
-      "confidence_score": 1.0
+      "target": "use_case_descriptions_uc_17_view_job_record"
     },
     {
       "relation": "contains",
@@ -13288,9 +14667,9 @@
       "source_file": "USE_CASE_DESCRIPTIONS.md",
       "source_location": "L293",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "use_case_descriptions_use_case_specifications",
-      "target": "use_case_descriptions_uc_18_update_job_record",
-      "confidence_score": 1.0
+      "target": "use_case_descriptions_uc_18_update_job_record"
     },
     {
       "relation": "contains",
@@ -13298,9 +14677,9 @@
       "source_file": "USE_CASE_DESCRIPTIONS.md",
       "source_location": "L308",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "use_case_descriptions_use_case_specifications",
-      "target": "use_case_descriptions_uc_19_generate_report",
-      "confidence_score": 1.0
+      "target": "use_case_descriptions_uc_19_generate_report"
     },
     {
       "relation": "contains",
@@ -13308,9 +14687,9 @@
       "source_file": "USE_CASE_DESCRIPTIONS.md",
       "source_location": "L323",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "use_case_descriptions_use_case_specifications",
-      "target": "use_case_descriptions_uc_20_create_feedback",
-      "confidence_score": 1.0
+      "target": "use_case_descriptions_uc_20_create_feedback"
     },
     {
       "relation": "contains",
@@ -13318,9 +14697,9 @@
       "source_file": "USE_CASE_DESCRIPTIONS.md",
       "source_location": "L338",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "use_case_descriptions_use_case_specifications",
-      "target": "use_case_descriptions_uc_21_view_feedback",
-      "confidence_score": 1.0
+      "target": "use_case_descriptions_uc_21_view_feedback"
     },
     {
       "relation": "contains",
@@ -13328,9 +14707,9 @@
       "source_file": "USE_CASE_DESCRIPTIONS.md",
       "source_location": "L353",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "use_case_descriptions_use_case_specifications",
-      "target": "use_case_descriptions_uc_22_create_chat_message",
-      "confidence_score": 1.0
+      "target": "use_case_descriptions_uc_22_create_chat_message"
     },
     {
       "relation": "contains",
@@ -13338,9 +14717,9 @@
       "source_file": "USE_CASE_DESCRIPTIONS.md",
       "source_location": "L368",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "use_case_descriptions_use_case_specifications",
-      "target": "use_case_descriptions_uc_23_view_chat_messages",
-      "confidence_score": 1.0
+      "target": "use_case_descriptions_uc_23_view_chat_messages"
     },
     {
       "relation": "contains",
@@ -13348,9 +14727,9 @@
       "source_file": "USE_CASE_DESCRIPTIONS.md",
       "source_location": "L383",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "use_case_descriptions_use_case_specifications",
-      "target": "use_case_descriptions_uc_24_view_push_notifications",
-      "confidence_score": 1.0
+      "target": "use_case_descriptions_uc_24_view_push_notifications"
     }
   ],
   "hyperedges": []
