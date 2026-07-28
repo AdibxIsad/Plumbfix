@@ -8,8 +8,8 @@
   <img src="https://img.shields.io/badge/PHP-8.2%2B-777BB4?style=for-the-badge&logo=php&logoColor=white" alt="PHP 8.2+">
   <img src="https://img.shields.io/badge/Laravel-12.0-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" alt="Laravel 12">
   <img src="https://img.shields.io/badge/Tailwind_CSS-v4-38BDF8?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS v4">
-  <img src="https://img.shields.io/badge/Database-MySQL%20%2F%20SQLite-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="Database">
-  <img src="https://img.shields.io/badge/License-MIT-green.style=for-the-badge" alt="License MIT">
+  <img src="https://img.shields.io/badge/Database-PostgreSQL%20%2F%20MySQL-4479A1?style=for-the-badge&logo=postgresql&logoColor=white" alt="Database">
+  <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License MIT">
 </p>
 
 ---
@@ -18,7 +18,7 @@
 
 Experience the live application online:
 
-👉 **[Launch Plumbfix Live Demo](https://github.com/AdibxIsad/plumbfix)**  
+👉 **[Launch Plumbfix Live Demo](https://plumbfix.onrender.com)**  
 
 ---
 
