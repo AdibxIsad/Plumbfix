@@ -3,7 +3,7 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
 class RecentActivityNotification extends Notification
@@ -27,54 +27,34 @@ class RecentActivityNotification extends Notification
      */
     public function via(object $notifiable): array
     {
-        $channels = ['database'];
-
-        // Task 10: Dynamically add 'mail' channel for booking confirmed, completed, and invoice ready.
-        if ($this->shouldSendEmail()) {
-            $channels[] = 'mail';
-        }
-
-        return $channels;
-    }
-
-    /**
-     * Determine if we should send an email notification.
-     */
-    protected function shouldSendEmail(): bool
-    {
-        $msg = strtolower($this->message);
-        return str_contains($msg, 'confirmed') || 
-               str_contains($msg, 'accepted') ||
-               str_contains($msg, 'approved') ||
-               str_contains($msg, 'deposit');
+        return ['database', 'mail'];
     }
 
     /**
      * Get the mail representation of the notification.
      */
-    public function toMail(object $notifiable)
+    public function toMail(object $notifiable): MailMessage
     {
-        try {
-            $subject = 'PlumbFix Notification';
-            $msg = strtolower($this->message);
-            if (str_contains($msg, 'deposit') || str_contains($msg, 'pay your deposit')) {
-                $subject = 'Deposit Payment Request — PlumbFix';
-            } elseif (str_contains($msg, 'confirmed') || str_contains($msg, 'accepted') || str_contains($msg, 'approved')) {
-                $subject = 'Booking Confirmed — PlumbFix';
-            } elseif (str_contains($msg, 'completed')) {
-                $subject = 'Booking Completed — PlumbFix';
-            } elseif (str_contains($msg, 'job report') || str_contains($msg, 'invoice')) {
-                $subject = 'Invoice Ready — PlumbFix';
-            }
-
-            $recipientName = $notifiable->customerName ?? $notifiable->staffName ?? 'User';
-
-            return (new \App\Mail\ActivityNotificationMail($recipientName, $this->message, $subject))
-                ->to($notifiable->routeNotificationForMail($this));
-        } catch (\Throwable $e) {
-            \Illuminate\Support\Facades\Log::error('Mail notification send error: ' . $e->getMessage());
-            return null;
+        $subject = 'PlumbFix Notification';
+        $msg = strtolower($this->message);
+        if (str_contains($msg, 'deposit') || str_contains($msg, 'pay your deposit')) {
+            $subject = 'Deposit Payment Request — PlumbFix';
+        } elseif (str_contains($msg, 'confirmed') || str_contains($msg, 'accepted') || str_contains($msg, 'approved')) {
+            $subject = 'Booking Confirmed — PlumbFix';
+        } elseif (str_contains($msg, 'completed')) {
+            $subject = 'Booking Completed — PlumbFix';
+        } elseif (str_contains($msg, 'job report') || str_contains($msg, 'invoice')) {
+            $subject = 'Invoice Ready — PlumbFix';
         }
+
+        $recipientName = $notifiable->customerName ?? $notifiable->staffName ?? 'User';
+
+        return (new MailMessage)
+            ->subject($subject)
+            ->greeting("Hello {$recipientName},")
+            ->line($this->message)
+            ->action('View PlumbFix Dashboard', url('/dashboard'))
+            ->line('Thank you for using PlumbFix Service!');
     }
 
     /**
