@@ -18,7 +18,18 @@
 
 Experience the live application online:
 
-👉 **[Launch Plumbfix Live Demo](https://plumbfix.onrender.com)**  
+👉 **[Launch Plumbfix Live Demo](https://plumbfix.onrender.com)**
+
+### 🔑 Demo Login Accounts
+
+You can test the application using the pre-configured demo accounts below:
+
+| Account Type | Portal Link | Email | Password |
+|---|---|---|---|
+| 👷 **Staff / Plumber** | [Staff Login](https://plumbfix.onrender.com/staff/login) | `staff@gmail.com` | `staff123` |
+| 👤 **Customer** | [Customer Login](https://plumbfix.onrender.com/login) | `customer@gmail.com` | `customer123` |
+
+> ℹ️ *Note: You can also register a new Customer account or sign in via Google OAuth on the Customer Login page.*
 
 ---
 

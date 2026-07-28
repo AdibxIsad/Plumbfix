@@ -1,11 +1,11 @@
 # Graph Report - plumbfix  (2026-07-28)
 
 ## Corpus Check
-- 124 files · ~734,549 words
+- 124 files · ~736,673 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 627 nodes · 746 edges · 101 communities (97 shown, 4 thin omitted)
+- 628 nodes · 747 edges · 102 communities (98 shown, 4 thin omitted)
 - Extraction: 96% EXTRACTED · 4% INFERRED · 0% AMBIGUOUS · INFERRED: 32 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
@@ -24,6 +24,7 @@
 - [[_COMMUNITY_Community 12|Community 12]]
 - [[_COMMUNITY_UserFactory & UserFactory|UserFactory & UserFactory]]
 - [[_COMMUNITY_AppServiceProvider & AppServiceProvider|AppServiceProvider & AppServiceProvider]]
+- [[_COMMUNITY_Community 64|Community 64]]
 - [[_COMMUNITY_Community 65|Community 65]]
 - [[_COMMUNITY_Community 138|Community 138]]
 - [[_COMMUNITY_Community 144|Community 144]]
@@ -71,7 +72,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (101 total, 4 thin omitted)
+## Communities (102 total, 4 thin omitted)
 
 ### Community 0 - "Feature & Unit Tests"
 Cohesion: 0.22
@@ -86,12 +87,12 @@ Cohesion: 0.14
 Nodes (5): Request, Request, CustomerController, JobRecord, StaffController
 
 ### Community 3 - "Database Migrations"
-Cohesion: 0.10
-Nodes (9): BaseTestCase, ExampleTest, LoginWelcomeTest, PlumberTest, PlumbfixImprovementsTest, Notification, RefreshDatabase, TestCase (+1 more)
+Cohesion: 0.08
+Nodes (8): BaseTestCase, BookingDepositTest, ExampleTest, LoginWelcomeTest, PlumberTest, RefreshDatabase, TestCase, ExampleTest
 
 ### Community 4 - "Booking Model Group"
-Cohesion: 0.10
-Nodes (7): HasFactory, Model, Booking, ChatMessage, Feedback, JobRecord, Report
+Cohesion: 0.08
+Nodes (8): HasFactory, Model, Booking, ChatMessage, Feedback, JobRecord, PaymentReceipt, Report
 
 ### Community 5 - "User Model Group"
 Cohesion: 0.07
@@ -106,8 +107,8 @@ Cohesion: 0.14
 Nodes (13): devDependencies, axios, concurrently, laravel-vite-plugin, tailwindcss, @tailwindcss/vite, vite, private (+5 more)
 
 ### Community 9 - "Plumber Controller Group"
-Cohesion: 0.10
-Nodes (6): Request, Booking, BookingDepositTest, PaymentReceipt, InventoryService, PaymentVerificationController
+Cohesion: 0.31
+Nodes (4): Request, Booking, InventoryService, PaymentVerificationController
 
 ### Community 10 - "Application Models"
 Cohesion: 0.07
@@ -124,6 +125,10 @@ Nodes (9): scripts, dev, post-autoload-dump, post-create-project-cmd, post-root-
 ### Community 13 - "UserFactory & UserFactory"
 Cohesion: 0.47
 Nodes (3): UserFactory, Factory, static
+
+### Community 64 - "Community 64"
+Cohesion: 0.25
+Nodes (4): PlumbfixImprovementsTest, MailMessage, Notification, RecentActivityNotification
 
 ### Community 65 - "Community 65"
 Cohesion: 0.29
@@ -162,8 +167,8 @@ Cohesion: 0.67
 Nodes (3): extra, laravel, dont-discover
 
 ### Community 160 - "Community 160"
-Cohesion: 0.09
-Nodes (15): Request, ChatController, ChatMessage, Content, Dispatchable, Envelope, ChatMessageSent, InteractsWithSockets (+7 more)
+Cohesion: 0.13
+Nodes (13): Request, ChatController, ChatMessage, Content, Dispatchable, Envelope, ChatMessageSent, InteractsWithSockets (+5 more)
 
 ### Community 163 - "Community 163"
 Cohesion: 0.14
@@ -186,8 +191,8 @@ Cohesion: 0.80
 Nodes (4): Draw-ArrowLine(), Draw-PolylineArrow(), Render-InteractiveDiagram(), Render-LinearDiagram()
 
 ### Community 216 - "Community 216"
-Cohesion: 0.13
-Nodes (15): 👤 Author, 👤 Customer Portal, 🚀 Getting Started, Installation Steps, ✨ Key Features, 📄 License, 🌐 Live System Demo, 📌 Overview (+7 more)
+Cohesion: 0.12
+Nodes (16): 👤 Author, 👤 Customer Portal, 🔐 Demo Credentials, 🚀 Getting Started, Installation Steps, ✨ Key Features, 📄 License, 🌐 Live System Demo (+8 more)
 
 ## Knowledge Gaps
 - **188 isolated node(s):** `Request`, `$schema`, `name`, `type`, `description` (+183 more)
@@ -197,11 +202,11 @@ Nodes (15): 👤 Author, 👤 Customer Portal, 🚀 Getting Started, Installatio
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `PaymentReceipt` connect `Plumber Controller Group` to `Invoice Controller Group`, `Booking Model Group`?**
+- **Why does `PaymentReceipt` connect `Booking Model Group` to `Invoice Controller Group`, `Plumber Controller Group`?**
   _High betweenness centrality (0.074) - this node is a cross-community bridge._
 - **Why does `Controller` connect `Invoice Controller Group` to `Community 160`, `Staff Controller Group`, `Community 166`, `Plumber Controller Group`, `Community 138`?**
   _High betweenness centrality (0.061) - this node is a cross-community bridge._
-- **Why does `BookingDepositTest` connect `Plumber Controller Group` to `Database Migrations`?**
+- **Why does `BookingDepositTest` connect `Database Migrations` to `Booking Model Group`?**
   _High betweenness centrality (0.033) - this node is a cross-community bridge._
 - **What connects `Request`, `$schema`, `name` to the rest of the system?**
   _188 weakly-connected nodes found - possible documentation gaps or missing edges._
@@ -210,4 +215,4 @@ _Questions this graph is uniquely positioned to answer:_
 - **Should `Staff Controller Group` be split into smaller, more focused modules?**
   _Cohesion score 0.13825757575757575 - nodes in this community are weakly interconnected._
 - **Should `Database Migrations` be split into smaller, more focused modules?**
-  _Cohesion score 0.09716599190283401 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.07507507507507508 - nodes in this community are weakly interconnected._
