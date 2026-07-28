@@ -1463,6 +1463,20 @@
         }
 
         @media (max-width: 768px) {
+            .main-wrapper {
+                margin-left: 12px;
+                padding-right: 12px;
+                width: calc(100% - 24px);
+                min-width: 0;
+                max-width: 100%;
+                overflow-x: hidden;
+            }
+            .content-container,
+            .analysis-row,
+            .stats-grid {
+                min-width: 0;
+                max-width: 100%;
+            }
             .stats-grid {
                 grid-template-columns: 1fr;
             }
@@ -1516,9 +1530,28 @@
                 flex-wrap: wrap;
             }
             .chart-wrapper, .chart-container {
+                position: relative;
                 width: 100%;
+                max-width: 100%;
+                min-width: 0;
                 overflow-x: auto;
                 -webkit-overflow-scrolling: touch;
+            }
+            canvas {
+                max-width: 100% !important;
+            }
+            #emailDropdownMenu,
+            .notification-dropdown-menu,
+            .profile-dropdown-menu {
+                position: fixed !important;
+                top: 80px !important;
+                left: 50% !important;
+                right: auto !important;
+                transform: translateX(-50%) !important;
+                width: calc(100vw - 32px) !important;
+                max-width: 360px !important;
+                z-index: 99999 !important;
+                box-shadow: 0 12px 36px rgba(15, 23, 42, 0.22) !important;
             }
         }
 
@@ -1542,22 +1575,6 @@
             .profile-avatar {
                 width: 28px;
                 height: 28px;
-            }
-            .profile-dropdown-menu {
-                position: absolute;
-                top: 52px;
-                right: 0;
-                left: auto;
-                width: 240px;
-                max-width: calc(100vw - 32px);
-            }
-            .notification-dropdown-menu {
-                position: absolute;
-                top: 52px;
-                right: 0;
-                left: auto;
-                width: 280px;
-                max-width: calc(100vw - 32px);
             }
         }
 
