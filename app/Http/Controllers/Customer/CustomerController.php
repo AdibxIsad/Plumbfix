@@ -202,10 +202,14 @@ class CustomerController extends Controller
             'bookingDepositStatus'    => 'pending',
             'paymentStatus'           => 'Pending',
         ]);
-        \Illuminate\Support\Facades\Notification::send(
-            \App\Models\Staff::all(), 
-            new \App\Notifications\RecentActivityNotification("New booking #{$booking->bookingID} received from {$customer->customerName}.")
-        );
+        try {
+            \Illuminate\Support\Facades\Notification::send(
+                \App\Models\Staff::all(), 
+                new \App\Notifications\RecentActivityNotification("New booking #{$booking->bookingID} received from {$customer->customerName}.")
+            );
+        } catch (\Throwable $e) {
+            \Illuminate\Support\Facades\Log::error('Booking creation notification failed: ' . $e->getMessage());
+        }
 
         return redirect()->route('customer.bookings')->with('success', "Booking #{$booking->bookingID} submitted successfully! Please wait for admin approval before paying the deposit.");
     }
@@ -269,15 +273,17 @@ class CustomerController extends Controller
 
         // Notify assigned staff or all staff on status update / cancellation
         $cancelMsg = "Booking #{$booking->bookingID} has been cancelled by {$customer->customerName}.";
-        if ($booking->staffID) {
-            if ($booking->staff) {
+        try {
+            if ($booking->staffID && $booking->staff) {
                 $booking->staff->notify(new \App\Notifications\RecentActivityNotification($cancelMsg));
+            } else {
+                \Illuminate\Support\Facades\Notification::send(
+                    \App\Models\Staff::all(),
+                    new \App\Notifications\RecentActivityNotification($cancelMsg)
+                );
             }
-        } else {
-            \Illuminate\Support\Facades\Notification::send(
-                \App\Models\Staff::all(),
-                new \App\Notifications\RecentActivityNotification($cancelMsg)
-            );
+        } catch (\Throwable $e) {
+            \Illuminate\Support\Facades\Log::error('Cancellation notification failed: ' . $e->getMessage());
         }
 
         $successMsg = 'Booking cancelled successfully.';
@@ -359,10 +365,14 @@ class CustomerController extends Controller
             'feedbackAttachments' => $attachmentPaths,
         ]);
 
-        \Illuminate\Support\Facades\Notification::send(
-            \App\Models\Staff::all(), 
-            new \App\Notifications\RecentActivityNotification("New feedback submitted by {$customer->customerName}.")
-        );
+        try {
+            \Illuminate\Support\Facades\Notification::send(
+                \App\Models\Staff::all(), 
+                new \App\Notifications\RecentActivityNotification("New feedback submitted by {$customer->customerName}.")
+            );
+        } catch (\Throwable $e) {
+            \Illuminate\Support\Facades\Log::error('Feedback notification failed: ' . $e->getMessage());
+        }
 
         return redirect()->route('customer.feedback')->with('success', 'Thank you for your feedback!');
     }
