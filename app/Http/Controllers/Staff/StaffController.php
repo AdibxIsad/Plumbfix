@@ -352,8 +352,12 @@ class StaffController extends Controller
         $booking->save();
 
         if ($booking->customer) {
-            $status = ucwords(str_replace('_', ' ', $request->bookingStatus));
-            $booking->customer->notify(new \App\Notifications\RecentActivityNotification("Your booking #{$booking->bookingID} status changed to {$status}."));
+            try {
+                $status = ucwords(str_replace('_', ' ', $request->bookingStatus));
+                $booking->customer->notify(new \App\Notifications\RecentActivityNotification("Your booking #{$booking->bookingID} status changed to {$status}."));
+            } catch (\Throwable $e) {
+                \Illuminate\Support\Facades\Log::error('Booking update notification error: ' . $e->getMessage());
+            }
         }
 
         return redirect()->route('staff.bookings')->with('success', 'Booking status updated.');
@@ -373,7 +377,11 @@ class StaffController extends Controller
         $booking->save();
 
         if ($booking->customer) {
-            $booking->customer->notify(new \App\Notifications\RecentActivityNotification("Your booking #{$booking->bookingID} has been approved by admin ({$staff->staffName})! You can now proceed to pay your deposit."));
+            try {
+                $booking->customer->notify(new \App\Notifications\RecentActivityNotification("Your booking #{$booking->bookingID} has been approved by admin ({$staff->staffName})! You can now proceed to pay your deposit."));
+            } catch (\Throwable $e) {
+                \Illuminate\Support\Facades\Log::error('Booking accept notification error: ' . $e->getMessage());
+            }
         }
 
         return redirect()->route('staff.bookings')->with('success', "Booking #{$booking->bookingID} confirmed and assigned!");

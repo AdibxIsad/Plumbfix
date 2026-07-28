@@ -54,22 +54,27 @@ class RecentActivityNotification extends Notification
      */
     public function toMail(object $notifiable)
     {
-        $subject = 'PlumbFix Notification';
-        $msg = strtolower($this->message);
-        if (str_contains($msg, 'deposit') || str_contains($msg, 'pay your deposit')) {
-            $subject = 'Deposit Payment Request — PlumbFix';
-        } elseif (str_contains($msg, 'confirmed') || str_contains($msg, 'accepted') || str_contains($msg, 'approved')) {
-            $subject = 'Booking Confirmed — PlumbFix';
-        } elseif (str_contains($msg, 'completed')) {
-            $subject = 'Booking Completed — PlumbFix';
-        } elseif (str_contains($msg, 'job report') || str_contains($msg, 'invoice')) {
-            $subject = 'Invoice Ready — PlumbFix';
+        try {
+            $subject = 'PlumbFix Notification';
+            $msg = strtolower($this->message);
+            if (str_contains($msg, 'deposit') || str_contains($msg, 'pay your deposit')) {
+                $subject = 'Deposit Payment Request — PlumbFix';
+            } elseif (str_contains($msg, 'confirmed') || str_contains($msg, 'accepted') || str_contains($msg, 'approved')) {
+                $subject = 'Booking Confirmed — PlumbFix';
+            } elseif (str_contains($msg, 'completed')) {
+                $subject = 'Booking Completed — PlumbFix';
+            } elseif (str_contains($msg, 'job report') || str_contains($msg, 'invoice')) {
+                $subject = 'Invoice Ready — PlumbFix';
+            }
+
+            $recipientName = $notifiable->customerName ?? $notifiable->staffName ?? 'User';
+
+            return (new \App\Mail\ActivityNotificationMail($recipientName, $this->message, $subject))
+                ->to($notifiable->routeNotificationForMail($this));
+        } catch (\Throwable $e) {
+            \Illuminate\Support\Facades\Log::error('Mail notification send error: ' . $e->getMessage());
+            return null;
         }
-
-        $recipientName = $notifiable->customerName ?? $notifiable->staffName ?? 'User';
-
-        return (new \App\Mail\ActivityNotificationMail($recipientName, $this->message, $subject))
-            ->to($notifiable->routeNotificationForMail($this));
     }
 
     /**
