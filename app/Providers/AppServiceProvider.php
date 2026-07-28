@@ -19,6 +19,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        if (config('app.env') === 'production' || request()->header('x-forwarded-proto') === 'https') {
+            \Illuminate\Support\Facades\URL::forceScheme('https');
+        }
+
         \Illuminate\Support\Facades\Mail::extend('brevo-api', function (array $config) {
             return new \App\Mail\BrevoApiTransport($config['key'] ?? env('BREVO_API_KEY'));
         });
