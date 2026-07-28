@@ -1974,11 +1974,13 @@
                 </div>
             </div>
 
+            @if(auth('staff')->user()?->isAdmin())
             <!-- 5. Plumber -->
             <a href="{{ route('staff.plumbers') }}" class="nav-item nav-link {{ request()->routeIs('staff.plumbers*') ? 'active' : '' }}">
                 <i class="fa-solid fa-helmet-safety"></i>
                 <span class="nav-link-text">Plumber</span>
             </a>
+            @endif
 
             <!-- 6. Feedback -->
             <a href="{{ route('staff.feedback') }}" class="nav-item nav-link {{ request()->routeIs('staff.feedback*') ? 'active' : '' }}">

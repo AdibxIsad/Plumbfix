@@ -179,15 +179,10 @@ class StaffController extends Controller
         }
         unset($data);
 
-        // 3. Recent Activities
-        $recentActivities = Booking::with('customer')
-            ->where(function($query) {
-                $query->where('paymentStatus', '!=', 'Pending')
-                      ->orWhereNull('staffID')
-                      ->orWhere('bookingStatus', 'pending');
-            })
+        // 3. Recent Activities (including Pending Payment Verifications and Pending Refunds)
+        $recentActivities = Booking::with(['customer', 'staff'])
             ->orderBy('created_at', 'desc')
-            ->take(20)
+            ->take(30)
             ->get();
 
         // 4. Top Performing Plumbers
@@ -241,9 +236,17 @@ class StaffController extends Controller
         $request->validate([
             'staffName'        => ['required', 'string', 'max:255'],
             'staffPhoneNo'     => ['nullable', 'string', 'max:20'],
+            'avatar'           => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
             'current_password' => ['nullable', 'string'],
             'new_password'     => ['nullable', 'string', 'min:8', 'confirmed'],
         ]);
+
+        if ($request->hasFile('avatar')) {
+            $file = $request->file('avatar');
+            $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('uploads/avatars'), $fileName);
+            $staff->avatar = 'uploads/avatars/' . $fileName;
+        }
 
         if ($request->filled('current_password')) {
             if (!Hash::check($request->current_password, $staff->staffPassword)) {

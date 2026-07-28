@@ -1357,6 +1357,28 @@
             color: var(--accent-blue);
         }
 
+        .activity-status.status-payment {
+            color: #d97706;
+        }
+        .activity-status.status-payment i {
+            color: #d97706;
+            animation: pulse-glow-orange 1.5s infinite;
+        }
+
+        .activity-status.status-refund {
+            color: #ef4444;
+        }
+        .activity-status.status-refund i {
+            color: #ef4444;
+            animation: pulse-glow-red 1.5s infinite;
+        }
+
+        @keyframes pulse-glow-red {
+            0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+            70% { box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+        }
+
         .activity-status i {
             font-size: 7px;
             width: 7px;
@@ -2096,11 +2118,13 @@
                 </div>
             </div>
 
+            @if(auth('staff')->user()?->isAdmin())
             <!-- 5. Plumber -->
             <a href="{{ route('staff.plumbers') }}" class="nav-item nav-link {{ request()->routeIs('staff.plumbers*') ? 'active' : '' }}">
                 <i class="fa-solid fa-helmet-safety"></i>
                 <span class="nav-link-text">Plumber</span>
             </a>
+            @endif
 
             <!-- 6. Feedback -->
             <a href="{{ route('staff.feedback') }}" class="nav-item nav-link {{ request()->routeIs('staff.feedback*') ? 'active' : '' }}">
@@ -2468,10 +2492,12 @@
 
                     <!-- Navigation Tabs -->
                     <div class="tab-bar">
-                        <button class="tab-btn active">Pending</button>
-                        <button class="tab-btn">In Progress</button>
-                        <button class="tab-btn">Completed</button>
-                        <button class="tab-btn">Cancelled</button>
+                        <button class="tab-btn active" data-tab="all">All</button>
+                        <button class="tab-btn" data-tab="pending">Bookings</button>
+                        <button class="tab-btn" data-tab="payment">Payments</button>
+                        <button class="tab-btn" data-tab="refund">Refunds</button>
+                        <button class="tab-btn" data-tab="in_progress">In Progress</button>
+                        <button class="tab-btn" data-tab="completed">Completed</button>
                     </div>
 
                     <!-- Activities List -->
@@ -2479,11 +2505,39 @@
                         @forelse($recentActivities as $booking)
                         @php
                             $itemStatus = $booking->bookingStatus;
-                            if (!$booking->staffID || $booking->bookingStatus == 'pending') {
+                            $targetRoute = route('staff.bookings');
+                            $statusClass = 'pending';
+                            $statusLabel = 'Pending';
+
+                            if ($booking->refund_status == 'pending') {
+                                $itemStatus = 'refund';
+                                $targetRoute = route('staff.refunds.index');
+                                $statusClass = 'refund';
+                                $statusLabel = 'Pending Refund';
+                            } elseif ($booking->paymentStatus == 'Pending') {
+                                $itemStatus = 'payment';
+                                $targetRoute = route('staff.payment-verification');
+                                $statusClass = 'payment';
+                                $statusLabel = 'Verify Payment';
+                            } elseif (!$booking->staffID || $booking->bookingStatus == 'pending') {
                                 $itemStatus = 'pending';
+                                $statusClass = 'pending';
+                                $statusLabel = 'Pending Booking';
+                            } elseif ($booking->bookingStatus == 'in_progress') {
+                                $itemStatus = 'in_progress';
+                                $statusClass = 'in_progress';
+                                $statusLabel = 'In Progress';
+                            } elseif ($booking->bookingStatus == 'completed') {
+                                $itemStatus = 'completed';
+                                $statusClass = 'completed';
+                                $statusLabel = 'Completed';
+                            } elseif ($booking->bookingStatus == 'cancelled') {
+                                $itemStatus = 'cancelled';
+                                $statusClass = 'cancelled';
+                                $statusLabel = 'Cancelled';
                             }
                         @endphp
-                        <a href="{{ route('staff.bookings') }}" class="activity-item" data-status="{{ $itemStatus }}">
+                        <a href="{{ $targetRoute }}" class="activity-item" data-status="{{ $itemStatus }}">
                             <div class="activity-left">
                                 <div class="activity-avatar">
                                     @php
@@ -2503,32 +2557,12 @@
                                     </svg>
                                 </div>
                                 <div class="activity-meta-details">
-                                    <span class="activity-name">{{ $booking->customer->customerName }}</span>
+                                    <span class="activity-name">{{ $booking->customer->customerName ?? 'Customer' }}</span>
                                     <span class="activity-sub">{{ $booking->bookingProblem }}</span>
                                 </div>
                             </div>
                             <div class="activity-right">
                                 <div class="activity-status-group">
-                                    @php
-                                        $statusClass = '';
-                                        $statusLabel = '';
-                                        if (!$booking->staffID || $booking->bookingStatus == 'pending') {
-                                            $statusClass = 'pending';
-                                            $statusLabel = 'Pending';
-                                        } elseif ($booking->bookingStatus == 'in_progress') {
-                                            $statusClass = 'in_progress';
-                                            $statusLabel = 'In Progress';
-                                        } elseif ($booking->bookingStatus == 'completed') {
-                                            $statusClass = 'completed';
-                                            $statusLabel = 'Completed';
-                                        } elseif ($booking->bookingStatus == 'cancelled') {
-                                            $statusClass = 'cancelled';
-                                            $statusLabel = 'Cancelled';
-                                        } else {
-                                            $statusClass = 'pending';
-                                            $statusLabel = ucwords($booking->bookingStatus);
-                                        }
-                                    @endphp
                                     <span class="activity-status status-{{ $statusClass }}"><i class="fa-solid fa-circle"></i> {{ $statusLabel }}</span>
                                     <span class="activity-time">{{ $booking->created_at->diffForHumans() }}</span>
                                 </div>
@@ -2825,25 +2859,29 @@
             const activityItems = document.querySelectorAll('.activity-item');
 
             function applyFilter() {
-                const activeBtn = document.querySelector('.tab-btn.active');
+                const activeBtn = document.querySelector('.tab-bar .tab-btn.active');
                 if (!activeBtn) return;
-                const filterValue = activeBtn.textContent.trim().toLowerCase().replace(' ', '_');
+                const filter = activeBtn.getAttribute('data-tab') || activeBtn.textContent.trim().toLowerCase();
                 activityItems.forEach(item => {
-                    const itemStatus = item.getAttribute('data-status').toLowerCase();
-                    
+                    const itemStatus = (item.getAttribute('data-status') || '').toLowerCase();
                     let show = false;
-                    if (filterValue === 'in_progress') {
-                        show = (itemStatus === 'in_progress' || itemStatus === 'confirmed');
-                    } else if (filterValue === 'completed') {
-                        show = (itemStatus === 'completed');
-                    } else if (filterValue === 'cancelled') {
-                        show = (itemStatus === 'cancelled');
-                    } else if (filterValue === 'pending') {
-                        show = (itemStatus === 'pending');
-                    } else {
+                    if (filter === 'all') {
                         show = true;
+                    } else if (filter === 'payment') {
+                        show = (itemStatus === 'payment');
+                    } else if (filter === 'refund') {
+                        show = (itemStatus === 'refund');
+                    } else if (filter === 'pending') {
+                        show = (itemStatus === 'pending');
+                    } else if (filter === 'in_progress') {
+                        show = (itemStatus === 'in_progress' || itemStatus === 'confirmed');
+                    } else if (filter === 'completed') {
+                        show = (itemStatus === 'completed');
+                    } else if (filter === 'cancelled') {
+                        show = (itemStatus === 'cancelled');
+                    } else {
+                        show = (itemStatus === filter);
                     }
-                    
                     item.style.display = show ? 'flex' : 'none';
                 });
             }

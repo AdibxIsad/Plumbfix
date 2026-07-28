@@ -50,13 +50,13 @@
     "semantic_hash": ""
   },
   "app/Http/Controllers/Staff/PlumberController.php": {
-    "mtime": 1784372557.7742884,
-    "ast_hash": "c9d964db86f20418391c52242ff90ac2",
+    "mtime": 1785243711.4135637,
+    "ast_hash": "2aa46da03488f1027f3a41943bed1904",
     "semantic_hash": ""
   },
   "app/Http/Controllers/Staff/StaffController.php": {
-    "mtime": 1785236310.492767,
-    "ast_hash": "4373e94f8cfa8824f55421cf21aa9a01",
+    "mtime": 1785243821.3643014,
+    "ast_hash": "ce1cc88872afca568d586738afd6c5f0",
     "semantic_hash": ""
   },
   "app/Http/Controllers/Staff/StaffDashboardController.php": {
@@ -325,8 +325,8 @@
     "semantic_hash": ""
   },
   "resources/views/customer/profile.blade.php": {
-    "mtime": 1784262609.1601312,
-    "ast_hash": "4ae2a70e5ea9a945c01a4279b27a6724",
+    "mtime": 1785243779.5810683,
+    "ast_hash": "c84ef569b89441c275d8ac3c0c36996d",
     "semantic_hash": ""
   },
   "resources/views/emails/activity_notification.blade.php": {
@@ -345,28 +345,28 @@
     "semantic_hash": ""
   },
   "resources/views/register.blade.php": {
-    "mtime": 1784228939.7257924,
-    "ast_hash": "91c9b9776983a42a1921842a2702a043",
+    "mtime": 1785243766.597997,
+    "ast_hash": "1fec092d9dc14a39aeddeb1d4a5623d4",
     "semantic_hash": ""
   },
   "resources/views/staff/analytics.blade.php": {
-    "mtime": 1785243186.972334,
-    "ast_hash": "b88b37bdf796ce45c4696e709f957db8",
+    "mtime": 1785243724.4932163,
+    "ast_hash": "c05f36e73a3b380bc0e172c513878918",
     "semantic_hash": ""
   },
   "resources/views/staff/bookings.blade.php": {
-    "mtime": 1785243199.0062296,
-    "ast_hash": "5aff9c451b17502caad089e5a7f1872a",
+    "mtime": 1785243728.9020195,
+    "ast_hash": "387eb1df318603d7bb869b91a7af2fc4",
     "semantic_hash": ""
   },
   "resources/views/staff/dashboard.blade.php": {
-    "mtime": 1785243177.7920294,
-    "ast_hash": "1651f09d642185d5a11da20fb008a1b2",
+    "mtime": 1785243861.4337249,
+    "ast_hash": "ae539d92edc1bc945f03ce5aa15e7887",
     "semantic_hash": ""
   },
   "resources/views/staff/feedback.blade.php": {
-    "mtime": 1785242561.0626478,
-    "ast_hash": "a6b9d6ce1344a61e3e9e1ede912b67b2",
+    "mtime": 1785243751.4583728,
+    "ast_hash": "d5b2fadbfbb443332d3c172dd54f547f",
     "semantic_hash": ""
   },
   "resources/views/staff/job-record-create.blade.php": {
@@ -380,18 +380,18 @@
     "semantic_hash": "30f6ccf1eb9aae80acabba9a6f87d085"
   },
   "resources/views/staff/job-records.blade.php": {
-    "mtime": 1785243232.7893152,
-    "ast_hash": "cb7968ec31b8c419ec2d1adb9ef64b8b",
+    "mtime": 1785243746.9378123,
+    "ast_hash": "06e29e488061481e4ee442bf4eda7729",
     "semantic_hash": ""
   },
   "resources/views/staff/plumbers.blade.php": {
-    "mtime": 1785243216.211607,
-    "ast_hash": "8ac32f4616c28cc799542df19656b88e",
+    "mtime": 1785243813.9571168,
+    "ast_hash": "b3659a1b2ada896ff09507cdddd91322",
     "semantic_hash": ""
   },
   "resources/views/staff/profile.blade.php": {
-    "mtime": 1784372643.0026157,
-    "ast_hash": "8ae3375647cd7901923116730391fb89",
+    "mtime": 1785243801.4151008,
+    "ast_hash": "858a040476af1f8614254607923ab49a",
     "semantic_hash": ""
   },
   "resources/views/welcome.blade.php": {
@@ -690,8 +690,8 @@
     "semantic_hash": ""
   },
   "resources/views/staff/payment-verification.blade.php": {
-    "mtime": 1785243224.4614236,
-    "ast_hash": "547008e5974a85d1ad0e9af6b98794e2",
+    "mtime": 1785243742.5284276,
+    "ast_hash": "a2fc5d09e4ec9cffb7b4ce3afba5870d",
     "semantic_hash": ""
   },
   "public/images/company_qr_temp.jpg": {
@@ -735,8 +735,8 @@
     "semantic_hash": ""
   },
   "resources/views/staff/refunds.blade.php": {
-    "mtime": 1785243207.109109,
-    "ast_hash": "4ec7bc218b098e7c55bc0120ab757f24",
+    "mtime": 1785243733.949578,
+    "ast_hash": "9138efc8810ab36db4d546418f33aeb7",
     "semantic_hash": ""
   },
   "public/uploads/receipts/1781627904_6a317c002431f.pdf": {

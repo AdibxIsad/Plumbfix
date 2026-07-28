@@ -1694,6 +1694,31 @@
                     bankNameInput.value = card.getAttribute('data-bank');
                 });
             });
+
+            const phoneInput = document.getElementById('customerPhoneNo');
+            if (phoneInput) {
+                const formatPhone = function(e) {
+                    let digits = e.target.value.replace(/\D/g, '');
+                    if (digits.startsWith('60')) digits = digits.substring(2);
+                    let maxDigits = (digits.startsWith('011') || digits.startsWith('11')) ? 11 : 10;
+                    if (/^0?[4-9]/.test(digits)) maxDigits = 9;
+                    digits = digits.substring(0, maxDigits);
+                    let formatted = '';
+                    if (digits.length > 0) {
+                        if (digits.startsWith('011')) {
+                            formatted = digits.length <= 3 ? digits : digits.substring(0, 3) + '-' + digits.substring(3);
+                        } else if (digits.startsWith('03')) {
+                            formatted = digits.length <= 2 ? digits : digits.substring(0, 2) + '-' + digits.substring(2);
+                        } else if (digits.startsWith('0')) {
+                            formatted = digits.length <= 3 ? digits : digits.substring(0, 3) + '-' + digits.substring(3);
+                        } else {
+                            formatted = digits.length <= 2 ? digits : digits.substring(0, 2) + '-' + digits.substring(2);
+                        }
+                    }
+                    e.target.value = formatted;
+                };
+                phoneInput.addEventListener('input', formatPhone);
+            }
         });
     </script>
 </body>

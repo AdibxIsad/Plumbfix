@@ -31,7 +31,7 @@ class PlumberController extends Controller
 
     public function index(Request $request)
     {
-        $staff = $this->checkStaff();
+        $staff = $this->checkAdmin();
 
         $query = Staff::where('staffID', '!=', $staff->staffID);
 

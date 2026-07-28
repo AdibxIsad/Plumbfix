@@ -1156,11 +1156,13 @@
                 </div>
             </div>
 
+            @if(auth('staff')->user()?->isAdmin())
             <!-- 5. Plumber -->
             <a href="{{ route('staff.plumbers') }}" class="nav-item nav-link {{ request()->routeIs('staff.plumbers*') ? 'active' : '' }}">
                 <i class="fa-solid fa-helmet-safety"></i>
                 <span class="nav-link-text">Plumber</span>
             </a>
+            @endif
 
             <!-- 6. Feedback -->
             <a href="{{ route('staff.feedback') }}" class="nav-item nav-link {{ request()->routeIs('staff.feedback*') ? 'active' : '' }}">
@@ -1341,32 +1343,41 @@
             </div>
             @endif
 
-            <!-- Profile Hero Banner -->
-            <div class="profile-hero">
-                <div class="profile-hero-left">
-                    <div class="profile-avatar-lg">
-                        {{ strtoupper(substr($staff->staffName, 0, 1)) }}
-                        <span class="profile-avatar-badge" title="Verified Staff Account">
-                            <i class="fa-solid fa-check"></i>
-                        </span>
-                    </div>
-                    <div class="profile-hero-info">
-                        <h2>{{ $staff->staffName }}</h2>
-                        <p>{{ $staff->staffEmail }}</p>
-                        <div class="profile-meta-tags">
-                            <span class="tag-pill brand">
-                                <i class="fa-solid fa-id-badge"></i> {{ $staff->isAdmin() ? 'Administrator' : 'Plumbing Technician' }}
-                            </span>
-                            <span class="tag-pill muted">
-                                <i class="fa-solid fa-shield-halved"></i> Active Staff Account
-                            </span>
+            <form action="{{ route('staff.profile.update') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <!-- Profile Hero Banner -->
+                <div class="profile-hero">
+                    <div class="profile-hero-left">
+                        <div class="profile-avatar-lg" style="position: relative; cursor: pointer;" onclick="document.getElementById('avatarFileInput').click()" title="Click to change avatar picture">
+                            @if($staff->avatar)
+                                <img id="avatarPreviewImg" src="{{ asset($staff->avatar) }}" alt="Avatar" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                            @else
+                                <span id="avatarInitialsText" style="font-size: 28px; font-weight: 800; color: white;">{{ strtoupper(substr($staff->staffName, 0, 1)) }}</span>
+                                <img id="avatarPreviewImg" src="" alt="Avatar" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: none;">
+                            @endif
+                            <div class="avatar-edit-overlay" style="position: absolute; bottom: 0; right: 0; background: var(--brand-color); color: white; border-radius: 50%; width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; font-size: 14px; border: 2.5px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.25);">
+                                <i class="fa-solid fa-camera"></i>
+                            </div>
+                        </div>
+                        <input type="file" name="avatar" id="avatarFileInput" accept="image/*" style="display: none;" onchange="previewAvatar(this)">
+                        
+                        <div class="profile-hero-info">
+                            <h2>{{ $staff->staffName }}</h2>
+                            <p>{{ $staff->staffEmail }}</p>
+                            <div class="profile-meta-tags">
+                                <span class="tag-pill brand">
+                                    <i class="fa-solid fa-id-badge"></i> {{ $staff->isAdmin() ? 'Administrator' : 'Plumbing Technician' }}
+                                </span>
+                                <span class="tag-pill muted">
+                                    <i class="fa-solid fa-shield-halved"></i> Active Staff Account
+                                </span>
+                                <button type="button" class="tag-pill brand" onclick="document.getElementById('avatarFileInput').click()" style="border:none; cursor:pointer;">
+                                    <i class="fa-solid fa-upload"></i> Change Photo
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <form action="{{ route('staff.profile.update') }}" method="POST">
-                @csrf
                 <div class="form-card">
                     <div class="form-card-title">
                         <div class="form-card-icon"><i class="fa-solid fa-user-gear"></i></div>
@@ -1539,13 +1550,47 @@
                 profileDropdownMenu.classList.toggle('show');
             });
 
-            // Close dropdown if user clicks outside
-            window.addEventListener('click', () => {
-                if (profileDropdownMenu.classList.contains('show')) {
-                    profileDropdownMenu.classList.remove('show');
-                }
-            });
+            // Phone number auto formatting
+            const phoneInput = document.getElementById('staffPhoneNo');
+            if (phoneInput) {
+                phoneInput.addEventListener('input', function(e) {
+                    let digits = e.target.value.replace(/\D/g, '');
+                    if (digits.startsWith('60')) digits = digits.substring(2);
+                    let maxDigits = (digits.startsWith('011') || digits.startsWith('11')) ? 11 : 10;
+                    if (/^0?[4-9]/.test(digits)) maxDigits = 9;
+                    digits = digits.substring(0, maxDigits);
+                    let formatted = '';
+                    if (digits.length > 0) {
+                        if (digits.startsWith('011')) {
+                            formatted = digits.length <= 3 ? digits : digits.substring(0, 3) + '-' + digits.substring(3);
+                        } else if (digits.startsWith('03')) {
+                            formatted = digits.length <= 2 ? digits : digits.substring(0, 2) + '-' + digits.substring(2);
+                        } else if (digits.startsWith('0')) {
+                            formatted = digits.length <= 3 ? digits : digits.substring(0, 3) + '-' + digits.substring(3);
+                        } else {
+                            formatted = digits.length <= 2 ? digits : digits.substring(0, 2) + '-' + digits.substring(2);
+                        }
+                    }
+                    e.target.value = formatted;
+                });
+            }
         });
+
+        function previewAvatar(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.getElementById('avatarPreviewImg');
+                    const initials = document.getElementById('avatarInitialsText');
+                    if (img) {
+                        img.src = e.target.result;
+                        img.style.display = 'block';
+                    }
+                    if (initials) initials.style.display = 'none';
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
     </script>
 </body>
 </html>
