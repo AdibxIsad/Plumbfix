@@ -36,13 +36,18 @@ class RefundController extends Controller
         // Search by Order ID (Booking ID) or Customer Name
         if ($request->filled('search')) {
             $search = trim($request->search);
-            if (is_numeric($search)) {
-                $query->where('bookingID', $search);
-            } else {
-                $query->whereHas('customer', function ($q) use ($search) {
-                    $q->where('customerName', 'like', "%{$search}%");
+            $query->where(function($q) use ($search) {
+                if (is_numeric($search)) {
+                    $q->where('bookingID', $search);
+                }
+                $q->orWhereHas('customer', function ($cq) use ($search) {
+                    $cq->where('customerName', 'like', "%{$search}%")
+                       ->orWhere('customerEmail', 'like', "%{$search}%");
+                })
+                ->orWhereHas('staff', function ($sq) use ($search) {
+                    $sq->where('staffName', 'like', "%{$search}%");
                 });
-            }
+            });
         }
 
         // Filter by refund status

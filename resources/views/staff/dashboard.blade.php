@@ -2422,7 +2422,33 @@
         
         <!-- Dashboard Content Grid -->
         <main class="content-container">
-            
+
+            @if(isset($todaysJobs) && $todaysJobs->count() > 0)
+            <!-- Today's Assigned Jobs Alert Banner -->
+            <div class="todays-jobs-alert-banner" style="background: linear-gradient(135deg, rgba(79, 70, 229, 0.12) 0%, rgba(147, 51, 234, 0.08) 100%); border: 1.5px solid var(--brand-color); border-radius: 20px; padding: 18px 24px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; box-shadow: 0 8px 24px rgba(79, 70, 229, 0.12); position: relative; overflow: hidden; backdrop-filter: blur(10px);">
+                <div style="display: flex; align-items: center; gap: 16px;">
+                    <div style="width: 48px; height: 48px; border-radius: 14px; background: linear-gradient(135deg, var(--brand-color), #7c3aed); color: white; display: flex; align-items: center; justify-content: center; font-size: 20px; box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3); flex-shrink: 0;">
+                        <i class="fa-solid fa-bell-concierge"></i>
+                    </div>
+                    <div>
+                        <div style="font-size: 15px; font-weight: 800; color: var(--text-dark); display: flex; align-items: center; gap: 10px;">
+                            <span>You have {{ $todaysJobs->count() }} job(s) assigned for today!</span>
+                            <span style="background: #ef4444; color: white; font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 10px; text-transform: uppercase; letter-spacing: 0.5px;">Schedule Today</span>
+                        </div>
+                        <div style="font-size: 13px; color: var(--text-muted); margin-top: 4px; font-weight: 500;">
+                            Scheduled for today ({{ date('d M Y') }}): 
+                            @foreach($todaysJobs as $idx => $tj)
+                                <strong>#{{ $tj->bookingID }}</strong> ({{ $tj->bookingType }} at {{ \Carbon\Carbon::parse($tj->bookingTime)->format('h:i A') }}){{ $idx < $todaysJobs->count() - 1 ? ' • ' : '' }}
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+                <a href="{{ route('staff.bookings') }}" class="see-all-btn" style="white-space: nowrap; padding: 10px 18px; font-size: 13px; border-radius: 12px; font-weight: 800; text-decoration: none;">
+                    <i class="fa-solid fa-calendar-check" style="margin-right: 6px;"></i> View Schedule
+                </a>
+            </div>
+            @endif
+
             <!-- Metrics Row (4 Cards) -->
             <div class="metrics-grid">
                 
@@ -3239,6 +3265,17 @@
             const speechBubble = document.getElementById('plumber-speech-bubble');
             const speechText = document.getElementById('plumber-speech-text');
 
+            @if(isset($todaysJobs) && $todaysJobs->count() > 0)
+            setTimeout(() => {
+                speechText.innerText = "🔔 Attention! You have {{ $todaysJobs->count() }} job(s) assigned for today! Check your schedule below! 🛠️";
+                speechBubble.style.display = 'block';
+                if (bubbleTimeout) clearTimeout(bubbleTimeout);
+                bubbleTimeout = setTimeout(() => {
+                    speechBubble.style.display = 'none';
+                }, 8000);
+            }, 1200);
+            @endif
+
             if (!container || !canvas) return;
 
             // 1. Setup Three.js scene inside the canvas
@@ -3380,6 +3417,14 @@
             shadow.position.y = -0.7;
             plumber.add(shadow);
 
+            // K. Stretched Shirt Collar Pull Mesh at the back
+            const shirtPinchGeo = new THREE.ConeGeometry(0.22, 0.45, 16);
+            const shirtPinch = new THREE.Mesh(shirtPinchGeo, redMat);
+            shirtPinch.position.set(0, 0.48, -0.32);
+            shirtPinch.rotation.x = -Math.PI / 3;
+            shirtPinch.visible = false;
+            plumber.add(shirtPinch);
+
             // Lights
             const ambientLight = new THREE.AmbientLight(0xffffff, 0.75);
             scene.add(ambientLight);
@@ -3412,6 +3457,23 @@
             let flipAngle = 0;
             let bubbleTimeout = null;
 
+            // Drag & Shirt Pulling Lift Variables
+            let isDragging = false;
+            let isLifted = false;
+            let dragOffsetX = 0;
+            let dragOffsetY = 0;
+            let liftDangleTime = 0;
+            let dragMoved = false;
+
+            const liftQuotes = [
+                "Hey! Put me down! 😳",
+                "Whoa! Who's pulling my shirt?! 🪠",
+                "Aiyoo! My shirt is stretching from behind! 👕",
+                "Airborne plumber incoming! 🚀",
+                "Gently please! Wrench in hand! 🔧",
+                "Hey! My overalls are getting pulled up! 🫣"
+            ];
+
             // Helper to check window bounds
             function updateBounds() {
                 isCollapsed = document.body.classList.contains('collapsed-sidebar-active');
@@ -3438,7 +3500,7 @@
 
             // Periodically pick random positions to wander
             function selectNewTarget() {
-                if (Math.random() < 0.28 && !isBackflipping) {
+                if (Math.random() < 0.28 && !isBackflipping && !isLifted) {
                     updateBounds();
                     if (maxX > minX && maxY > minY) {
                         targetX = minX + Math.random() * (maxX - minX);
@@ -3449,17 +3511,91 @@
             }
             setInterval(selectNewTarget, 9000);
 
+            // Dragging Handlers
+            function startDrag(clientX, clientY) {
+                isDragging = true;
+                isLifted = true;
+                isWalking = false;
+                dragMoved = false;
+                dragOffsetX = clientX - posX;
+                dragOffsetY = clientY - posY;
+                container.style.transition = 'none';
+                shirtPinch.visible = true;
+
+                const quote = liftQuotes[Math.floor(Math.random() * liftQuotes.length)];
+                speechText.innerText = quote;
+                speechBubble.style.display = 'block';
+                if (bubbleTimeout) clearTimeout(bubbleTimeout);
+            }
+
+            function moveDrag(clientX, clientY) {
+                if (!isDragging) return;
+                dragMoved = true;
+                posX = clientX - dragOffsetX;
+                posY = clientY - dragOffsetY;
+                
+                posX = Math.max(minX, Math.min(posX, maxX));
+                posY = Math.max(minY, Math.min(posY, maxY));
+                
+                container.style.left = `${posX}px`;
+                container.style.top = `${posY}px`;
+                targetX = posX;
+                targetY = posY;
+            }
+
+            function endDrag() {
+                if (!isDragging) return;
+                isDragging = false;
+                isLifted = false;
+                shirtPinch.visible = false;
+                container.style.transition = 'transform 0.2s ease';
+
+                bubbleTimeout = setTimeout(() => {
+                    speechBubble.style.display = 'none';
+                }, 3000);
+            }
+
+            container.addEventListener('mousedown', (e) => {
+                e.stopPropagation();
+                startDrag(e.clientX, e.clientY);
+            });
+
+            window.addEventListener('mousemove', (e) => {
+                if (isDragging) {
+                    e.preventDefault();
+                    moveDrag(e.clientX, e.clientY);
+                }
+            });
+
+            window.addEventListener('mouseup', () => {
+                if (isDragging) endDrag();
+            });
+
+            container.addEventListener('touchstart', (e) => {
+                if (e.touches.length > 0) {
+                    e.stopPropagation();
+                    startDrag(e.touches[0].clientX, e.touches[0].clientY);
+                }
+            }, { passive: false });
+
+            window.addEventListener('touchmove', (e) => {
+                if (isDragging && e.touches.length > 0) {
+                    moveDrag(e.touches[0].clientX, e.touches[0].clientY);
+                }
+            }, { passive: false });
+
+            window.addEventListener('touchend', () => {
+                if (isDragging) endDrag();
+            });
+
             // Interaction - Click trigger flip and random quote speech bubble
             container.addEventListener('click', (e) => {
-                // Prevent bubbling
                 e.stopPropagation();
-                
-                if (isBackflipping) return;
+                if (dragMoved || isBackflipping) return;
 
                 isBackflipping = true;
                 flipAngle = 0;
 
-                // Pick a speech message
                 const quote = plumberQuotes[Math.floor(Math.random() * plumberQuotes.length)];
                 speechText.innerText = quote;
                 speechBubble.style.display = 'block';
@@ -3476,7 +3612,32 @@
 
                 const time = Date.now() * 0.003;
 
-                if (isBackflipping) {
+                if (isLifted) {
+                    liftDangleTime += 0.12;
+
+                    // Tilt plumber forward as if dangling from the back of his shirt collar
+                    plumber.rotation.x = THREE.MathUtils.lerp(plumber.rotation.x, 0.45 + Math.sin(liftDangleTime * 2.5) * 0.08, 0.2);
+                    plumber.rotation.y = THREE.MathUtils.lerp(plumber.rotation.y, Math.sin(liftDangleTime * 1.8) * 0.2, 0.2);
+                    plumber.rotation.z = THREE.MathUtils.lerp(plumber.rotation.z, Math.cos(liftDangleTime * 2.5) * 0.12, 0.2);
+
+                    // Lift up
+                    plumber.position.y = THREE.MathUtils.lerp(plumber.position.y, 0.35, 0.2);
+
+                    // Dangling arms and kicking feet animation
+                    leftArm.rotation.z = 0.2 + Math.sin(liftDangleTime * 4) * 0.25;
+                    rightArm.rotation.z = -0.2 - Math.sin(liftDangleTime * 4) * 0.25;
+                    leftShoe.position.y = -0.65 + Math.sin(liftDangleTime * 5) * 0.08;
+                    rightShoe.position.y = -0.65 - Math.sin(liftDangleTime * 5) * 0.08;
+
+                    // Stretch shirt back pinch mesh
+                    shirtPinch.visible = true;
+                    shirtPinch.scale.set(1 + Math.sin(liftDangleTime * 3) * 0.15, 1.8 + Math.cos(liftDangleTime * 3) * 0.25, 1);
+
+                    // Shrink shadow
+                    shadow.scale.set(0.35, 0.35, 1);
+                    shadow.material.opacity = 0.04;
+                } else if (isBackflipping) {
+                    shirtPinch.visible = false;
                     // Spin flip
                     flipAngle += 0.12;
                     plumber.rotation.x = flipAngle;
@@ -3498,17 +3659,22 @@
                         shadow.material.opacity = 0.12;
                     }
                 } else {
+                    shirtPinch.visible = false;
+                    plumber.rotation.x = THREE.MathUtils.lerp(plumber.rotation.x, 0, 0.15);
+                    plumber.rotation.z = THREE.MathUtils.lerp(plumber.rotation.z, 0, 0.15);
+                    shadow.scale.set(1, 1, 1);
+                    shadow.material.opacity = 0.12;
+
                     // Idle breathing bobbing
                     plumber.position.y = Math.sin(time * 1.5) * 0.05;
                     plumber.rotation.y = Math.cos(time * 0.7) * 0.12;
                     
-                    // Face towards cursor position subtly
                     leftArm.rotation.z = 0.4 + Math.sin(time * 1.5) * 0.04;
                     rightArm.rotation.z = -0.4 - Math.sin(time * 1.5) * 0.04;
                 }
 
                 // Handle waddle-walking movement
-                if (isWalking && !isBackflipping) {
+                if (isWalking && !isBackflipping && !isLifted) {
                     const dx = targetX - posX;
                     const dy = targetY - posY;
                     const dist = Math.sqrt(dx * dx + dy * dy);

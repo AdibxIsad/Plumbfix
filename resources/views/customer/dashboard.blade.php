@@ -3202,6 +3202,14 @@
             shadow.position.y = -0.7;
             plumber.add(shadow);
 
+            // K. Stretched Shirt Collar Pull Mesh at the back
+            const shirtPinchGeo = new THREE.ConeGeometry(0.22, 0.45, 16);
+            const shirtPinch = new THREE.Mesh(shirtPinchGeo, redMat);
+            shirtPinch.position.set(0, 0.48, -0.32);
+            shirtPinch.rotation.x = -Math.PI / 3;
+            shirtPinch.visible = false;
+            plumber.add(shirtPinch);
+
             // Lights
             const ambientLight = new THREE.AmbientLight(0xffffff, 0.75);
             scene.add(ambientLight);
@@ -3234,6 +3242,23 @@
             let flipAngle = 0;
             let bubbleTimeout = null;
 
+            // Drag & Shirt Pulling Lift Variables
+            let isDragging = false;
+            let isLifted = false;
+            let dragOffsetX = 0;
+            let dragOffsetY = 0;
+            let liftDangleTime = 0;
+            let dragMoved = false;
+
+            const liftQuotes = [
+                "Hey! Put me down! 😳",
+                "Whoa! Who's pulling my shirt?! 🪠",
+                "Aiyoo! My shirt is stretching from behind! 👕",
+                "Airborne plumber incoming! 🚀",
+                "Gently please! Wrench in hand! 🔧",
+                "Hey! My overalls are getting pulled up! 🫣"
+            ];
+
             // Helper to check window bounds
             function updateBounds() {
                 isCollapsed = document.body.classList.contains('collapsed-sidebar-active');
@@ -3260,7 +3285,7 @@
 
             // Periodically pick random positions to wander
             function selectNewTarget() {
-                if (Math.random() < 0.28 && !isBackflipping) {
+                if (Math.random() < 0.28 && !isBackflipping && !isLifted) {
                     updateBounds();
                     if (maxX > minX && maxY > minY) {
                         targetX = minX + Math.random() * (maxX - minX);
@@ -3271,17 +3296,91 @@
             }
             setInterval(selectNewTarget, 9000);
 
+            // Dragging Handlers
+            function startDrag(clientX, clientY) {
+                isDragging = true;
+                isLifted = true;
+                isWalking = false;
+                dragMoved = false;
+                dragOffsetX = clientX - posX;
+                dragOffsetY = clientY - posY;
+                container.style.transition = 'none';
+                shirtPinch.visible = true;
+
+                const quote = liftQuotes[Math.floor(Math.random() * liftQuotes.length)];
+                speechText.innerText = quote;
+                speechBubble.style.display = 'block';
+                if (bubbleTimeout) clearTimeout(bubbleTimeout);
+            }
+
+            function moveDrag(clientX, clientY) {
+                if (!isDragging) return;
+                dragMoved = true;
+                posX = clientX - dragOffsetX;
+                posY = clientY - dragOffsetY;
+                
+                posX = Math.max(minX, Math.min(posX, maxX));
+                posY = Math.max(minY, Math.min(posY, maxY));
+                
+                container.style.left = `${posX}px`;
+                container.style.top = `${posY}px`;
+                targetX = posX;
+                targetY = posY;
+            }
+
+            function endDrag() {
+                if (!isDragging) return;
+                isDragging = false;
+                isLifted = false;
+                shirtPinch.visible = false;
+                container.style.transition = 'transform 0.2s ease';
+
+                bubbleTimeout = setTimeout(() => {
+                    speechBubble.style.display = 'none';
+                }, 3000);
+            }
+
+            container.addEventListener('mousedown', (e) => {
+                e.stopPropagation();
+                startDrag(e.clientX, e.clientY);
+            });
+
+            window.addEventListener('mousemove', (e) => {
+                if (isDragging) {
+                    e.preventDefault();
+                    moveDrag(e.clientX, e.clientY);
+                }
+            });
+
+            window.addEventListener('mouseup', () => {
+                if (isDragging) endDrag();
+            });
+
+            container.addEventListener('touchstart', (e) => {
+                if (e.touches.length > 0) {
+                    e.stopPropagation();
+                    startDrag(e.touches[0].clientX, e.touches[0].clientY);
+                }
+            }, { passive: false });
+
+            window.addEventListener('touchmove', (e) => {
+                if (isDragging && e.touches.length > 0) {
+                    moveDrag(e.touches[0].clientX, e.touches[0].clientY);
+                }
+            }, { passive: false });
+
+            window.addEventListener('touchend', () => {
+                if (isDragging) endDrag();
+            });
+
             // Interaction - Click trigger flip and random quote speech bubble
             container.addEventListener('click', (e) => {
-                // Prevent bubbling
                 e.stopPropagation();
-                
-                if (isBackflipping) return;
+                if (dragMoved || isBackflipping) return;
 
                 isBackflipping = true;
                 flipAngle = 0;
 
-                // Pick a speech message
                 const quote = plumberQuotes[Math.floor(Math.random() * plumberQuotes.length)];
                 speechText.innerText = quote;
                 speechBubble.style.display = 'block';
@@ -3298,7 +3397,32 @@
 
                 const time = Date.now() * 0.003;
 
-                if (isBackflipping) {
+                if (isLifted) {
+                    liftDangleTime += 0.12;
+
+                    // Tilt plumber forward as if dangling from the back of his shirt collar
+                    plumber.rotation.x = THREE.MathUtils.lerp(plumber.rotation.x, 0.45 + Math.sin(liftDangleTime * 2.5) * 0.08, 0.2);
+                    plumber.rotation.y = THREE.MathUtils.lerp(plumber.rotation.y, Math.sin(liftDangleTime * 1.8) * 0.2, 0.2);
+                    plumber.rotation.z = THREE.MathUtils.lerp(plumber.rotation.z, Math.cos(liftDangleTime * 2.5) * 0.12, 0.2);
+
+                    // Lift up
+                    plumber.position.y = THREE.MathUtils.lerp(plumber.position.y, 0.35, 0.2);
+
+                    // Dangling arms and kicking feet animation
+                    leftArm.rotation.z = 0.2 + Math.sin(liftDangleTime * 4) * 0.25;
+                    rightArm.rotation.z = -0.2 - Math.sin(liftDangleTime * 4) * 0.25;
+                    leftShoe.position.y = -0.65 + Math.sin(liftDangleTime * 5) * 0.08;
+                    rightShoe.position.y = -0.65 - Math.sin(liftDangleTime * 5) * 0.08;
+
+                    // Stretch shirt back pinch mesh
+                    shirtPinch.visible = true;
+                    shirtPinch.scale.set(1 + Math.sin(liftDangleTime * 3) * 0.15, 1.8 + Math.cos(liftDangleTime * 3) * 0.25, 1);
+
+                    // Shrink shadow
+                    shadow.scale.set(0.35, 0.35, 1);
+                    shadow.material.opacity = 0.04;
+                } else if (isBackflipping) {
+                    shirtPinch.visible = false;
                     // Spin flip
                     flipAngle += 0.12;
                     plumber.rotation.x = flipAngle;
@@ -3320,17 +3444,22 @@
                         shadow.material.opacity = 0.12;
                     }
                 } else {
+                    shirtPinch.visible = false;
+                    plumber.rotation.x = THREE.MathUtils.lerp(plumber.rotation.x, 0, 0.15);
+                    plumber.rotation.z = THREE.MathUtils.lerp(plumber.rotation.z, 0, 0.15);
+                    shadow.scale.set(1, 1, 1);
+                    shadow.material.opacity = 0.12;
+
                     // Idle breathing bobbing
                     plumber.position.y = Math.sin(time * 1.5) * 0.05;
                     plumber.rotation.y = Math.cos(time * 0.7) * 0.12;
                     
-                    // Face towards cursor position subtly
                     leftArm.rotation.z = 0.4 + Math.sin(time * 1.5) * 0.04;
                     rightArm.rotation.z = -0.4 - Math.sin(time * 1.5) * 0.04;
                 }
 
                 // Handle waddle-walking movement
-                if (isWalking && !isBackflipping) {
+                if (isWalking && !isBackflipping && !isLifted) {
                     const dx = targetX - posX;
                     const dy = targetY - posY;
                     const dist = Math.sqrt(dx * dx + dy * dy);

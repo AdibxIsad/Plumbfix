@@ -201,6 +201,19 @@ class StaffController extends Controller
             ->take(5)
             ->get();
 
+        // 6. Today's Assigned Jobs Notification for Staff
+        $todaysJobsQuery = Booking::with(['customer', 'staff'])
+            ->whereDate('bookingDate', \Carbon\Carbon::today());
+
+        if ($staff->staffEmail !== 'admin@gmail.com') {
+            $todaysJobsQuery->where('staffID', $staff->staffID);
+        }
+
+        $todaysJobs = $todaysJobsQuery
+            ->whereIn('bookingStatus', ['confirmed', 'in_progress', 'pending', 'approved', 'assigned'])
+            ->orderBy('bookingTime', 'asc')
+            ->get();
+
         return view('staff.dashboard', compact(
             'staff',
             'totalActiveClients',
@@ -217,6 +230,7 @@ class StaffController extends Controller
             'recentActivities',
             'plumbers',
             'ongoingJobs',
+            'todaysJobs',
             'years',
             'selectedYear'
         ));
@@ -271,16 +285,23 @@ class StaffController extends Controller
 
         $query = Booking::with(['customer', 'jobRecord', 'staff']);
 
-        // Search by Booking ID or Customer Name
+        // Search by Booking ID, Customer Name, Email, Plumber Name, or Service Type
         if ($request->filled('search')) {
             $search = trim($request->search);
-            if (is_numeric($search)) {
-                $query->where('bookingID', $search);
-            } else {
-                $query->whereHas('customer', function ($q) use ($search) {
-                    $q->where('customerName', 'like', "%{$search}%");
-                });
-            }
+            $query->where(function($q) use ($search) {
+                if (is_numeric($search)) {
+                    $q->where('bookingID', $search);
+                }
+                $q->orWhereHas('customer', function ($cq) use ($search) {
+                    $cq->where('customerName', 'like', "%{$search}%")
+                       ->orWhere('customerEmail', 'like', "%{$search}%");
+                })
+                ->orWhereHas('staff', function ($sq) use ($search) {
+                    $sq->where('staffName', 'like', "%{$search}%");
+                })
+                ->orWhere('bookingType', 'like', "%{$search}%")
+                ->orWhere('bookingProblem', 'like', "%{$search}%");
+            });
         }
 
         if ($request->filled('status')) {
@@ -404,16 +425,25 @@ class StaffController extends Controller
         $query = JobRecord::with(['booking.customer', 'staff'])
             ->orderByDesc('jobRecordCompletionDate');
 
-        // Search by Booking ID or Customer Name
+        // Search by Booking ID, Customer Name, Email, or Plumber Name
         if ($request->filled('search')) {
             $search = trim($request->search);
-            if (is_numeric($search)) {
-                $query->where('bookingID', $search);
-            } else {
-                $query->whereHas('booking.customer', function ($q) use ($search) {
-                    $q->where('customerName', 'like', "%{$search}%");
+            $query->where(function($q) use ($search) {
+                if (is_numeric($search)) {
+                    $q->where('bookingID', $search)->orWhere('jobRecordID', $search);
+                }
+                $q->orWhereHas('booking.customer', function ($cq) use ($search) {
+                    $cq->where('customerName', 'like', "%{$search}%")
+                       ->orWhere('customerEmail', 'like', "%{$search}%");
+                })
+                ->orWhereHas('staff', function ($sq) use ($search) {
+                    $sq->where('staffName', 'like', "%{$search}%");
+                })
+                ->orWhereHas('booking', function ($bq) use ($search) {
+                    $bq->where('bookingType', 'like', "%{$search}%")
+                       ->orWhere('bookingProblem', 'like', "%{$search}%");
                 });
-            }
+            });
         }
 
         // Apply Year Filter
