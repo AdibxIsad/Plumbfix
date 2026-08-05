@@ -55,8 +55,8 @@
     "semantic_hash": ""
   },
   "app/Http/Controllers/Staff/StaffController.php": {
-    "mtime": 1785946603.353819,
-    "ast_hash": "0d24e91eaccb05201e4960dd2065f369",
+    "mtime": 1785244738.803539,
+    "ast_hash": "36ccc0b79732fe39e9fa266db352a7c4",
     "semantic_hash": ""
   },
   "app/Http/Controllers/Staff/StaffDashboardController.php": {
@@ -360,8 +360,8 @@
     "semantic_hash": ""
   },
   "resources/views/staff/dashboard.blade.php": {
-    "mtime": 1785946594.2713635,
-    "ast_hash": "9a0c36d70c7f0f9a61453fba2cdf9728",
+    "mtime": 1785945730.3467107,
+    "ast_hash": "e1802ca538438b5d6c3fb8aa7b2f35b0",
     "semantic_hash": ""
   },
   "resources/views/staff/feedback.blade.php": {
@@ -1452,26 +1452,6 @@
   "public/images/plumbing_service_illustration.png": {
     "mtime": 1785857244.3299398,
     "ast_hash": "8d4f963d558a27e65e914ca567a7028a",
-    "semantic_hash": ""
-  },
-  "public/uploads/receipts/bank_islam_deposit_receipt.png": {
-    "mtime": 1785946526.2195845,
-    "ast_hash": "1f81196707e2498faf5f7629df68ebd2",
-    "semantic_hash": ""
-  },
-  "public/uploads/receipts/cimb_deposit_receipt.png": {
-    "mtime": 1785946526.29886,
-    "ast_hash": "6a40d178b2bbb97f52f8b422fe6b0168",
-    "semantic_hash": ""
-  },
-  "public/uploads/receipts/maybank_deposit_receipt.png": {
-    "mtime": 1785946526.247343,
-    "ast_hash": "e95964d8aadc62141090120013d534f4",
-    "semantic_hash": ""
-  },
-  "public/uploads/receipts/rhb_deposit_receipt.png": {
-    "mtime": 1785946526.3467188,
-    "ast_hash": "65cff7ef1e02767becfcbbd24c90120e",
     "semantic_hash": ""
   }
 }

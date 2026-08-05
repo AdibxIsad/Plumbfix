@@ -1037,7 +1037,8 @@
 
         /* Custom SVG/CSS Clustered Bar Chart */
         .chart-container {
-            height: 250px;
+            flex: 1;
+            min-height: 250px;
             position: relative;
             display: flex;
             flex-direction: column;
@@ -1080,6 +1081,8 @@
 
         .chart-bars-area {
             position: relative;
+            flex: 1;
+            min-height: 220px;
             height: calc(100% - 30px);
             width: 100%;
             display: flex;

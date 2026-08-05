@@ -185,12 +185,13 @@ class StaffController extends Controller
             ->take(50)
             ->get();
 
-        // 4. Top Performing Plumbers
-        $plumbers = \App\Models\Staff::withCount(['bookings' => function($q) {
+        // 4. Plumbers List
+        $plumbers = \App\Models\Staff::where('staffEmail', '!=', 'admin@gmail.com')
+            ->withCount(['bookings' => function($q) {
                 $q->where('bookingStatus', 'completed');
             }])
             ->orderBy('bookings_count', 'desc')
-            ->take(3)
+            ->take(5)
             ->get();
 
         // 5. Ongoing Jobs Table
@@ -649,10 +650,7 @@ class StaffController extends Controller
     public function jobRecordCreate($bookingId)
     {
         $staff   = $this->staff();
-        $booking = Booking::where('bookingID', $bookingId)
-            ->where('staffID', $staff->staffID)
-            ->where('bookingStatus', 'completed')
-            ->firstOrFail();
+        $booking = Booking::where('bookingID', $bookingId)->firstOrFail();
 
         $jobRecord = JobRecord::where('bookingID', $bookingId)->first();
 
