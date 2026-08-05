@@ -831,32 +831,166 @@
             text-align: left;
         }
         .service-card:hover {
-            border-color: var(--brand-color);
-            background-color: var(--brand-light);
             transform: translateY(-2px);
             box-shadow: var(--shadow-md);
         }
         .service-card.active {
-            border-color: var(--brand-color);
-            background: linear-gradient(135deg, rgba(13, 148, 136, 0.04) 0%, rgba(59, 130, 246, 0.04) 100%);
-            box-shadow: 0 8px 20px rgba(13, 148, 136, 0.08);
             transform: translateY(-2px);
         }
         .service-card-icon {
             width: 48px;
             height: 48px;
             border-radius: 12px;
-            background-color: var(--hover-color);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 22px;
             transition: all 0.3s;
         }
-        .service-card:hover .service-card-icon,
-        .service-card.active .service-card-icon {
-            background-color: var(--brand-color);
-            color: white;
+
+        /* Service Category Specific Colors & Glows */
+        /* 1. Pipe Repair (Teal/Emerald) */
+        .service-card-icon.icon-pipe-repair {
+            background: rgba(13, 148, 136, 0.12);
+            color: #0d9488;
+        }
+        .service-card.card-pipe-repair:hover {
+            border-color: #0d9488;
+        }
+        .service-card.card-pipe-repair.active {
+            border-color: #0d9488 !important;
+            background: linear-gradient(135deg, rgba(13, 148, 136, 0.06) 0%, rgba(15, 118, 110, 0.02) 100%) !important;
+            box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.25), 0 8px 20px rgba(13, 148, 136, 0.18) !important;
+        }
+        .service-card.card-pipe-repair.active .service-card-icon {
+            background: #0d9488 !important;
+            color: white !important;
+        }
+
+        /* 2. Drain Cleaning (Sky Blue) */
+        .service-card-icon.icon-drain-cleaning {
+            background: rgba(2, 132, 199, 0.12);
+            color: #0284c7;
+        }
+        .service-card.card-drain-cleaning:hover {
+            border-color: #0284c7;
+        }
+        .service-card.card-drain-cleaning.active {
+            border-color: #0284c7 !important;
+            background: linear-gradient(135deg, rgba(2, 132, 199, 0.06) 0%, rgba(3, 105, 161, 0.02) 100%) !important;
+            box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.25), 0 8px 20px rgba(2, 132, 199, 0.18) !important;
+        }
+        .service-card.card-drain-cleaning.active .service-card-icon {
+            background: #0284c7 !important;
+            color: white !important;
+        }
+
+        /* 3. Leak Detection (Ocean Blue) */
+        .service-card-icon.icon-leak-detection {
+            background: rgba(37, 99, 235, 0.12);
+            color: #2563eb;
+        }
+        .service-card.card-leak-detection:hover {
+            border-color: #2563eb;
+        }
+        .service-card.card-leak-detection.active {
+            border-color: #2563eb !important;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.06) 0%, rgba(29, 78, 216, 0.02) 100%) !important;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25), 0 8px 20px rgba(37, 99, 235, 0.18) !important;
+        }
+        .service-card.card-leak-detection.active .service-card-icon {
+            background: #2563eb !important;
+            color: white !important;
+        }
+
+        /* 4. Water Heater (Orange) */
+        .service-card-icon.icon-water-heater {
+            background: rgba(249, 115, 22, 0.12);
+            color: #f97316;
+        }
+        .service-card.card-water-heater:hover {
+            border-color: #f97316;
+        }
+        .service-card.card-water-heater.active {
+            border-color: #f97316 !important;
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.06) 0%, rgba(194, 65, 12, 0.02) 100%) !important;
+            box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.25), 0 8px 20px rgba(249, 115, 22, 0.18) !important;
+        }
+        .service-card.card-water-heater.active .service-card-icon {
+            background: #f97316 !important;
+            color: white !important;
+        }
+
+        /* 5. Toilet Repair (Purple) */
+        .service-card-icon.icon-toilet-repair {
+            background: rgba(139, 92, 246, 0.12);
+            color: #8b5cf6;
+        }
+        .service-card.card-toilet-repair:hover {
+            border-color: #8b5cf6;
+        }
+        .service-card.card-toilet-repair.active {
+            border-color: #8b5cf6 !important;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.06) 0%, rgba(109, 40, 217, 0.02) 100%) !important;
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.25), 0 8px 20px rgba(139, 92, 246, 0.18) !important;
+        }
+        .service-card.card-toilet-repair.active .service-card-icon {
+            background: #8b5cf6 !important;
+            color: white !important;
+        }
+
+        /* 6. Tap & Faucet (Cyan) */
+        .service-card-icon.icon-tap-faucet {
+            background: rgba(6, 182, 212, 0.12);
+            color: #06b6d4;
+        }
+        .service-card.card-tap-faucet:hover {
+            border-color: #06b6d4;
+        }
+        .service-card.card-tap-faucet.active {
+            border-color: #06b6d4 !important;
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.06) 0%, rgba(14, 116, 144, 0.02) 100%) !important;
+            box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.25), 0 8px 20px rgba(6, 182, 212, 0.18) !important;
+        }
+        .service-card.card-tap-faucet.active .service-card-icon {
+            background: #06b6d4 !important;
+            color: white !important;
+        }
+
+        /* 7. Water Tank (Amber/Yellow) */
+        .service-card-icon.icon-water-tank {
+            background: rgba(217, 119, 6, 0.12);
+            color: #d97706;
+        }
+        .service-card.card-water-tank:hover {
+            border-color: #d97706;
+        }
+        .service-card.card-water-tank.active {
+            border-color: #d97706 !important;
+            background: linear-gradient(135deg, rgba(217, 119, 6, 0.06) 0%, rgba(180, 83, 9, 0.02) 100%) !important;
+            box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.25), 0 8px 20px rgba(217, 119, 6, 0.18) !important;
+        }
+        .service-card.card-water-tank.active .service-card-icon {
+            background: #d97706 !important;
+            color: white !important;
+        }
+
+        /* 8. General Inspection (Indigo) */
+        .service-card-icon.icon-general-inspection {
+            background: rgba(99, 102, 241, 0.12);
+            color: #6366f1;
+        }
+        .service-card.card-general-inspection:hover {
+            border-color: #6366f1;
+        }
+        .service-card.card-general-inspection.active {
+            border-color: #6366f1 !important;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.06) 0%, rgba(67, 56, 202, 0.02) 100%) !important;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25), 0 8px 20px rgba(99, 102, 241, 0.18) !important;
+        }
+        .service-card.card-general-inspection.active .service-card-icon {
+            background: #6366f1 !important;
+            color: white !important;
         }
         .service-card-title {
             font-size: 15px;
@@ -1570,43 +1704,43 @@
                         <div class="form-card-title">🔧 Select Service Category</div>
                         
                         <div class="services-grid">
-                            <div class="service-card" onclick="selectServiceCard('Pipe Repair')" data-service="Pipe Repair">
-                                <div class="service-card-icon">🔩</div>
+                            <div class="service-card card-pipe-repair" onclick="selectServiceCard('Pipe Repair')" data-service="Pipe Repair">
+                                <div class="service-card-icon icon-pipe-repair">🔩</div>
                                 <div class="service-card-title">Pipe Repair</div>
                                 <div class="service-card-desc">Fixing leaking, burst, or clogged pipes and connections.</div>
                             </div>
-                            <div class="service-card" onclick="selectServiceCard('Drain Cleaning')" data-service="Drain Cleaning">
-                                <div class="service-card-icon">🚿</div>
+                            <div class="service-card card-drain-cleaning" onclick="selectServiceCard('Drain Cleaning')" data-service="Drain Cleaning">
+                                <div class="service-card-icon icon-drain-cleaning">🚿</div>
                                 <div class="service-card-title">Drain Cleaning</div>
                                 <div class="service-card-desc">Clearing blocked kitchen sinks, bathroom drains, and pipes.</div>
                             </div>
-                            <div class="service-card" onclick="selectServiceCard('Leak Detection')" data-service="Leak Detection">
-                                <div class="service-card-icon">💧</div>
+                            <div class="service-card card-leak-detection" onclick="selectServiceCard('Leak Detection')" data-service="Leak Detection">
+                                <div class="service-card-icon icon-leak-detection">💧</div>
                                 <div class="service-card-title">Leak Detection</div>
                                 <div class="service-card-desc">Locating hidden slab leaks and moisture issues accurately.</div>
                             </div>
-                            <div class="service-card" onclick="selectServiceCard('Water Heater')" data-service="Water Heater">
-                                <div class="service-card-icon">🔥</div>
+                            <div class="service-card card-water-heater" onclick="selectServiceCard('Water Heater')" data-service="Water Heater">
+                                <div class="service-card-icon icon-water-heater">🔥</div>
                                 <div class="service-card-title">Water Heater</div>
                                 <div class="service-card-desc">Installation, troubleshooting, and repairing heaters.</div>
                             </div>
-                            <div class="service-card" onclick="selectServiceCard('Toilet Repair')" data-service="Toilet Repair">
-                                <div class="service-card-icon">🚽</div>
+                            <div class="service-card card-toilet-repair" onclick="selectServiceCard('Toilet Repair')" data-service="Toilet Repair">
+                                <div class="service-card-icon icon-toilet-repair">🚽</div>
                                 <div class="service-card-title">Toilet Repair</div>
                                 <div class="service-card-desc">Fixing flush systems, toilet bowls, and seat replacements.</div>
                             </div>
-                            <div class="service-card" onclick="selectServiceCard('Tap & Faucet')" data-service="Tap & Faucet">
-                                <div class="service-card-icon">🚰</div>
+                            <div class="service-card card-tap-faucet" onclick="selectServiceCard('Tap & Faucet')" data-service="Tap & Faucet">
+                                <div class="service-card-icon icon-tap-faucet">🚰</div>
                                 <div class="service-card-title">Tap & Faucet</div>
                                 <div class="service-card-desc">Replacing and repairing kitchen or bathroom taps.</div>
                             </div>
-                            <div class="service-card" onclick="selectServiceCard('Water Tank')" data-service="Water Tank">
-                                <div class="service-card-icon">🏗️</div>
+                            <div class="service-card card-water-tank" onclick="selectServiceCard('Water Tank')" data-service="Water Tank">
+                                <div class="service-card-icon icon-water-tank">🏗️</div>
                                 <div class="service-card-title">Water Tank</div>
                                 <div class="service-card-desc">Cleaning, inspecting, and installing storage tanks.</div>
                             </div>
-                            <div class="service-card" onclick="selectServiceCard('General Inspection')" data-service="General Inspection">
-                                <div class="service-card-icon">🔍</div>
+                            <div class="service-card card-general-inspection" onclick="selectServiceCard('General Inspection')" data-service="General Inspection">
+                                <div class="service-card-icon icon-general-inspection">🔍</div>
                                 <div class="service-card-title">General Inspection</div>
                                 <div class="service-card-desc">Full checkup of household plumbing and valves.</div>
                             </div>

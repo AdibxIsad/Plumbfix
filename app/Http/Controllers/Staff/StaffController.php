@@ -179,8 +179,12 @@ class StaffController extends Controller
         }
         unset($data);
 
-        // 3. Recent Activities (including Pending Payment Verifications and Pending Refunds)
-        $recentActivities = Booking::with(['customer', 'staff', 'paymentReceipts'])
+        // 3. Recent Activities (Filter by staffID for non-admin plumbers)
+        $recentActivitiesQuery = Booking::with(['customer', 'staff', 'paymentReceipts']);
+        if ($staff->staffEmail !== 'admin@gmail.com') {
+            $recentActivitiesQuery->where('staffID', $staff->staffID);
+        }
+        $recentActivities = $recentActivitiesQuery
             ->orderBy('created_at', 'desc')
             ->take(50)
             ->get();
@@ -201,18 +205,17 @@ class StaffController extends Controller
             ->take(5)
             ->get();
 
-        // 6. Today's Assigned Jobs Notification for Staff
-        $todaysJobsQuery = Booking::with(['customer', 'staff'])
-            ->whereDate('bookingDate', \Carbon\Carbon::today());
-
+        // 6. Today's Assigned Jobs Notification for Plumber Staff (Excluding Admin)
         if ($staff->staffEmail !== 'admin@gmail.com') {
-            $todaysJobsQuery->where('staffID', $staff->staffID);
+            $todaysJobs = Booking::with(['customer', 'staff'])
+                ->whereDate('bookingDate', \Carbon\Carbon::today())
+                ->where('staffID', $staff->staffID)
+                ->whereIn('bookingStatus', ['confirmed', 'in_progress', 'pending', 'approved', 'assigned'])
+                ->orderBy('bookingTime', 'asc')
+                ->get();
+        } else {
+            $todaysJobs = collect();
         }
-
-        $todaysJobs = $todaysJobsQuery
-            ->whereIn('bookingStatus', ['confirmed', 'in_progress', 'pending', 'approved', 'assigned'])
-            ->orderBy('bookingTime', 'asc')
-            ->get();
 
         return view('staff.dashboard', compact(
             'staff',

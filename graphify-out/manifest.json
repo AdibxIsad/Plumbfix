@@ -55,8 +55,8 @@
     "semantic_hash": ""
   },
   "app/Http/Controllers/Staff/StaffController.php": {
-    "mtime": 1785948331.437258,
-    "ast_hash": "a3bd8fe0c9c80edafacabb582963d71e",
+    "mtime": 1785949345.0673397,
+    "ast_hash": "ef3bb7fbc757f6a85a0e73191494630d",
     "semantic_hash": ""
   },
   "app/Http/Controllers/Staff/StaffDashboardController.php": {
@@ -305,8 +305,8 @@
     "semantic_hash": "78f909acc19aea4717eddca5a87c1ba3"
   },
   "resources/views/customer/booking-create.blade.php": {
-    "mtime": 1785249394.1288314,
-    "ast_hash": "e724a08c441b5aeac67e71364d1857b2",
+    "mtime": 1785949416.606831,
+    "ast_hash": "dac6c855b701d959fcdf9a553194a857",
     "semantic_hash": ""
   },
   "resources/views/customer/bookings.blade.php": {
