@@ -2425,27 +2425,53 @@
 
             @if(isset($todaysJobs) && $todaysJobs->count() > 0)
             <!-- Today's Assigned Jobs Alert Banner -->
-            <div class="todays-jobs-alert-banner" style="background: linear-gradient(135deg, rgba(79, 70, 229, 0.12) 0%, rgba(147, 51, 234, 0.08) 100%); border: 1.5px solid var(--brand-color); border-radius: 20px; padding: 18px 24px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; box-shadow: 0 8px 24px rgba(79, 70, 229, 0.12); position: relative; overflow: hidden; backdrop-filter: blur(10px);">
-                <div style="display: flex; align-items: center; gap: 16px;">
-                    <div style="width: 48px; height: 48px; border-radius: 14px; background: linear-gradient(135deg, var(--brand-color), #7c3aed); color: white; display: flex; align-items: center; justify-content: center; font-size: 20px; box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3); flex-shrink: 0;">
-                        <i class="fa-solid fa-bell-concierge"></i>
-                    </div>
-                    <div>
-                        <div style="font-size: 15px; font-weight: 800; color: var(--text-dark); display: flex; align-items: center; gap: 10px;">
-                            <span>You have {{ $todaysJobs->count() }} job(s) assigned for today!</span>
-                            <span style="background: #ef4444; color: white; font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 10px; text-transform: uppercase; letter-spacing: 0.5px;">Schedule Today</span>
+            <div class="todays-jobs-alert-banner" style="background: linear-gradient(135deg, rgba(79, 70, 229, 0.08) 0%, rgba(147, 51, 234, 0.05) 100%); border: 1.5px solid rgba(79, 70, 229, 0.25); border-radius: 20px; padding: 20px 24px; margin-bottom: 24px; box-shadow: 0 10px 30px rgba(79, 70, 229, 0.08); backdrop-filter: blur(10px);">
+                <!-- Top Header -->
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 16px; flex-wrap: wrap;">
+                    <div style="display: flex; align-items: center; gap: 14px;">
+                        <div style="width: 44px; height: 44px; border-radius: 12px; background: linear-gradient(135deg, #4f46e5, #7c3aed); color: white; display: flex; align-items: center; justify-content: center; font-size: 20px; box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3); flex-shrink: 0;">
+                            <i class="fa-solid fa-bell-concierge"></i>
                         </div>
-                        <div style="font-size: 13px; color: var(--text-muted); margin-top: 4px; font-weight: 500;">
-                            Scheduled for today ({{ date('d M Y') }}): 
-                            @foreach($todaysJobs as $idx => $tj)
-                                <strong>#{{ $tj->bookingID }}</strong> ({{ $tj->bookingType }} at {{ \Carbon\Carbon::parse($tj->bookingTime)->format('h:i A') }}){{ $idx < $todaysJobs->count() - 1 ? ' • ' : '' }}
-                            @endforeach
+                        <div>
+                            <div style="font-size: 16px; font-weight: 800; color: var(--text-dark); display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                                <span>You have {{ $todaysJobs->count() }} job(s) assigned for today!</span>
+                                <span style="background: linear-gradient(135deg, #ef4444, #dc2626); color: white; font-size: 10.5px; font-weight: 800; padding: 3px 10px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.6px; box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);">
+                                    <i class="fa-solid fa-calendar-day" style="margin-right: 4px;"></i> {{ date('d M Y') }}
+                                </span>
+                            </div>
+                            <div style="font-size: 13px; color: var(--text-muted); margin-top: 2px; font-weight: 500;">
+                                Please check your scheduled time slots and customer details below.
+                            </div>
                         </div>
                     </div>
+                    <a href="{{ route('staff.bookings') }}" class="see-all-btn" style="white-space: nowrap; padding: 10px 20px; font-size: 13px; border-radius: 12px; font-weight: 800; text-decoration: none; background: var(--brand-color); color: white; box-shadow: 0 4px 12px rgba(13, 148, 136, 0.25);">
+                        <i class="fa-solid fa-calendar-check" style="margin-right: 6px;"></i> View Full Schedule
+                    </a>
                 </div>
-                <a href="{{ route('staff.bookings') }}" class="see-all-btn" style="white-space: nowrap; padding: 10px 18px; font-size: 13px; border-radius: 12px; font-weight: 800; text-decoration: none;">
-                    <i class="fa-solid fa-calendar-check" style="margin-right: 6px;"></i> View Schedule
-                </a>
+
+                <!-- Job Cards Grid -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px;">
+                    @foreach($todaysJobs as $tj)
+                    <div style="background: var(--surface-color-solid); border: 1px solid rgba(79, 70, 229, 0.18); border-radius: 14px; padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; transition: all 0.2s; box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
+                        <div style="display: flex; align-items: center; gap: 12px; min-width: 0;">
+                            <div style="background: rgba(79, 70, 229, 0.1); color: #4f46e5; border-radius: 10px; padding: 8px 12px; font-size: 13px; font-weight: 800; text-align: center; flex-shrink: 0;">
+                                <i class="fa-regular fa-clock" style="margin-right: 4px;"></i> {{ \Carbon\Carbon::parse($tj->bookingTime)->format('h:i A') }}
+                            </div>
+                            <div style="min-width: 0;">
+                                <div style="font-size: 14px; font-weight: 800; color: var(--text-dark); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                    <span style="color: var(--brand-color);">#{{ $tj->bookingID }}</span> • {{ $tj->bookingType }}
+                                </div>
+                                <div style="font-size: 12px; color: var(--text-muted); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                    <i class="fa-regular fa-user" style="margin-right: 4px;"></i> {{ $tj->customer->customerName ?? 'Customer' }}
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{{ route('staff.bookings') }}?search={{ $tj->bookingID }}" style="color: var(--brand-color); font-size: 16px; padding: 6px;" title="View Booking">
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </a>
+                    </div>
+                    @endforeach
+                </div>
             </div>
             @endif
 

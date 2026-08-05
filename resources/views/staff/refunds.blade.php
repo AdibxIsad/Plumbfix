@@ -441,9 +441,10 @@
 
         /* Header Navigation */
         .main-header {
-            height: 80px;
+            min-height: 80px;
+            height: auto;
             margin-top: 20px;
-            padding: 0 32px;
+            padding: 14px 32px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -488,12 +489,14 @@
             color: var(--text-dark);
             line-height: 1.2;
             letter-spacing: -0.5px;
+            white-space: nowrap;
         }
         .welcome-text p {
             font-size: 13px;
             color: var(--text-muted);
             margin-top: 2px;
             font-weight: 500;
+            line-height: 1.35;
         }
 
         .header-actions {
