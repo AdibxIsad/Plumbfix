@@ -2897,6 +2897,7 @@
                 const activeBtn = document.querySelector('.tab-btn.active');
                 if (!activeBtn) return;
                 const filterValue = activeBtn.textContent.trim().toLowerCase();
+                let visibleCount = 0;
                 activityItems.forEach(item => {
                     const itemStatus = item.getAttribute('data-status').toLowerCase();
                     
@@ -2911,7 +2912,12 @@
                         show = (itemStatus === 'completed');
                     }
                     
-                    item.style.display = show ? 'flex' : 'none';
+                    if (show && visibleCount < 5) {
+                        item.style.display = 'flex';
+                        visibleCount++;
+                    } else {
+                        item.style.display = 'none';
+                    }
                 });
             }
 

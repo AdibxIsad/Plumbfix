@@ -3009,6 +3009,7 @@
                 const activeBtn = document.querySelector('.tab-bar .tab-btn.active');
                 if (!activeBtn) return;
                 const filter = activeBtn.getAttribute('data-tab') || activeBtn.textContent.trim().toLowerCase();
+                let visibleCount = 0;
                 activityItems.forEach(item => {
                     const itemStatus = (item.getAttribute('data-status') || '').toLowerCase();
                     let show = false;
@@ -3029,7 +3030,13 @@
                     } else {
                         show = (itemStatus === filter);
                     }
-                    item.style.display = show ? 'flex' : 'none';
+
+                    if (show && visibleCount < 5) {
+                        item.style.display = 'flex';
+                        visibleCount++;
+                    } else {
+                        item.style.display = 'none';
+                    }
                 });
             }
 

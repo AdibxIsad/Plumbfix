@@ -315,8 +315,8 @@
     "semantic_hash": ""
   },
   "resources/views/customer/dashboard.blade.php": {
-    "mtime": 1785251758.4842248,
-    "ast_hash": "5e52e8e7cac71a9aef6abfa302e6132b",
+    "mtime": 1785945735.6381552,
+    "ast_hash": "b28faee44f3d83ca35f06afeceda21fb",
     "semantic_hash": ""
   },
   "resources/views/customer/feedback.blade.php": {
@@ -360,8 +360,8 @@
     "semantic_hash": ""
   },
   "resources/views/staff/dashboard.blade.php": {
-    "mtime": 1785251732.875589,
-    "ast_hash": "35184e70de0e0152f01f24d8c7ed3e1a",
+    "mtime": 1785945730.3467107,
+    "ast_hash": "e1802ca538438b5d6c3fb8aa7b2f35b0",
     "semantic_hash": ""
   },
   "resources/views/staff/feedback.blade.php": {
@@ -380,8 +380,8 @@
     "semantic_hash": "30f6ccf1eb9aae80acabba9a6f87d085"
   },
   "resources/views/staff/job-records.blade.php": {
-    "mtime": 1785243746.9378123,
-    "ast_hash": "06e29e488061481e4ee442bf4eda7729",
+    "mtime": 1785945745.9539247,
+    "ast_hash": "55da3366a67754fae93f774b6a2b112a",
     "semantic_hash": ""
   },
   "resources/views/staff/plumbers.blade.php": {

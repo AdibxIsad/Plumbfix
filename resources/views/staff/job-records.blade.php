@@ -946,6 +946,7 @@
         }
 
         .notes-cell {
+            display: inline-block;
             font-size: 13px;
             color: var(--text-muted);
             min-width: 220px;
@@ -2736,7 +2737,7 @@
                                     <th>Plumber</th>
                                     <th>Completion Date</th>
                                     <th>Total Cost</th>
-                                    <th>Notes</th>
+                                    <th style="min-width: 220px;">Notes</th>
                                     <th>Photos</th>
                                     <th>Recorded</th>
                                     <th style="text-align: center;">Report</th>
