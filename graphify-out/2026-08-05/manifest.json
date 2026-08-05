@@ -170,7 +170,7 @@
     "semantic_hash": "022fdf20e95ddb79949954243e367003"
   },
   "config/database.php": {
-    "mtime": 1785943857.6075172,
+    "mtime": 1785230121.9105678,
     "ast_hash": "a7d31436ddc31b409f87aeff1b278882",
     "semantic_hash": ""
   },
@@ -549,15 +549,50 @@
     "ast_hash": "ff5b82e25d5f1a45c45efe3cb1a43f4f",
     "semantic_hash": ""
   },
+  "public/images/light_galaxy_bg.png": {
+    "mtime": 1781427639.9463243,
+    "ast_hash": "ce642082186b267a550592fdaf5dd40f",
+    "semantic_hash": "ce642082186b267a550592fdaf5dd40f"
+  },
+  "public/images/marquee_1.png": {
+    "mtime": 1778553933.9031997,
+    "ast_hash": "5ce484121080330c8eeac6ddc0dec1d0",
+    "semantic_hash": "5ce484121080330c8eeac6ddc0dec1d0"
+  },
+  "public/images/marquee_2.png": {
+    "mtime": 1778553952.4237764,
+    "ast_hash": "71ba9dc7689e482415a0b9120e6d2b49",
+    "semantic_hash": "71ba9dc7689e482415a0b9120e6d2b49"
+  },
+  "public/images/marquee_3.png": {
+    "mtime": 1778553969.9380977,
+    "ast_hash": "0f659005bc009f735b108f3a1c668668",
+    "semantic_hash": "0f659005bc009f735b108f3a1c668668"
+  },
+  "public/images/marquee_4.png": {
+    "mtime": 1778553984.5554354,
+    "ast_hash": "b7e0a89871a0dc2975ea3ac813c3287f",
+    "semantic_hash": "b7e0a89871a0dc2975ea3ac813c3287f"
+  },
   "public/images/marquee_5.png": {
     "mtime": 1778554001.5752594,
     "ast_hash": "e24f7fff5ee996ea3ac3f5031d253cad",
     "semantic_hash": "e24f7fff5ee996ea3ac3f5031d253cad"
   },
+  "public/images/marquee_6.png": {
+    "mtime": 1778554019.7856884,
+    "ast_hash": "0a9b8aad773b3963133d6ef1d868285e",
+    "semantic_hash": "0a9b8aad773b3963133d6ef1d868285e"
+  },
   "public/images/plumbfix_login_bg.png": {
     "mtime": 1781419621.6860876,
     "ast_hash": "7279566536e137c198d6681fa85fe72e",
     "semantic_hash": "7279566536e137c198d6681fa85fe72e"
+  },
+  "public/images/welcome_bg.png": {
+    "mtime": 1781425523.7191358,
+    "ast_hash": "4cd3980d035ae6307516a5c05af5baca",
+    "semantic_hash": "4cd3980d035ae6307516a5c05af5baca"
   },
   "public/uploads/avatars/1781069933_6a28f86d99a1b.jpg": {
     "mtime": 1781069932.760542,
@@ -662,6 +697,11 @@
   "public/images/company_qr_temp.jpg": {
     "mtime": 1781622285.8961737,
     "ast_hash": "cb351249f90229ee59459fac2fcd91cf",
+    "semantic_hash": ""
+  },
+  "public/images/duitnow-qr.png": {
+    "mtime": 1781620179.5471084,
+    "ast_hash": "4a1efaa26d08ad62cb7f0b6eec9d1c78",
     "semantic_hash": ""
   },
   "database/migrations/2026_06_16_231500_add_payment_method_to_bookings_and_receipts.php": {
@@ -1267,191 +1307,6 @@
   "public/uploads/refunds/1784446760_refund_6a5c7f2869803.png": {
     "mtime": 1784446759.063665,
     "ast_hash": "7e2812fe67fd39ec7508bb46f7525327",
-    "semantic_hash": ""
-  },
-  "storage/framework/views/2305218ca184311e28f84aafa982d490.php": {
-    "mtime": 1785871270.41879,
-    "ast_hash": "be6cf788e2f4a5c87a5d1ae7388fe49c",
-    "semantic_hash": ""
-  },
-  "FYP_POSTER.html": {
-    "mtime": 1785857282.9234307,
-    "ast_hash": "04b0a9cb860e159fd8a929a48d7ae7d1",
-    "semantic_hash": ""
-  },
-  "public/fyp_poster.html": {
-    "mtime": 1785857298.3445923,
-    "ast_hash": "e69b58298f805abbb4838543edccc6e8",
-    "semantic_hash": ""
-  },
-  "public/plumbfix_brochure.html": {
-    "mtime": 1785880206.4301913,
-    "ast_hash": "34443fbb5bddbcb1fc61deb89a97c272",
-    "semantic_hash": ""
-  },
-  "aesthetic_plumbing_canva_bg.png": {
-    "mtime": 1785856599.9291852,
-    "ast_hash": "52c975758c8e2a7ee8a397be716fef9a",
-    "semantic_hash": ""
-  },
-  "aesthetic_plumbing_poster_bg.png": {
-    "mtime": 1785856401.5615127,
-    "ast_hash": "6a4cdb84495db3a681c0f14e31a2c3f0",
-    "semantic_hash": ""
-  },
-  "picture/plumbing_booking_mockup.png": {
-    "mtime": 1785857257.2059803,
-    "ast_hash": "a41431d3fc0a81bf63792bd72ba96983",
-    "semantic_hash": ""
-  },
-  "picture/plumbing_service_illustration.png": {
-    "mtime": 1785857244.3299398,
-    "ast_hash": "8d4f963d558a27e65e914ca567a7028a",
-    "semantic_hash": ""
-  },
-  "public/CANVA_LOGOS_PNG/3d_booking_card_mockup.png": {
-    "mtime": 1785857257.2059803,
-    "ast_hash": "a41431d3fc0a81bf63792bd72ba96983",
-    "semantic_hash": ""
-  },
-  "public/CANVA_LOGOS_PNG/3d_plumbing_system_illustration.png": {
-    "mtime": 1785857244.3299398,
-    "ast_hash": "8d4f963d558a27e65e914ca567a7028a",
-    "semantic_hash": ""
-  },
-  "public/CANVA_LOGOS_PNG/badge_date_august2026.png": {
-    "mtime": 1785857724.866391,
-    "ast_hash": "1179fa97e1601899a424c02f87e9b4b0",
-    "semantic_hash": ""
-  },
-  "public/CANVA_LOGOS_PNG/badge_fskm_bottom.png": {
-    "mtime": 1785857724.8607998,
-    "ast_hash": "fbf175330ee530afe5c906a34d37c2ad",
-    "semantic_hash": ""
-  },
-  "public/CANVA_LOGOS_PNG/duitnow_qr_code.png": {
-    "mtime": 1781104887.3858242,
-    "ast_hash": "cb351249f90229ee59459fac2fcd91cf",
-    "semantic_hash": ""
-  },
-  "public/CANVA_LOGOS_PNG/fskm_logo.png": {
-    "mtime": 1785857580.7621882,
-    "ast_hash": "4ab879b61d2b48e0ddb98e603549370e",
-    "semantic_hash": ""
-  },
-  "public/CANVA_LOGOS_PNG/icon_customer_portal_users.png": {
-    "mtime": 1785857724.79533,
-    "ast_hash": "777c5e78f9c164be62827bb321cd87a4",
-    "semantic_hash": ""
-  },
-  "public/CANVA_LOGOS_PNG/icon_manual_booking_issue.png": {
-    "mtime": 1785857724.7376313,
-    "ast_hash": "382bf41b39ea5bdc82df5a0088b579cd",
-    "semantic_hash": ""
-  },
-  "public/CANVA_LOGOS_PNG/icon_no_feedback_issue.png": {
-    "mtime": 1785857724.744454,
-    "ast_hash": "325d32375b21a77bf2545cef95d2dfb5",
-    "semantic_hash": ""
-  },
-  "public/CANVA_LOGOS_PNG/icon_problem_warning.png": {
-    "mtime": 1785857724.7330837,
-    "ast_hash": "baf87fda65c5385a16a67e661eecae28",
-    "semantic_hash": ""
-  },
-  "public/CANVA_LOGOS_PNG/icon_project_objective.png": {
-    "mtime": 1785857724.7578151,
-    "ast_hash": "aa05a0064455851779fa5d4822b9cad4",
-    "semantic_hash": ""
-  },
-  "public/CANVA_LOGOS_PNG/icon_record_loss_issue.png": {
-    "mtime": 1785857724.7524738,
-    "ast_hash": "cc77e17dd164817ac813e8bc4565cef1",
-    "semantic_hash": ""
-  },
-  "public/CANVA_LOGOS_PNG/icon_requirement_analysis.png": {
-    "mtime": 1785857724.765349,
-    "ast_hash": "4e2668a06295a0145f071567afe2567c",
-    "semantic_hash": ""
-  },
-  "public/CANVA_LOGOS_PNG/icon_staff_admin_shield.png": {
-    "mtime": 1785857724.7883914,
-    "ast_hash": "a6ae473dbd9487f3980ffb89e01ae0b3",
-    "semantic_hash": ""
-  },
-  "public/CANVA_LOGOS_PNG/icon_student_avatar.png": {
-    "mtime": 1785857724.8083794,
-    "ast_hash": "f97c58976230b135271e5d97f35a9177",
-    "semantic_hash": ""
-  },
-  "public/CANVA_LOGOS_PNG/icon_supervisor_avatar.png": {
-    "mtime": 1785857724.8147275,
-    "ast_hash": "f87a5ed0a7d0cace38da18b705c33d0d",
-    "semantic_hash": ""
-  },
-  "public/CANVA_LOGOS_PNG/icon_system_design.png": {
-    "mtime": 1785857724.770911,
-    "ast_hash": "4f60036ba2db762134dce5e6efd875d8",
-    "semantic_hash": ""
-  },
-  "public/CANVA_LOGOS_PNG/icon_system_development.png": {
-    "mtime": 1785857724.7763686,
-    "ast_hash": "4b9cb3fb478c7c82337e7e816a5853bb",
-    "semantic_hash": ""
-  },
-  "public/CANVA_LOGOS_PNG/icon_testing_evaluation.png": {
-    "mtime": 1785857724.7813785,
-    "ast_hash": "7c316c941fd89bbcb71495cf74e6ec03",
-    "semantic_hash": ""
-  },
-  "public/CANVA_LOGOS_PNG/icon_verified_checkmark.png": {
-    "mtime": 1785857724.8013759,
-    "ast_hash": "84905da7edcec296caaa942494b407a4",
-    "semantic_hash": ""
-  },
-  "public/CANVA_LOGOS_PNG/icon_wrench_plumbing.png": {
-    "mtime": 1785857724.7231696,
-    "ast_hash": "232c30e9d0a32331984c036aa495b9ae",
-    "semantic_hash": ""
-  },
-  "public/CANVA_LOGOS_PNG/plumbfix_logo.png": {
-    "mtime": 1785509879.4433074,
-    "ast_hash": "153f5e88b28d63f7effeba1955ad5c58",
-    "semantic_hash": ""
-  },
-  "public/CANVA_LOGOS_PNG/uitm_logo.png": {
-    "mtime": 1785857580.6990595,
-    "ast_hash": "f2b307135ab999716a8cc6cdd0c8b31d",
-    "semantic_hash": ""
-  },
-  "public/images/aesthetic_plumbing_canva_bg.png": {
-    "mtime": 1785856599.9291852,
-    "ast_hash": "52c975758c8e2a7ee8a397be716fef9a",
-    "semantic_hash": ""
-  },
-  "public/images/aesthetic_plumbing_poster_bg.png": {
-    "mtime": 1785856401.5615127,
-    "ast_hash": "6a4cdb84495db3a681c0f14e31a2c3f0",
-    "semantic_hash": ""
-  },
-  "public/images/plumbfix_cover_image.png": {
-    "mtime": 1785509897.1696613,
-    "ast_hash": "64603ef78baec1fe7e599c91aad5e29b",
-    "semantic_hash": ""
-  },
-  "public/images/plumbfix_logo.png": {
-    "mtime": 1785509879.4433074,
-    "ast_hash": "153f5e88b28d63f7effeba1955ad5c58",
-    "semantic_hash": ""
-  },
-  "public/images/plumbing_booking_mockup.png": {
-    "mtime": 1785857257.2059803,
-    "ast_hash": "a41431d3fc0a81bf63792bd72ba96983",
-    "semantic_hash": ""
-  },
-  "public/images/plumbing_service_illustration.png": {
-    "mtime": 1785857244.3299398,
-    "ast_hash": "8d4f963d558a27e65e914ca567a7028a",
     "semantic_hash": ""
   }
 }

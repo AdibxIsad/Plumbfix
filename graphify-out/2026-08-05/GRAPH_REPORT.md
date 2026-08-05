@@ -1,11 +1,11 @@
-# Graph Report - plumbfix  (2026-08-05)
+# Graph Report - plumbfix  (2026-07-28)
 
 ## Corpus Check
-- 125 files · ~816,295 words
+- 124 files · ~736,653 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 629 nodes · 747 edges · 103 communities (99 shown, 4 thin omitted)
+- 628 nodes · 747 edges · 102 communities (98 shown, 4 thin omitted)
 - Extraction: 96% EXTRACTED · 4% INFERRED · 0% AMBIGUOUS · INFERRED: 32 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
@@ -72,7 +72,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (103 total, 4 thin omitted)
+## Communities (102 total, 4 thin omitted)
 
 ### Community 0 - "Feature & Unit Tests"
 Cohesion: 0.22
