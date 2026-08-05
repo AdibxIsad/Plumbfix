@@ -111,7 +111,7 @@ class PaymentController extends Controller
 
             return redirect()->route('customer.bookings')->with(
                 'success',
-                'Your payment receipt has been submitted successfully and is awaiting admin verification.'
+                'Your payment receipt has been submitted successfully and is awaiting staff verification.'
             );
         }
 

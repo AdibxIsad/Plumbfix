@@ -288,6 +288,11 @@ class StaffController extends Controller
 
         $query = Booking::with(['customer', 'jobRecord', 'staff']);
 
+        // Plumbers only see their own assigned bookings (Admin sees all)
+        if ($staff->staffEmail !== 'admin@gmail.com') {
+            $query->where('staffID', $staff->staffID);
+        }
+
         // Search by Booking ID, Customer Name, Email, Plumber Name, or Service Type
         if ($request->filled('search')) {
             $search = trim($request->search);
@@ -424,9 +429,13 @@ class StaffController extends Controller
         // Determine active tab
         $activeTab = $request->input('tab', 'report');
 
-        // Job records query for records tab
+        // Job records query for records tab (Plumbers only see their own job records; Admin sees all)
         $query = JobRecord::with(['booking.customer', 'staff'])
             ->orderByDesc('jobRecordCompletionDate');
+
+        if ($staff->staffEmail !== 'admin@gmail.com') {
+            $query->where('staffID', $staff->staffID);
+        }
 
         // Search by Booking ID, Customer Name, Email, or Plumber Name
         if ($request->filled('search')) {

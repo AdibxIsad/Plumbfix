@@ -86,17 +86,20 @@ class PaymentVerificationController extends Controller
     {
         $staff = $this->verifyStaff();
 
-        $request->validate([
-            'staff_id' => ['required', 'exists:staffs,staffID'],
-        ], [
-            'staff_id.required' => 'Please select a plumber to assign before approving the payment.',
-            'staff_id.exists'   => 'The selected plumber is invalid.',
-        ]);
+        // If staff is plumber (not admin), auto-assign to current staff member
+        if ($staff->staffEmail !== 'admin@gmail.com') {
+            $assignedStaffID = $staff->staffID;
+        } else {
+            $request->validate([
+                'staff_id' => ['nullable', 'exists:staffs,staffID'],
+            ]);
+            $assignedStaffID = $request->input('staff_id') ?: $staff->staffID;
+        }
 
         $booking = Booking::with('customer')->findOrFail($bookingID);
 
         // Assign Plumber and update statuses
-        $booking->staffID              = $request->staff_id;
+        $booking->staffID              = $assignedStaffID;
         $booking->bookingStatus        = 'in_progress';
         $booking->paymentStatus        = 'Paid';
         $booking->bookingDepositStatus = 'paid'; // Keep in sync
@@ -122,7 +125,7 @@ class PaymentVerificationController extends Controller
 
         // Send activity notification for assignment
         try {
-            $assignedStaff = \App\Models\Staff::find($request->staff_id);
+            $assignedStaff = \App\Models\Staff::find($assignedStaffID);
             if ($assignedStaff) {
                 $assignedStaff->notify(new \App\Notifications\RecentActivityNotification("You have been assigned to Booking #{$booking->bookingID}."));
             }

@@ -1806,12 +1806,16 @@
                                                 <!-- Approve Form -->
                                                 <form id="approveForm-{{ $booking->bookingID }}" action="{{ route('staff.payments.approve', $booking->bookingID) }}" method="POST" style="margin:0; display:flex; align-items:center; gap:8px; flex-wrap: wrap;">
                                                     @csrf
-                                                    <select name="staff_id" required style="background-color: var(--surface-color-solid); border: 1px solid var(--border-color); border-radius: 8px; padding: 8px 12px; color: var(--text-dark); font-family: inherit; font-size: 13px; outline: none; cursor: pointer; max-width: 200px;">
-                                                        <option value="">-- Select Plumber * --</option>
-                                                        @foreach($plumbers as $p)
-                                                            <option value="{{ $p->staffID }}" {{ $booking->staffID == $p->staffID ? 'selected' : '' }}>{{ $p->staffName }}</option>
-                                                        @endforeach
-                                                    </select>
+                                                    @if($staff->staffEmail === 'admin@gmail.com')
+                                                        <select name="staff_id" required style="background-color: var(--surface-color-solid); border: 1px solid var(--border-color); border-radius: 8px; padding: 8px 12px; color: var(--text-dark); font-family: inherit; font-size: 13px; outline: none; cursor: pointer; max-width: 200px;">
+                                                            <option value="">-- Select Plumber * --</option>
+                                                            @foreach($plumbers as $p)
+                                                                <option value="{{ $p->staffID }}" {{ $booking->staffID == $p->staffID ? 'selected' : '' }}>{{ $p->staffName }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    @else
+                                                        <input type="hidden" name="staff_id" value="{{ $staff->staffID }}">
+                                                    @endif
                                                     @php
                                                         $receiptUrl = $booking->bookingDepositReceipt ? asset($booking->bookingDepositReceipt) : '';
                                                         $isPdf = Str::endsWith($booking->bookingDepositReceipt, '.pdf') ? 'true' : 'false';
