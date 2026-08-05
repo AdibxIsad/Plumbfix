@@ -2015,13 +2015,22 @@
 
         function triggerApproveModal(bookingID, customerName, depositAmount, receiptUrl, isPdf) {
             const selectElem = document.querySelector(`#approveForm-${bookingID} select[name="staff_id"]`);
-            if (!selectElem || !selectElem.value) {
-                alert('Please select a plumber to assign before approving the payment.');
-                if (selectElem) selectElem.focus();
-                return;
+            const hiddenElem = document.querySelector(`#approveForm-${bookingID} input[name="staff_id"]`);
+            let plumberName = '';
+
+            if (selectElem) {
+                if (!selectElem.value) {
+                    alert('Please select a plumber to assign before approving the payment.');
+                    selectElem.focus();
+                    return;
+                }
+                plumberName = selectElem.options[selectElem.selectedIndex].text;
+            } else if (hiddenElem) {
+                plumberName = '{{ addslashes($staff->staffName ?? "You") }}';
+            } else {
+                plumberName = '{{ addslashes($staff->staffName ?? "Staff") }}';
             }
 
-            const plumberName = selectElem.options[selectElem.selectedIndex].text;
             currentApproveFormId = `approveForm-${bookingID}`;
 
             document.getElementById('approveModalBookingId').innerText = `#${bookingID}`;
