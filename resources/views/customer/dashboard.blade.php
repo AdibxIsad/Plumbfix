@@ -2891,12 +2891,12 @@
 
             // Tab filtering for Recent Bookings
             const tabBtns = document.querySelectorAll('.tab-btn');
-            const activityItems = document.querySelectorAll('.activity-item');
 
-            function applyFilter() {
+            window.applyFilter = function applyFilter() {
                 const activeBtn = document.querySelector('.tab-btn.active');
                 if (!activeBtn) return;
                 const filterValue = activeBtn.textContent.trim().toLowerCase();
+                const activityItems = document.querySelectorAll('.activity-item');
                 let visibleCount = 0;
                 activityItems.forEach(item => {
                     const itemStatus = item.getAttribute('data-status').toLowerCase();
@@ -2919,7 +2919,7 @@
                         item.style.display = 'none';
                     }
                 });
-            }
+            };
 
             tabBtns.forEach(btn => {
                 btn.addEventListener('click', () => {

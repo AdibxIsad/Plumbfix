@@ -3006,12 +3006,12 @@
 
             // Tab filtering for Recent Activities
             const tabBtns = document.querySelectorAll('.tab-btn');
-            const activityItems = document.querySelectorAll('.activity-item');
 
-            function applyFilter() {
+            window.applyFilter = function applyFilter() {
                 const activeBtn = document.querySelector('.tab-bar .tab-btn.active');
                 if (!activeBtn) return;
                 const filter = activeBtn.getAttribute('data-tab') || activeBtn.textContent.trim().toLowerCase();
+                const activityItems = document.querySelectorAll('.activity-item');
                 let visibleCount = 0;
                 activityItems.forEach(item => {
                     const itemStatus = (item.getAttribute('data-status') || '').toLowerCase();
@@ -3041,7 +3041,7 @@
                         item.style.display = 'none';
                     }
                 });
-            }
+            };
 
             tabBtns.forEach(btn => {
                 btn.addEventListener('click', () => {
@@ -3723,6 +3723,9 @@
                             const currentActivities = document.querySelector('.activity-list');
                             if (newActivities && currentActivities && !isUserBusy()) {
                                 currentActivities.innerHTML = newActivities.innerHTML;
+                                if (typeof window.applyFilter === 'function') {
+                                    window.applyFilter();
+                                }
                             }
 
                             const newJobs = newDoc.querySelector('.jobs-table tbody');
