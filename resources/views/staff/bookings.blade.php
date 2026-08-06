@@ -2296,13 +2296,18 @@
                                     <div class="customer-cell">
                                         <span class="name">{{ $b->customer?->customerName ?? '—' }}</span>
                                         <span class="email">{{ $b->customer?->customerEmail ?? '' }}</span>
+                                        @if(!empty($b->customer?->customerPhoneNo))
+                                            <span class="phone" style="font-size: 11.5px; color: var(--text-muted); display: block; margin-top: 1px;">
+                                                <i class="fa-solid fa-phone" style="font-size: 10px; color: var(--brand-color);"></i> {{ $b->customer->customerPhoneNo }}
+                                            </span>
+                                        @endif
                                     </div>
                                 </td>
                                 <td>
                                     @if($b->staff)
                                         <div class="customer-cell">
                                             <span class="name">{{ $b->staff->staffName }}</span>
-                                            <span class="email">ID: #{{ $b->staffID }}</span>
+                                            <span class="email">ID: #{{ $b->staffID }}@if(!empty($b->staff->staffPhoneNo)) • <i class="fa-solid fa-phone" style="font-size: 10px; color: var(--brand-color);"></i> {{ $b->staff->staffPhoneNo }}@endif</span>
                                         </div>
                                     @else
                                         <span class="status-badge" style="background-color:#f1f5f9; color:#64748b; border: 1px solid rgba(100,116,139,0.15); text-transform:none; font-weight:600; letter-spacing:normal;">Unassigned</span>

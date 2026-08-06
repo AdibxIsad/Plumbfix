@@ -17,17 +17,19 @@ class ActivityNotificationMail extends Mailable
     public $subjectLine;
     public $pdfData;
     public $pdfName;
+    public $contactDetails;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($recipientName, $messageText, $subjectLine, $pdfData = null, $pdfName = null)
+    public function __construct($recipientName, $messageText, $subjectLine, $pdfData = null, $pdfName = null, $contactDetails = null)
     {
         $this->recipientName = $recipientName;
         $this->messageText = $messageText;
         $this->subjectLine = $subjectLine;
         $this->pdfData = $pdfData;
         $this->pdfName = $pdfName;
+        $this->contactDetails = $contactDetails;
     }
 
     /**

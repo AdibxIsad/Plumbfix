@@ -2594,6 +2594,11 @@
                                 <span style="font-size: 13.5px; font-weight: 700; color: var(--text-dark);">
                                     @if($nextBooking->staff)
                                         {{ $nextBooking->staff->staffName }} (ID: #{{ $nextBooking->staffID }})
+                                        @if(!empty($nextBooking->staff->staffPhoneNo))
+                                            <div style="font-size: 12px; color: var(--brand-color); font-weight: 600; margin-top: 2px;">
+                                                <i class="fa-solid fa-phone" style="font-size: 10px;"></i> {{ $nextBooking->staff->staffPhoneNo }}
+                                            </div>
+                                        @endif
                                     @else
                                         Assigning technician...
                                     @endif

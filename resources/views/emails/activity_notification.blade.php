@@ -1,7 +1,16 @@
 <x-mail::message>
 # Hello {{ $recipientName }},
 
-{{ $messageText }}
+{!! nl2br(e($messageText)) !!}
+
+@if(!empty($contactDetails) && is_array($contactDetails))
+<x-mail::panel>
+### 📞 Contact Details / Maklumat Hubungan:
+@foreach($contactDetails as $label => $value)
+**{{ $label }}:** {{ $value }}<br>
+@endforeach
+</x-mail::panel>
+@endif
 
 <x-mail::button :url="url('/')">
 Visit Plumbfix Portal

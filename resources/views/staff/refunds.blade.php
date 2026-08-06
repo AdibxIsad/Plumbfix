@@ -1785,6 +1785,11 @@
                                         <div class="customer-info">
                                             <span class="customer-name">{{ $booking->customer->customerName ?? '—' }}</span>
                                             <span class="customer-email">{{ $booking->customer->customerEmail ?? '—' }}</span>
+                                            @if(!empty($booking->customer?->customerPhoneNo))
+                                                <span class="customer-phone" style="font-size: 11.5px; color: var(--text-muted); display: block; margin-top: 1px;">
+                                                    <i class="fa-solid fa-phone" style="font-size: 10px; color: var(--brand-color);"></i> {{ $booking->customer->customerPhoneNo }}
+                                                </span>
+                                            @endif
                                         </div>
                                     </td>
                                     <td>

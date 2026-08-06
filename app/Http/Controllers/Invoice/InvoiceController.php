@@ -88,12 +88,20 @@ class InvoiceController extends Controller
         $messageText = "Your invoice for booking #BKG-{$booking->bookingID} is ready. Please find the attached PDF invoice for your records.";
         $pdfName = 'Invoice-' . sprintf('%05d', $jobRecord->jobRecordID) . '.pdf';
 
+        $assignedStaff = $booking->staff;
+        $contactDetails = [
+            'Assigned Plumber' => $assignedStaff ? $assignedStaff->staffName : 'Plumbfix Support',
+            'Plumber Phone No' => $assignedStaff ? ($assignedStaff->staffPhoneNo ?? 'N/A') : 'N/A',
+            'Plumber Email' => $assignedStaff ? ($assignedStaff->staffEmail ?? 'N/A') : 'N/A',
+        ];
+
         Mail::to($customer->customerEmail)->send(new \App\Mail\ActivityNotificationMail(
             $customer->customerName,
             $messageText,
             $subject,
             $pdfData,
-            $pdfName
+            $pdfName,
+            $contactDetails
         ));
 
         // Also send recent activity notification

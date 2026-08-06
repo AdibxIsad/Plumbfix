@@ -1716,7 +1716,7 @@
                                 <td>
                                     @if($booking->staff)
                                         <div style="font-weight:600;color:var(--text-dark);">{{ $booking->staff->staffName }}</div>
-                                        <div style="font-size:11.5px;color:var(--text-muted);">ID: #{{ $booking->staffID }}</div>
+                                        <div style="font-size:11.5px;color:var(--text-muted);">ID: #{{ $booking->staffID }}@if(!empty($booking->staff->staffPhoneNo)) • <i class="fa-solid fa-phone" style="font-size:10px;color:var(--brand-color);"></i> {{ $booking->staff->staffPhoneNo }}@endif</div>
                                     @else
                                         <span class="status-badge" style="background-color:#f1f5f9; color:#64748b; border: 1px solid rgba(100,116,139,0.15); text-transform:none; font-weight:600; letter-spacing:normal;">Pending Assignment</span>
                                     @endif

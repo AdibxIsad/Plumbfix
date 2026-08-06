@@ -123,20 +123,44 @@ class PaymentVerificationController extends Controller
 
         $booking->save();
 
+        $assignedStaff = \App\Models\Staff::find($assignedStaffID);
+
         // Send activity notification for assignment
         try {
-            $assignedStaff = \App\Models\Staff::find($assignedStaffID);
             if ($assignedStaff) {
                 $assignedStaff->notify(new \App\Notifications\RecentActivityNotification("You have been assigned to Booking #{$booking->bookingID}."));
+                
+                // Send email notification with Customer contact details to assigned Staff
+                if (!empty($assignedStaff->staffEmail)) {
+                    $staffSubject = "New Assignment: Booking #{$booking->bookingID} — Plumbfix";
+                    $staffMessage = "Hi {$assignedStaff->staffName},\n\nYou have been assigned to handle Booking #{$booking->bookingID}. Below are the customer's contact details so you can get in touch with them.";
+                    $customerContactDetails = [
+                        'Customer Name' => $booking->customer->customerName ?? 'N/A',
+                        'Customer Phone' => $booking->customer->customerPhoneNo ?? 'N/A',
+                        'Customer Email' => $booking->customer->customerEmail ?? 'N/A',
+                        'Address / Location' => $booking->bookingAddress ?? $booking->customer->customerAddress ?? 'N/A',
+                        'Booking Date' => $booking->bookingDate ? \Carbon\Carbon::parse($booking->bookingDate)->format('d M Y') : 'N/A',
+                        'Time Slot' => $booking->bookingTimeSlot ?? 'N/A',
+                    ];
+
+                    Mail::to($assignedStaff->staffEmail)->send(new \App\Mail\ActivityNotificationMail(
+                        $assignedStaff->staffName,
+                        $staffMessage,
+                        $staffSubject,
+                        null,
+                        null,
+                        $customerContactDetails
+                    ));
+                }
             }
             if ($booking->customer) {
-                $booking->customer->notify(new \App\Notifications\RecentActivityNotification("Your payment for Booking #{$booking->bookingID} has been verified and your booking is now In Progress with plumber {$assignedStaff->staffName}."));
+                $booking->customer->notify(new \App\Notifications\RecentActivityNotification("Your payment for Booking #{$booking->bookingID} has been verified and your booking is now In Progress with plumber " . ($assignedStaff->staffName ?? 'Staff') . "."));
             }
         } catch (\Exception $e) {
-            // Ignore errors
+            \Illuminate\Support\Facades\Log::error("Failed to send staff assignment email: " . $e->getMessage());
         }
 
-        // Send confirmation email with PDF receipt
+        // Send confirmation email with PDF receipt & Plumber Contact Details to Customer
         $customer = $booking->customer;
         if ($customer && !empty($customer->customerEmail)) {
             try {
@@ -148,15 +172,22 @@ class PaymentVerificationController extends Controller
                 $subject = "Payment Approved & Booking In Progress — Plumbfix";
                 $statusText = 'In Progress';
                 $formattedDeposit = number_format($booking->bookingDepositAmount ?? 50.00, 2);
-                $messageText = "Hi {$customer->customerName},\n\nWe are pleased to inform you that your deposit payment of RM {$formattedDeposit} for Booking #{$booking->bookingID} has been approved.\n\nYour booking is now in '{$statusText}' status and our team will get in touch shortly. Please find your official payment receipt attached.\n\nThank you for choosing Plumbfix!";
+                $messageText = "Hi {$customer->customerName},\n\nWe are pleased to inform you that your deposit payment of RM {$formattedDeposit} for Booking #{$booking->bookingID} has been approved.\n\nYour booking is now in '{$statusText}' status. Below are the contact details of your assigned plumber so you can contact each other directly. Please find your official payment receipt attached.\n\nThank you for choosing Plumbfix!";
                 $pdfName = "Receipt-BKG-{$booking->bookingID}.pdf";
+
+                $plumberContactDetails = [
+                    'Assigned Plumber' => $assignedStaff ? $assignedStaff->staffName : 'Plumbfix Support',
+                    'Plumber Phone No' => $assignedStaff ? ($assignedStaff->staffPhoneNo ?? 'N/A') : 'N/A',
+                    'Plumber Email' => $assignedStaff ? ($assignedStaff->staffEmail ?? 'N/A') : 'N/A',
+                ];
 
                 Mail::to($customer->customerEmail)->send(new \App\Mail\ActivityNotificationMail(
                     $customer->customerName,
                     $messageText,
                     $subject,
                     $pdfData,
-                    $pdfName
+                    $pdfName,
+                    $plumberContactDetails
                 ));
 
                 // Send recent activity notification

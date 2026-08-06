@@ -2877,14 +2877,21 @@
                                                     <path d="M25 100c8-20 20-22 35-22s27 2 35 22v20H25v-20z" fill="{{ $style['fg'] }}" />
                                                 </svg>
                                             </div>
-                                            <span>{{ $job->customer->customerName }}</span>
+                                            <div>
+                                                 <span style="font-weight: 600; color: var(--text-dark); display: block;">{{ $job->customer->customerName }}</span>
+                                                 @if(!empty($job->customer->customerPhoneNo))
+                                                     <span style="font-size: 11px; color: var(--text-muted); display: block;">
+                                                         <i class="fa-solid fa-phone" style="font-size: 9.5px; color: var(--brand-color);"></i> {{ $job->customer->customerPhoneNo }}
+                                                     </span>
+                                                 @endif
+                                             </div>
                                         </div>
                                     </td>
                                     <td>{{ $job->bookingType }}</td>
                                     <td>
                                         @if($job->staff)
                                             <div style="font-weight:600;color:var(--text-dark);">{{ $job->staff->staffName }}</div>
-                                            <div style="font-size:11px;color:var(--text-muted);">ID: #{{ $job->staffID }}</div>
+                                            <div style="font-size:11px;color:var(--text-muted);">ID: #{{ $job->staffID }}@if(!empty($job->staff->staffPhoneNo)) • <i class="fa-solid fa-phone" style="font-size:9.5px; color:var(--brand-color);"></i> {{ $job->staff->staffPhoneNo }}@endif</div>
                                         @else
                                             <span style="color:var(--text-muted);">Unassigned</span>
                                         @endif

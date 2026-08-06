@@ -2757,12 +2757,17 @@
                                         @if($jr->booking?->customer)
                                             <div style="font-weight:600;font-size:14px;color:var(--text-dark);">{{ $jr->booking->customer->customerName }}</div>
                                             <div style="font-size:12px;color:var(--text-muted);">{{ $jr->booking->customer->customerEmail }}</div>
+                                            @if(!empty($jr->booking->customer->customerPhoneNo))
+                                                <div style="font-size:11.5px;color:var(--text-muted);margin-top:1px;">
+                                                    <i class="fa-solid fa-phone" style="font-size:10px;color:var(--brand-color);"></i> {{ $jr->booking->customer->customerPhoneNo }}
+                                                </div>
+                                            @endif
                                         @else <span style="color:var(--text-muted);">—</span> @endif
                                     </td>
                                     <td>
                                         @if($jr->staff)
                                             <div style="font-weight:600;font-size:14px;color:var(--text-dark);">{{ $jr->staff->staffName }}</div>
-                                            <div style="font-size:12px;color:var(--text-muted);">ID: #{{ $jr->staffID }}</div>
+                                            <div style="font-size:12px;color:var(--text-muted);">ID: #{{ $jr->staffID }}@if(!empty($jr->staff->staffPhoneNo)) • <i class="fa-solid fa-phone" style="font-size:10px;color:var(--brand-color);"></i> {{ $jr->staff->staffPhoneNo }}@endif</div>
                                         @else
                                             <span style="color:var(--text-muted);">—</span>
                                         @endif
