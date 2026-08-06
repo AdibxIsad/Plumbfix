@@ -39,7 +39,7 @@ class BrevoApiTransport extends AbstractTransport
 
         $attachments = [];
         foreach ($email->getAttachments() as $attachment) {
-            $body = method_exists($attachment, 'bodyToString') ? $attachment->bodyToString() : $attachment->getBody();
+            $body = $attachment->getBody();
             $attachments[] = [
                 'name' => $attachment->getFilename() ?: 'attachment.pdf',
                 'content' => base64_encode($body),
