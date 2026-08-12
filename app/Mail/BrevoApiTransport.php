@@ -25,7 +25,7 @@ class BrevoApiTransport extends AbstractTransport
             $senderEmail = $envFrom;
         } else {
             $sender = $email->getFrom()[0] ?? null;
-            $senderEmail = ($sender && $sender->getAddress() !== 'hello@example.com') ? $sender->getAddress() : config('mail.from.address');
+            $senderEmail = ($sender && $sender->getAddress() !== 'hello@example.com') ? $sender->getAddress() : 'adibisad@gmail.com';
         }
         $senderName = env('MAIL_FROM_NAME', config('mail.from.name', 'Plumbfix'));
 
