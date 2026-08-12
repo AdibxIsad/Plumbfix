@@ -19,15 +19,6 @@ Route::get('/notifications/unread', [NotificationController::class, 'getUnreadNo
 Route::get('/auth/google',          [GoogleAuthController::class, 'redirect'])->name('auth.google');
 Route::get('/auth/google/callback', [GoogleAuthController::class, 'callback'])->name('auth.google.callback');
 
-Route::get('/test-login', function () {
-    $success = \Illuminate\Support\Facades\Auth::guard('staff')->attempt(['staffEmail' => 'admin@gmail.com', 'password' => 'admin123']);
-    return response()->json([
-        'success' => $success,
-        'user'    => \Illuminate\Support\Facades\Auth::guard('staff')->user(),
-        'check'   => \Illuminate\Support\Facades\Auth::guard('staff')->check(),
-        'session' => session()->all(),
-    ]);
-});
 
 // ── Authentication Routes ─────────────────────────────────────────────────
 Route::middleware('guest')->group(function () {
