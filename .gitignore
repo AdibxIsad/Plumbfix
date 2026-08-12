@@ -1,25 +1,67 @@
-*.log
-.DS_Store
+# Environment and secrets
 .env
+.env.*
 .env.backup
 .env.production
-.phpactor.json
+!.env.example
+
+# Logs and Caches
+*.log
 .phpunit.result.cache
+/.phpunit.cache
+
+# Databases
+*.sqlite
+*.sqlite3
+
+# IDE and Editor Files
+.DS_Store
 /.fleet
 /.idea
 /.nova
-/.phpunit.cache
 /.vscode
 /.zed
+.phpactor.json
+Homestead.json
+Homestead.yaml
+
+# Composer & Node Dependencies
 /auth.json
 /node_modules
+/vendor
+
+# Public build and storage links
 /public/build
 /public/hot
 /public/storage
 /storage/*.key
 /storage/pail
-/vendor
-Homestead.json
-Homestead.yaml
 
+# User Uploads (Ignore uploaded customer/staff files but keep folder structure)
+/public/uploads/avatars/*
+!/public/uploads/avatars/.gitkeep
+/public/uploads/bookings/*
+!/public/uploads/bookings/.gitkeep
+/public/uploads/feedback/*
+!/public/uploads/feedback/.gitkeep
+/public/uploads/job_records/*
+!/public/uploads/job_records/.gitkeep
+/public/uploads/payment_receipts/*
+!/public/uploads/payment_receipts/.gitkeep
+/public/uploads/receipts/*
+!/public/uploads/receipts/.gitkeep
+/public/uploads/refunds/*
+!/public/uploads/refunds/.gitkeep
+
+# Scratch and Temporary Test Scripts
+scratch/
+test_login.php
+test_login2.php
+test_login*.php
+reset_bookings_neon.php
+
+# Graphify internal cache
+graphify-out/
+
+# Temporary Office Lock Files
 ~$*
